@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+// Css for swiper/carousel
+.swiper-button-prev::after,
+.swiper-button-next::after {
+}
