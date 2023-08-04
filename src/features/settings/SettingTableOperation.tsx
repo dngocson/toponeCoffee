@@ -13,13 +13,17 @@ function SettingTableOperation() {
     setSearchParams(searchParams);
   }
   return (
-    <div className="flex justify-between">
-      <h1>Menu</h1>
-      <div>
+    <div className="mx-auto mt-8 flex  items-center justify-between rounded-xl border-2">
+      <h1 className="ml-5 text-2xl">Menu</h1>
+      <div className="flex gap-2 rounded-xl bg-white p-2">
         {options.map((option) => (
           <button
-            className={currentFilter === option.value ? "text-red-400" : ""}
             key={option.value}
+            className={`rounded-xl p-2 transition-all duration-300 ${
+              currentFilter === option.value
+                ? "bg-[#4f46e5] text-white"
+                : "hover:bg-[#4f46e5] hover:text-white"
+            }`}
             onClick={() => handleClick(option.value)}
             disabled={option.value === currentFilter}
           >

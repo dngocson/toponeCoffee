@@ -2,7 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-// Css for swiper/carousel
 .swiper-button-prev::after,
 .swiper-button-next::after {
+}
+
+@layer components {
+  .s_t_row {
+    @apply grid grid-cols-3 items-center gap-3 border-b py-2;
+  }
+  .s_t_input {
+    @apply rounded-md  border bg-white p-3 shadow-sm focus:border-blue-600 focus:outline-none focus:ring  focus:ring-blue-600 focus:ring-opacity-70;
+  }
+  .btn_g {
+    @apply rounded-md bg-blue-600 disabled:bg-blue-400;
+  }
 }

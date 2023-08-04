@@ -1,13 +1,13 @@
 import SettingTableOperation from "../features/settings/SettingTableOperation";
-import CreateEditSettingForm from "../features/settings/CreateEditSettingForm";
 import SettingTable from "../features/settings/SettingTable";
+import AddNewItem from "../features/settings/AddNewItem";
 
 function Settings() {
   return (
-    <div>
+    <div className="mx-auto w-[1200px]">
       <SettingTableOperation />
       <SettingTable />
-      <CreateEditSettingForm />
+      <AddNewItem />
     </div>
   );
 }

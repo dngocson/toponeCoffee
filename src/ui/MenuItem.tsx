@@ -5,7 +5,7 @@ function MenuItem({ data }: { data: MenuItemProps }) {
     <div className="flex flex-col gap-2">
       <img
         className="h-[270px] w-[270px] rounded-xl shadow-cardShadow"
-        src={data.imgURL}
+        src={data.image}
       />
       <div>
         <p className="font-bold">{data.name}</p>
