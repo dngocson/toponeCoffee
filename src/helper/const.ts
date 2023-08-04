@@ -5,14 +5,14 @@ export const headerButton = [
     key: 1,
   },
   {
-    label: "Giới thiệu",
-    url: "/about",
-    key: 2,
-  },
-  {
     label: "menu",
     url: "/menu",
     key: 3,
+  },
+  {
+    label: "Giới thiệu",
+    url: "/about",
+    key: 2,
   },
   {
     label: "liên hệ",

@@ -5,7 +5,6 @@ const SearchMenu = () => {
   const [query, setQuery] = useState<string>("");
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log("submit");
   }
   return (
     <form onSubmit={submitHandler} className="relative">

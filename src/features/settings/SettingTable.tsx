@@ -25,14 +25,14 @@ function SettingTable() {
     filteredMenu = menuItem.data.filter((type) => type.type === "food");
 
   return (
-    <div className="mx-auto mt-8  rounded-xl border-2">
-      <div className="grid grid-cols-settingTable items-center justify-items-start gap-4 border-b text-lg font-bold uppercase">
+    <div className="mx-auto mt-8 overflow-hidden rounded-xl border border-blue-600">
+      <div className=" grid grid-cols-settingTable items-center justify-items-start  gap-4 border-b border-b-blue-600 text-lg font-bold uppercase">
         <p></p>
         <p>Tên</p>
         <p>Loại</p>
         <p>Giá</p>
-        <p>Trạng thái</p>
-        <p></p>
+        <p>Tình trạng</p>
+        <p>Chỉnh sửa</p>
       </div>
       <div className="mx-auto  w-[1200px]">
         {filteredMenu.map((item) => (

@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import About from "./pages/About";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import ProductDetail from "./pages/ProductDetail";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -30,6 +31,7 @@ const App = () => {
         { path: "/about", element: <About /> },
         { path: "/cart", element: <Cart /> },
         { path: "/menu", element: <Menu /> },
+        { path: "/menu/:productId", element: <ProductDetail /> },
         { path: "/login", element: <Login /> },
         { path: "/contact", element: <Contact /> },
         { path: "/order", element: <Order /> },
@@ -57,8 +59,8 @@ const App = () => {
             fontSize: "16px",
             maxWidth: "500px",
             padding: "16px 24px",
-            backgroundColor: "var(--color-grey-0)",
-            color: "var(--color-grey-700)",
+            backgroundColor: "##e2e8f0",
+            color: "#020617",
           },
         }}
       />

@@ -11,9 +11,12 @@
     @apply grid grid-cols-3 items-center gap-3 border-b py-2;
   }
   .s_t_input {
-    @apply rounded-md  border bg-white p-3 shadow-sm focus:border-blue-600 focus:outline-none focus:ring  focus:ring-blue-600 focus:ring-opacity-70;
+    @apply rounded-md  border bg-white p-3 shadow-sm focus:border-blue-600 focus:outline-none focus:ring  focus:ring-blue-600 focus:ring-opacity-70 disabled:bg-gray-300;
   }
   .btn_g {
     @apply rounded-md bg-blue-600 disabled:bg-blue-400;
+  }
+  .btn_cf {
+    @apply rounded-md p-2 shadow-md;
   }
 }

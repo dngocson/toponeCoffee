@@ -4,7 +4,7 @@ import { headerButton } from "../helper/const";
 
 function Header() {
   return (
-    <div className="flex flex-col items-center justify-center gap-8 pt-8">
+    <div className="sticky top-0 z-[50] mt-8 flex flex-col items-center justify-center gap-8 bg-slate-400 pt-8">
       <div className="flex w-[1200px] items-center justify-between">
         <Link to="/" className="text-3xl font-bold uppercase text-blue-600">
           TOPONE Coffee

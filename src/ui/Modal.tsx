@@ -32,7 +32,6 @@ const Modal = ({ children }: ModalProps) => {
     <ModalContext.Provider value={{ openName, close, open }}>
       {children}
     </ModalContext.Provider>
-
     // <div className="fixed left-0 top-0 z-50 h-screen w-full bg-[#FFFFFF1A] backdrop-blur-sm transition-all duration-500">
     //   <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg bg-[#fff] p-12 shadow-lg transition-all duration-500">
     //     <button
@@ -66,7 +65,10 @@ function Window({ children, name }: ModalWindowProps) {
         className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg bg-[#fff] p-12 shadow-lg transition-all duration-500"
         ref={ref}
       >
-        <button onClick={close}>
+        <button
+          className="absolute right-7 top-5 translate-x-4 rounded-sm border-0 bg-transparent p-2 transition-all duration-200 hover:bg-gray-100"
+          onClick={close}
+        >
           <HiXMark />
         </button>
         <div>{cloneElement(children, { onCloseModal: close })}</div>

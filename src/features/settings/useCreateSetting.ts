@@ -4,7 +4,7 @@ import { MenuItemProps } from "../../ui/type";
 import { toast } from "react-hot-toast";
 export function useCreateSetting() {
   const queryClient = useQueryClient();
-  const { mutate, isLoading: isCreating } = useMutation({
+  const { mutate: addItem, isLoading: isCreating } = useMutation({
     mutationFn: (newItem: MenuItemProps) => createMenuItem(newItem),
     onSuccess: () => {
       toast.success("Thêm thành công");
@@ -13,5 +13,5 @@ export function useCreateSetting() {
       });
     },
   });
-  return { mutate, isCreating };
+  return { addItem, isCreating };
 }

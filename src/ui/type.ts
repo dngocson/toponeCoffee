@@ -11,7 +11,7 @@ export interface MenuItemProps {
   price: number;
   name: string;
   description: string;
-  promotion: string;
+  promotion?: string;
   image?: any;
 }
 // Type for Modal
@@ -30,7 +30,8 @@ export interface ModalWindowProps {
 }
 
 export interface ConfirmModalProps {
-  message: string;
+  type: string;
   onConfirm: () => void;
-  onCancel: () => void;
+  onCloseModal?: () => void;
+  disabled: boolean;
 }
