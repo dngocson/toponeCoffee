@@ -16,7 +16,7 @@ function MenuItem({ data }: { data: MenuItemProps }) {
           src={data.image}
         />
       </div>
-      <p className="font-bold">{data.name}</p>
+      <p className="font-bold uppercase">{data.name}</p>
       <p>{data.price}đ</p>
     </div>
   );

@@ -13,6 +13,7 @@ export interface MenuItemProps {
   description: string;
   promotion?: string;
   image?: any;
+  [key: string]: any;
 }
 // Type for Modal
 export interface ModalProps {

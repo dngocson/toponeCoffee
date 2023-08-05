@@ -11,7 +11,7 @@ function SettingTable() {
   if (isLoading) return <Spinner />;
   if (!menuItem?.data.length) return <p>Không tìm thấy dữ liệu trên server</p>;
   const filterValue = searchParams.get("type") || "all";
-
+  // filter
   let filteredMenu: MenuItemProps[] = [];
   if (filterValue === "all") filteredMenu = menuItem.data;
 
@@ -23,7 +23,19 @@ function SettingTable() {
 
   if (filterValue === "food")
     filteredMenu = menuItem.data.filter((type) => type.type === "food");
-
+  // sort
+  const sortBy = searchParams.get("sortBy") || "name-asc";
+  const [field, direction] = sortBy.split("-");
+  const isAscending = direction === "asc";
+  const sortedMenu = filteredMenu
+    ? [...filteredMenu].sort((a, b) => {
+        const compare =
+          field === "name"
+            ? a[field].localeCompare(b[field])
+            : a[field] - b[field];
+        return isAscending ? compare : -compare;
+      })
+    : [];
   return (
     <div className="mx-auto mt-8 overflow-hidden rounded-xl border border-blue-600">
       <div className=" grid grid-cols-settingTable items-center justify-items-start  gap-4 border-b border-b-blue-600 text-lg font-bold uppercase">
@@ -35,7 +47,7 @@ function SettingTable() {
         <p>Chỉnh sửa</p>
       </div>
       <div className="mx-auto  w-[1200px]">
-        {filteredMenu.map((item) => (
+        {sortedMenu.map((item) => (
           <SettingTableRow key={item.id} data={item} />
         ))}
       </div>

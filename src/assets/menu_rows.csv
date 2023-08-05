@@ -1,6 +1,0 @@
-id,created_at,name,type,price,description,imgURL
-1,2023-07-31 16:07:23.211551+00,Trà sữa trân châu,drink,35000,Trà sữa chân trâu vị tự nhiên,https://rencklphdevxcyjmpobp.supabase.co/storage/v1/object/public/menu/Acer_Wallpaper_01_5000x2814.jpg
-2,2023-07-31 16:07:59.495957+00,cơm chiên dương châu,food,50000,cơm chiên dương châu,https://rencklphdevxcyjmpobp.supabase.co/storage/v1/object/public/menu/Acer_Wallpaper_03_5000x2814.jpg
-3,2023-08-01 15:07:42.542171+00,Cà phê bụi,drink,30000,Cà phê bụi,https://product.hstatic.net/1000075078/product/1686716532_dd-suada_4f58fb2c8ea8448f81610fb7a8fbb618.jpg
-4,2023-08-01 15:08:34.515369+00,cafe đen đá,drink,30000,cafe đen đá,https://product.hstatic.net/1000075078/product/1639377770_cfsua-nong_d9cb7313ec5246f8a1b1b05f8a5320de.jpg
-5,2023-08-01 15:09:05.832451+00,trà đào cam sả,drink,15000,trà sữa trần châu,https://product.hstatic.net/1000075078/product/1639377770_cfsua-nong_d9cb7313ec5246f8a1b1b05f8a5320de.jpg

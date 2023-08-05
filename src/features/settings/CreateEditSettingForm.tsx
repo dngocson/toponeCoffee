@@ -5,7 +5,8 @@ import { useEditSetting } from "./useEditSetting";
 
 // Initial value for Form
 const initialFormValues = {
-  type: "",
+  type: "drink",
+  sub_type: "drink_tea",
   price: 0,
   name: "",
   description: "",
@@ -20,7 +21,7 @@ function CreateEditSettingForm({
 }) {
   const { id: editId, ...editValue } = editItem;
   const isEditSession = Boolean(editId);
-  const { register, handleSubmit, reset, getValues, formState } =
+  const { register, handleSubmit, reset, watch, formState, getValues } =
     useForm<MenuItemProps>({
       defaultValues: isEditSession ? editValue : initialFormValues,
     });
@@ -30,6 +31,8 @@ function CreateEditSettingForm({
   const { editSetting, isEditing } = useEditSetting();
   const isWorking = isCreating || isEditing;
   const { errors } = formState;
+  const drinkType = watch("type", getValues("type"));
+  console.log(drinkType);
   const onsubmitHandler: SubmitHandler<MenuItemProps> = (data) => {
     const image = typeof data.image === "string" ? data.image : data.image[0];
     if (!data.image) return;
@@ -67,6 +70,19 @@ function CreateEditSettingForm({
           <option value="food">Cơm</option>
         </select>
       </div>
+
+      {drinkType === "drink" && (
+        <div className="s_t_row">
+          <label htmlFor="sub_type">Loại nước</label>
+          <select className="s_t_input" id="sub_type" {...register("sub_type")}>
+            <option value="drink_tea">Trà hoa quả</option>
+            <option value="drink_yogurt">Sữa chua</option>
+            <option value="drink_juice">Nước ép, sinh tố đá xay</option>
+            <option value="drink_milk-tea">Trà sữa</option>
+            <option value="drink_other">Loại khác</option>
+          </select>
+        </div>
+      )}
 
       <div className="s_t_row">
         <label htmlFor="promotion">Tình trạng</label>
@@ -136,7 +152,7 @@ function CreateEditSettingForm({
           id="image"
           accept="image/*"
           {...register("image", {
-            // required: "Hãy điền thông tin",
+            required: isEditSession ? false : "Hãy thêm hình ảnh",
           })}
         />
         {errors?.image?.message ? (
