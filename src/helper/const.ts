@@ -40,6 +40,37 @@ export const menuTypeOptions = [
   },
 ];
 
+export const menuOptionsWithSubTypes = [
+  {
+    value: "all",
+    label: "Tất cả",
+    type: "main",
+  },
+  {
+    value: "drink",
+    label: "Nước",
+    type: "main",
+    childrens: [
+      { value: "drink_all", label: "Tất cả", type: "sub" },
+      { value: "drink_tea", label: "Trà trái cây", type: "sub" },
+      { value: "drink_yogurt", label: "Sữa chua", type: "sub" },
+      { value: "drink_juice", label: "Nước ép, sinh tố", type: "sub" },
+      { value: "drink_milk-tea", label: "Trà sữa", type: "sub" },
+      { value: "drink_other", label: "Thức uống khác", type: "sub" },
+    ],
+  },
+  {
+    value: "noodle",
+    type: "main",
+    label: "Mỳ cay",
+  },
+  {
+    value: "food",
+    type: "main",
+    label: "Cơm",
+  },
+];
+
 export const menuShortOption = [
   { value: "name-asc", label: "Theo tên (A-Z)" },
   { value: "name-desc", label: "Theo tên (Z-A)" },

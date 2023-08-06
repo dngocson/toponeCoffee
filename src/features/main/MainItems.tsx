@@ -4,13 +4,28 @@ import trasua from "../../assets/coffee2.jpg";
 import mycay from "../../assets/mycay.jpg";
 import comtrua from "../../assets/comtrua1.jpg";
 import MenuItem from "../../ui/MenuItem";
+// import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 const MainItems = () => {
-  const { isLoading, menuItem } = useMenu();
+  // const [drinkVisible, setDrinkVisible] = useState<number>(6);
+  // const [foodVisible, setFoodVisible] = useState<number>(6);
+  // const [noodleVisible, setNoodleVisible] = useState<number>(6);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const drinkLimit = searchParams.get("drink") || "6";
+  const noodleLimit = searchParams.get("noodle") || "6";
+  const foodLimit = searchParams.get("food") || "6";
+  function handleClick(target: string, value: string) {
+    searchParams.set(target, Number(Number(value) + 4).toString());
+    setSearchParams(searchParams);
+  }
+
+  const { isLoading, menuItems } = useMenu();
   if (isLoading) return <Spinner />;
-  if (!menuItem) return <p>Du lieu tren sever trong</p>;
-  const drinks = menuItem.data.filter((type) => type.type === "drink");
-  const noodles = menuItem.data.filter((type) => type.type === "noodle");
-  const foods = menuItem.data.filter((type) => type.type === "food");
+  if (!menuItems) return <p>Du lieu tren sever trong</p>;
+  const drinks = menuItems.data.filter((type) => type.type === "drink");
+  const noodles = menuItems.data.filter((type) => type.type === "noodle");
+  const foods = menuItems.data.filter((type) => type.type === "food");
   return (
     <div className="mx-auto mt-12 flex w-[1200px] flex-col gap-8">
       <i className="self-center bg-gradient-to-r from-red-600 to-green-400 bg-clip-text p-2 text-4xl font-bold capitalize text-transparent  ">
@@ -21,10 +36,19 @@ const MainItems = () => {
           Cà phê / Trà sữa
         </p>
         <img src={trasua} alt="" className="h-[370px] w-[570px] rounded-xl" />
-        {drinks.map((drink) => (
+        {drinks.slice(0, Number(drinkLimit)).map((drink) => (
           <MenuItem key={drink.id} data={drink} />
         ))}
       </div>
+      {Number(drinkLimit) < drinks.length && (
+        <button
+          className="btn_g self-center p-2"
+          // onClick={() => setDrinkVisible((prev) => prev + 4)}
+          onClick={() => handleClick("drink", drinkLimit)}
+        >
+          Xem thêm
+        </button>
+      )}
 
       <i className="self-center bg-gradient-to-r from-red-600 to-green-400 bg-clip-text p-2 text-4xl font-bold capitalize text-transparent  ">
         Mỳ cay 7 cấp Top one
@@ -38,10 +62,20 @@ const MainItems = () => {
           alt=""
           className="object-fit h-[370px] w-[570px] rounded-xl"
         />
-        {noodles.map((noodle) => (
+        {noodles.slice(0, Number(noodleLimit)).map((noodle) => (
           <MenuItem key={noodle.id} data={noodle} />
         ))}
       </div>
+
+      {Number(noodleLimit) < noodles.length && (
+        <button
+          className="btn_g self-center p-2"
+          // onClick={() => setNoodleVisible((prev) => prev + 4)}
+          onClick={() => handleClick("noodle", noodleLimit)}
+        >
+          Xem thêm
+        </button>
+      )}
 
       <i className="self-center bg-gradient-to-r from-red-600 to-green-400 bg-clip-text p-2 text-4xl font-bold capitalize text-transparent  ">
         Quán cơm Top one
@@ -55,10 +89,19 @@ const MainItems = () => {
           alt=""
           className="object-fit h-[370px] w-[570px] rounded-xl"
         />
-        {foods.map((food) => (
+        {foods.slice(0, Number(foodLimit)).map((food) => (
           <MenuItem key={food.id} data={food} />
         ))}
       </div>
+      {Number(foodLimit) < foods.length && (
+        <button
+          className="btn_g self-center p-2"
+          // onClick={() => setFoodVisible((prev) => prev + 4)}
+          onClick={() => handleClick("food", foodLimit)}
+        >
+          Xem thêm
+        </button>
+      )}
     </div>
   );
 };

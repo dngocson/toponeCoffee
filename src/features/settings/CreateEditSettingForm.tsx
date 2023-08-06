@@ -32,7 +32,6 @@ function CreateEditSettingForm({
   const isWorking = isCreating || isEditing;
   const { errors } = formState;
   const drinkType = watch("type", getValues("type"));
-  console.log(drinkType);
   const onsubmitHandler: SubmitHandler<MenuItemProps> = (data) => {
     const image = typeof data.image === "string" ? data.image : data.image[0];
     if (!data.image) return;

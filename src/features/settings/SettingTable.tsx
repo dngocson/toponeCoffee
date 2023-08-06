@@ -5,24 +5,24 @@ import SettingTableRow from "./SettingTableRow";
 import { MenuItemProps } from "../../ui/type";
 
 function SettingTable() {
-  const { isLoading, menuItem } = useMenu();
+  const { isLoading, menuItems } = useMenu();
   const [searchParams] = useSearchParams();
 
   if (isLoading) return <Spinner />;
-  if (!menuItem?.data.length) return <p>Không tìm thấy dữ liệu trên server</p>;
+  if (!menuItems?.data.length) return <p>Không tìm thấy dữ liệu trên server</p>;
   const filterValue = searchParams.get("type") || "all";
   // filter
   let filteredMenu: MenuItemProps[] = [];
-  if (filterValue === "all") filteredMenu = menuItem.data;
+  if (filterValue === "all") filteredMenu = menuItems.data;
 
   if (filterValue === "noodle")
-    filteredMenu = menuItem.data.filter((type) => type.type === "noodle");
+    filteredMenu = menuItems.data.filter((type) => type.type === "noodle");
 
   if (filterValue === "drink")
-    filteredMenu = menuItem.data.filter((type) => type.type === "drink");
+    filteredMenu = menuItems.data.filter((type) => type.type === "drink");
 
   if (filterValue === "food")
-    filteredMenu = menuItem.data.filter((type) => type.type === "food");
+    filteredMenu = menuItems.data.filter((type) => type.type === "food");
   // sort
   const sortBy = searchParams.get("sortBy") || "name-asc";
   const [field, direction] = sortBy.split("-");
