@@ -4,11 +4,11 @@ import Spinner from "../../ui/Spinner";
 import { MenuItemListProps } from "./type";
 import MenuItem from "../../ui/MenuItem";
 import { menuShortOption1 } from "../../helper/const";
+import { useGetType } from "../../helper/useGetType";
 
 const MenuItemList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentFilter = searchParams.get("type");
-  const [type, subType] = currentFilter?.split("_") || ["all", ""];
+  const [type, subType] = useGetType("type");
   const { isLoading, menuItems } = useMenu();
   if (isLoading) return <Spinner />;
   if (!menuItems) return <p>Du lieu tren sever trong</p>;
@@ -121,7 +121,7 @@ const SectionPart = ({
         {type === "all" && <h1 className="text-2xl font-bold">{title}</h1>}
         <div className="grid grid-cols-3 gap-5">
           {filteredData.map((item) => (
-            <MenuItem data={item} />
+            <MenuItem key={item.id} data={item} />
           ))}
         </div>
       </div>

@@ -31,3 +31,17 @@ export function removeVietnameseTones(str: string) {
   str = str.replace(/ /g, "-");
   return str;
 }
+
+export function convertSubTypeName(str: string) {
+  if (str === "drink_tea") return "Trà trái cây";
+  if (str === "drink_yogurt") return "Sữa chua";
+  if (str === "drink_juice") return "Nước ép, đá xay";
+  if (str === "drink_milk-tea") return "Trà sữa";
+  if (str === "drink_other") return "Thức uống khác";
+}
+
+export function convertTypeName(str: string) {
+  if (str === "drink") return "Cà phê, Trà sữa";
+  if (str === "food") return "Cơm";
+  if (str === "noodle") return "Mỳ cay";
+}

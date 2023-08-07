@@ -1,7 +1,8 @@
 import { useSearchParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { menuOptionsWithSubTypes } from "../../helper/const";
 import { MenuOptionProps } from "./type";
+import { useGetType } from "../../helper/useGetType";
 
 const options = menuOptionsWithSubTypes;
 
@@ -20,8 +21,10 @@ const MenuOperation = () => {
 function MenuOperationItem({ item }: { item: MenuOptionProps }) {
   const [open, setOpen] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentType = searchParams.get("type") || (options && options[0].value);
-
+  const [currentType, subType] = useGetType("type") || ["all", ""];
+  useEffect(() => {
+    if (subType) setOpen(false);
+  }, []);
   function handleClick(value: string) {
     searchParams.set("type", value);
     setSearchParams(searchParams);

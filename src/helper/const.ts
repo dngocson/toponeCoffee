@@ -1,3 +1,8 @@
+import trasua1 from "../assets/coffee1.jpg";
+import trasua2 from "../assets/coffee2.jpg";
+import comtrua1 from "../assets/comtrua1.jpg";
+import shipper from "../assets/shipper-giao-hang.jpg";
+
 export const headerButton = [
   {
     label: "Trang chủ",
@@ -6,7 +11,7 @@ export const headerButton = [
   },
   {
     label: "menu",
-    url: "/menu?type=all",
+    url: "/menu",
     key: 3,
   },
   {
@@ -84,4 +89,37 @@ export const menuShortOption1 = [
   { value: "price-desc", label: "Theo giá: cao đến thấp" },
   { value: "name-asc", label: "Theo tên: (A-Z)" },
   { value: "name-desc", label: "Theo tên: (Z-A)" },
+];
+
+export const CarouselImage = [
+  {
+    id: 1,
+    label: "Cà Phê, Trà sữa",
+    img: trasua1,
+  },
+  {
+    id: 2,
+    label: "Mỳ cay 7 cấp",
+    img: trasua2,
+  },
+  {
+    id: 4,
+    label: "Cơm trưa văn phòng",
+    img: comtrua1,
+  },
+  {
+    id: 3,
+    label: "Free ship khu vực Thạch Hòa",
+    img: shipper,
+  },
+  // {
+  //   id: 6,
+  //   label: "Phục vụ 24/24",
+  //   img: comtrua3,
+  // },
+  // {
+  //   id: 5,
+  //   label: "Nhanh chóng, tiện lợi",
+  //   img: comtrua2,
+  // },
 ];
