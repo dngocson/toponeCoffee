@@ -15,6 +15,7 @@ function Carosel({ data, place }: { data: CarouselProps[]; place: string }) {
       <Swiper
         className="relative mt-8 rounded-2xl "
         slidesPerView={1}
+        loop={true}
         onSlideChange={() =>
           setSlideNum((slide) => {
             if (slide < data.length - 1) return slide + 1;

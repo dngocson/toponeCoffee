@@ -1,7 +1,11 @@
-import React from "react";
+import Spinner from "../ui/Spinner";
 
 function Cart() {
-  return <div>Cart</div>;
+  return (
+    <div>
+      <Spinner />
+    </div>
+  );
 }
 
 export default Cart;

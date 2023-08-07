@@ -31,7 +31,7 @@ const ProductdetailItem = () => {
         <p className="font-bold uppercase">{currentProduct.name}</p>
         <p>{currentProduct.price}đ</p>
       </div>
-      <RelatedProduct data={currentProduct} />
+      <RelatedProduct id={currentProduct.id} data={currentProduct} />
     </div>
   );
 };

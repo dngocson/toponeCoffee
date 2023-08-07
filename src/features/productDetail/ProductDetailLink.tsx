@@ -24,7 +24,7 @@ const ProductDetailLink = () => {
         Trang chủ
       </Link>
       <span>/</span>
-      <Link className="font-bold" to="/menu">
+      <Link className="font-bold" to="/menu?type=all">
         Menu
       </Link>
       <span>/</span>

@@ -7,7 +7,7 @@ export interface CarouselProps {
 }
 export interface MenuItemProps {
   type: string;
-  id?: number;
+  id: number;
   price: number;
   name: string;
   description: string;

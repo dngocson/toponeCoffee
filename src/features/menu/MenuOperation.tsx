@@ -21,7 +21,7 @@ const MenuOperation = () => {
 function MenuOperationItem({ item }: { item: MenuOptionProps }) {
   const [open, setOpen] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [currentType, subType] = useGetType("type") || ["all", ""];
+  const [, subType, currentType] = useGetType("type");
   useEffect(() => {
     if (subType) setOpen(false);
   }, []);

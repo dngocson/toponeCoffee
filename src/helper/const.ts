@@ -11,7 +11,7 @@ export const headerButton = [
   },
   {
     label: "menu",
-    url: "/menu",
+    url: "/menu?type=all",
     key: 3,
   },
   {
@@ -59,7 +59,7 @@ export const menuOptionsWithSubTypes = [
       { value: "drink_all", label: "Tất cả", type: "sub" },
       { value: "drink_tea", label: "Trà trái cây", type: "sub" },
       { value: "drink_yogurt", label: "Sữa chua", type: "sub" },
-      { value: "drink_juice", label: "Nước ép, sinh tố", type: "sub" },
+      { value: "drink_juice", label: "Nước ép, đá xay", type: "sub" },
       { value: "drink_milk-tea", label: "Trà sữa", type: "sub" },
       { value: "drink_other", label: "Thức uống khác", type: "sub" },
     ],

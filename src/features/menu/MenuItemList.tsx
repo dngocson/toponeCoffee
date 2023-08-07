@@ -11,7 +11,7 @@ const MenuItemList = () => {
   const [type, subType] = useGetType("type");
   const { isLoading, menuItems } = useMenu();
   if (isLoading) return <Spinner />;
-  if (!menuItems) return <p>Du lieu tren sever trong</p>;
+  if (!menuItems) return <p>Đang tải dữ liệu</p>;
   const sortBy = searchParams.get("sortBy") || "name-asc";
   const [field, direction] = sortBy.split("-");
   const isAscending = direction === "asc";
@@ -47,27 +47,27 @@ const MenuItemList = () => {
             </select>
           </div>
         </div>
-        {["all", "drink"].includes(type) && (
+        {["all", "drink"].includes(type!) && (
           <SectionPart
             type={type}
-            message="Cà phê, trà sữa của Top One"
             subType={subType}
+            message="Cà phê, trà sữa của Top One"
             data={sortedMenu.filter((item) => item.type === "drink")}
           />
         )}
-        {["all", "noodle"].includes(type) && (
+        {["all", "noodle"].includes(type!) && (
           <SectionPart
             type={type}
-            message="Mỳ cay của Top One"
             subType={subType}
+            message="Mỳ cay của Top One"
             data={sortedMenu.filter((item) => item.type === "noodle")}
           />
         )}
-        {["all", "food"].includes(type) && (
+        {["all", "food"].includes(type!) && (
           <SectionPart
             type={type}
-            message="Cơm của Top One"
             subType={subType}
+            message="Cơm của Top One"
             data={sortedMenu.filter((item) => item.type === "food")}
           />
         )}
@@ -98,12 +98,11 @@ const SectionPart = ({
     noodle: "Mỳ cay của Top One",
     food: "Cơm của Top One",
   };
-
   const message =
-    type === "drink"
-      ? (messages[type] as { [key: string]: string })[subType] ||
+    type !== null && subType !== null && type === "drink"
+      ? (messages[type] as { [key: string]: string })[subType as string] ||
         (messages[type] as { [key: string]: string }).default
-      : messages[type];
+      : messages[type!];
 
   const filteredData =
     subType === "all"

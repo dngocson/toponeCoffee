@@ -8,8 +8,8 @@ export interface MenuOptionProps {
 }
 
 export interface MenuItemListProps {
-  type: string;
+  type: string | null;
+  subType: string | null;
   data: MenuItemProps[];
-  subType: string;
-  message:string
+  message: string;
 }
