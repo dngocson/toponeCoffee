@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { MenuItemProps } from "./type";
 import { removeVietnameseTones } from "../helper/helperFunctions";
 import { useAppDispatch } from "../features/redux/useAppDispatch ";

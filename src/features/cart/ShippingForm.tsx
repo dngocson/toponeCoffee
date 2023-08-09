@@ -8,7 +8,12 @@ import {
 import { useCreateOrder } from "./useCreateOrder";
 import { generateRandomString } from "../../helper/helperFunctions";
 import useFormPersist from "react-hook-form-persist";
-const ShippingForm = () => {
+import { useAppDispatch } from "../redux/useAppDispatch ";
+import { clearCart } from "../redux/cart/cartSlice";
+import { useNavigate } from "react-router-dom";
+const ShippingForm = ({ onClose }: { onClose?: () => void }) => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { register, handleSubmit, formState, watch, setValue } = useForm();
   const { errors } = formState;
   const { createOrder, isCreating } = useCreateOrder();
@@ -24,9 +29,16 @@ const ShippingForm = () => {
       totalQuantity: totalCartQuantity,
     };
     const newOrder = { order: orderdata, cart: cartItems };
-    createOrder(newOrder);
+    createOrder(newOrder, {
+      onSuccess: (data) => {
+        dispatch(clearCart());
+        onClose?.();
+        navigate(`/order/${data.data[0].name}`);
+      },
+    });
   };
   useFormPersist("form2", { watch, setValue });
+
   return (
     <form onSubmit={handleSubmit(onSubmitHandler)} className="p-2">
       <div className="flex flex-col gap-2">
@@ -38,7 +50,7 @@ const ShippingForm = () => {
             required: "vui lòng điền số điện thoại của bạn",
           })}
           id="phoneNumber"
-          type="text"
+          type="number"
           className="s_t_input"
         />
         {errors?.phoneNumber?.message ? (
@@ -72,7 +84,6 @@ const ShippingForm = () => {
           <p className="text-red-500">{errors?.note?.message.toString()}</p>
         ) : undefined}
       </div>
-
       <button disabled={isCreating} className="btn_g my-8  w-full self-center">
         Gửi
       </button>

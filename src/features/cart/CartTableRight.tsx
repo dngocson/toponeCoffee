@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { getTotalCartPrice } from "../redux/cart/cartSlice";
 import ShippingForm from "./ShippingForm";
 import { formatCurrencyNumber } from "../../helper/helperFunctions";
-function CartTableRight() {
+function CartTableRight({ onClose }: { onClose?: () => void }) {
   const totalCartPrice = useSelector(getTotalCartPrice);
   return (
     <div>
@@ -15,7 +15,7 @@ function CartTableRight() {
           <span className="lowercase">vnđ</span>
         </h2>
       </div>
-      <ShippingForm />
+      <ShippingForm onClose={onClose} />
     </div>
   );
 }

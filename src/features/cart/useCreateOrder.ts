@@ -5,10 +5,10 @@ export function useCreateOrder() {
   const queryClient = useQueryClient();
   const { mutate: createOrder, isLoading: isCreating } = useMutation({
     mutationFn: (newOrder: any) => createEditOrder(newOrder),
-    onSuccess: () => {
-      toast.success("Thêm thành công");
+    onSuccess: (data) => {
+      toast.success("Đặt hàng thành công");
       queryClient.invalidateQueries({
-        queryKey: ["order"],
+        queryKey: ["order", data.data[0].name],
       });
     },
   });

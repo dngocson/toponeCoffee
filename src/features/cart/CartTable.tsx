@@ -13,7 +13,7 @@ export const CartTable = ({ onCloseModal }: { onCloseModal?: () => void }) => {
           <CartTableLeft />
         </div>
         <div className="col-span-2 border-2 border-l-0 border-blue-400 bg-[#f6f6f6]">
-          <CartTableRight />
+          <CartTableRight onClose={onCloseModal} />
         </div>
       </div>
       <button
