@@ -14,7 +14,7 @@
     @apply rounded-md  border bg-white p-3 shadow-sm focus:border-blue-600 focus:outline-none focus:ring  focus:ring-blue-600 focus:ring-opacity-70 disabled:bg-gray-300;
   }
   .btn_g {
-    @apply rounded-md bg-blue-600 disabled:bg-blue-400;
+    @apply rounded-md bg-blue-600 p-2 text-white disabled:bg-blue-400;
   }
   .btn_cf {
     @apply rounded-md p-2 shadow-md;

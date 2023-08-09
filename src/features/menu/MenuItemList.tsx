@@ -118,7 +118,7 @@ const SectionPart = ({
           <h1 className="text-2xl font-bold">{message.toString()}</h1>
         )}
         {type === "all" && <h1 className="text-2xl font-bold">{title}</h1>}
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid grid-cols-3 gap-5 text-base">
           {filteredData.map((item) => (
             <MenuItem key={item.id} data={item} />
           ))}

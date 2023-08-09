@@ -3,7 +3,7 @@ import AppLayout from "./ui/AppLayout";
 import ErrorPage from "./pages/ErrorPage";
 import { Toaster } from "react-hot-toast";
 import Main from "./pages/Main";
-import Cart from "./pages/Cart";
+
 import Order from "./pages/Order";
 import OrderDetail from "./pages/OrderDetail";
 import Settings from "./pages/Settings";
@@ -29,7 +29,6 @@ const App = () => {
       children: [
         { path: "/", element: <Main /> },
         { path: "/about", element: <About /> },
-        { path: "/cart", element: <Cart /> },
         { path: "/menu", element: <Menu /> },
         { path: "/menu/:productId", element: <ProductDetail /> },
         { path: "/login", element: <Login /> },

@@ -45,3 +45,25 @@ export function convertTypeName(str: string) {
   if (str === "food") return "Cơm";
   if (str === "noodle") return "Mỳ cay";
 }
+
+export function generateRandomString(length = 6) {
+  let result = "";
+  let characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return result;
+}
+export function formatCurrencyNumber(numberString: string) {
+  let result = "";
+  let count = 0;
+  for (let i = numberString.length - 1; i >= 0; i--) {
+    result = numberString[i] + result;
+    count++;
+    if (count % 3 === 0 && i !== 0) {
+      result = "." + result;
+    }
+  }
+  return result;
+}

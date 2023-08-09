@@ -123,3 +123,22 @@ export const CarouselImage = [
   //   img: comtrua2,
   // },
 ];
+
+export const cartRowLabel = [
+  {
+    id: 1,
+    label: "Thông tin sản phẩm",
+  },
+  {
+    id: 2,
+    label: "Giá",
+  },
+  {
+    id: 3,
+    label: "Số lượng",
+  },
+  {
+    id: 4,
+    label: "Thành tiền",
+  },
+];

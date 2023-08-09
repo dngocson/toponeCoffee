@@ -3,11 +3,13 @@ import { MenuItemProps } from "./type";
 import { removeVietnameseTones } from "../helper/helperFunctions";
 import { useAppDispatch } from "../features/redux/useAppDispatch ";
 import { addItem } from "../features/redux/cart/cartSlice";
-
+import { useNavigate } from "react-router-dom";
 function MenuItem({ data }: { data: MenuItemProps }) {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const newItem = {
     id: data.id,
+    image: data.image,
     name: data.name,
     quantity: 1,
     unitPrice: data.price,
@@ -18,6 +20,10 @@ function MenuItem({ data }: { data: MenuItemProps }) {
   function onClickHandler() {
     dispatch(addItem(newItem));
   }
+  function movetoDetail() {
+    window.scrollTo(0, 0);
+    navigate(`/menu/${removeVietnameseTones(data.name)}`);
+  }
   return (
     <div className="group relative flex flex-col gap-2 overflow-hidden rounded-xl ">
       {promotion && (
@@ -26,18 +32,18 @@ function MenuItem({ data }: { data: MenuItemProps }) {
         </p>
       )}
       <div className="relative h-[270px] w-[270px] overflow-hidden rounded-xl transition-all duration-300">
-        <Link to={`/menu/${removeVietnameseTones(data.name)}`}>
+        <button onClick={movetoDetail}>
           <img
             className="h-[270px] w-[270px] rounded-xl shadow-cardShadow transition-all duration-300 group-hover:scale-110"
             src={data.image}
           />
-        </Link>
-        <button
+        </button>
+        <div
           onClick={() => onClickHandler()}
-          className="absolute w-full bg-[#007aff] py-2 text-white group-hover:bottom-0"
+          className="absolute w-full cursor-pointer bg-[#007aff] py-2 text-center text-white group-hover:bottom-0"
         >
           Thêm vào giỏ hàng
-        </button>
+        </div>
       </div>
       <p className="text-base font-bold uppercase">{data.name}</p>
       <p className="text-base font-normal lowercase">{data.price}đ</p>

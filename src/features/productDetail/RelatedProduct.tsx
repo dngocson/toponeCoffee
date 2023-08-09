@@ -33,7 +33,7 @@ const RelatedProduct = ({ data, id }: { data: MenuItemProps; id: number }) => {
         slidesPerView={4}
         loopedSlides={3}
         autoplay={{
-          delay: 2000,
+          delay: 2500,
 
           pauseOnMouseEnter: true,
         }}

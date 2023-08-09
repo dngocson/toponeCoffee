@@ -16,7 +16,7 @@ function CreateEditSettingForm({
   editItem = initialFormValues,
   onCloseModal,
 }: {
-  editItem?: MenuItemProps;
+  editItem?: Omit<MenuItemProps, "id">;
   onCloseModal?: () => void;
 }) {
   const { id: editId, ...editValue } = editItem;

@@ -66,7 +66,7 @@ function Window({ children, name }: ModalWindowProps) {
         ref={ref}
       >
         <button
-          className="absolute right-7 top-5 translate-x-4 rounded-sm border-0 bg-transparent p-2 transition-all duration-200 hover:bg-gray-100"
+          className="absolute right-7 top-5 translate-x-4 rounded-sm border-0 bg-red-500  p-1 text-xl font-bold text-black transition-all duration-200 hover:scale-110"
           onClick={close}
         >
           <HiXMark />

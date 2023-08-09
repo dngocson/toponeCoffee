@@ -1,6 +1,8 @@
 import SearchMenu from "../features/menu/SearchMenu";
 import { Link, NavLink } from "react-router-dom";
 import { headerButton } from "../helper/const";
+import Modal from "./Modal";
+import { CartTable } from "../features/cart/CartTable";
 
 function Header() {
   return (
@@ -12,7 +14,14 @@ function Header() {
         <SearchMenu />
         <div className="flex gap-4 ">
           <Link to={"/login"}>Đăng nhập</Link>
-          <Link to="/cart">Giỏ hàng</Link>
+          <Modal>
+            <Modal.Open opens="cart">
+              <button>Giỏ hàng</button>
+            </Modal.Open>
+            <Modal.Window name="cart">
+              <CartTable />
+            </Modal.Window>
+          </Modal>
           <Link to="/settings">Settings</Link>
         </div>
       </div>
