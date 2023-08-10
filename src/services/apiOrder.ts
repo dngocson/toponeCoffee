@@ -1,5 +1,30 @@
 import supabase from "./supabase";
 
+export async function getOrderByName(name: string) {
+  // Query the "orders" table to get data for the order with the given name
+  const { data: orderData, error: orderError } = await supabase
+    .from("orders")
+    .select("*")
+    .eq("name", name)
+    .single();
+  if (orderError) {
+    console.error(orderError);
+    throw new Error("Không thể lấy dữ liệu từ server");
+  }
+
+  // Query the "orderedItem" table to get data for the items associated with the order
+  const { data: orderedItemsData, error: orderedItemsError } = await supabase
+    .from("orderedItem")
+    .select("*,menu(name,price,image)")
+    .eq("order_id", orderData.id);
+  if (orderedItemsError) {
+    console.error(orderedItemsError);
+    throw new Error("Không thể lấy dữ liệu từ server");
+  }
+
+  return { orderData, orderedItemsData };
+}
+
 export async function createEditOrder(newOrder: any) {
   const orderData = newOrder.order;
   const cartData = newOrder.cart;

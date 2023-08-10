@@ -67,3 +67,33 @@ export function formatCurrencyNumber(numberString: string) {
   }
   return result;
 }
+
+export async function getAddress({
+  latitude,
+  longitude,
+}: {
+  latitude: number | null;
+  longitude: number | null;
+}) {
+  const res = await fetch(
+    `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}`,
+  );
+  if (!res.ok) throw Error("Failed getting address");
+
+  const data = await res.json();
+  return data;
+}
+export function convertPhoneNumber(phoneNumber: string) {
+  if (phoneNumber.startsWith("0")) {
+    return "+84" + phoneNumber.slice(1);
+  } else {
+    return phoneNumber;
+  }
+}
+
+export function convertOrderStatus(status: string) {
+  if (status === "pending") status = "Chờ xác nhận";
+  if (status === "paid") status = "Đã thanh toán";
+  if (status === "completed") status = "Đã hoàn thành";
+  return status;
+}

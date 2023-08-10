@@ -1,5 +1,5 @@
 function Order() {
-  return <div>Order</div>;
+  return <div>Tổng hợp Order</div>;
 }
 
 export default Order;

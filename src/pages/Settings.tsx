@@ -4,7 +4,7 @@ import AddNewItem from "../features/settings/AddNewItem";
 
 function Settings() {
   return (
-    <div className="mx-auto w-[1200px]">
+    <div className="container">
       <SettingTableOperation />
       <SettingTable />
       <AddNewItem />

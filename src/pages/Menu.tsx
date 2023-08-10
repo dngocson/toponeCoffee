@@ -3,7 +3,7 @@ import MenuOperation from "../features/menu/MenuOperation";
 
 function Menu() {
   return (
-    <div className="mx-auto mt-8 flex max-w-[1200px] ">
+    <div className="container flex">
       <MenuOperation />
       <MenuItemList />
     </div>

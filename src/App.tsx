@@ -1,9 +1,11 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "react-hot-toast";
+
 import AppLayout from "./ui/AppLayout";
 import ErrorPage from "./pages/ErrorPage";
-import { Toaster } from "react-hot-toast";
 import Main from "./pages/Main";
-
 import Order from "./pages/Order";
 import OrderDetail from "./pages/OrderDetail";
 import Settings from "./pages/Settings";
@@ -11,9 +13,8 @@ import Menu from "./pages/Menu";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import About from "./pages/About";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ProductDetail from "./pages/ProductDetail";
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

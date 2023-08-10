@@ -11,15 +11,32 @@ import useFormPersist from "react-hook-form-persist";
 import { useAppDispatch } from "../redux/useAppDispatch ";
 import { clearCart } from "../redux/cart/cartSlice";
 import { useNavigate } from "react-router-dom";
+import { fetchAddress } from "../redux/cart/gpiSlice";
+import { RootState } from "../redux/store";
 const ShippingForm = ({ onClose }: { onClose?: () => void }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { register, handleSubmit, formState, watch, setValue } = useForm();
-  const { errors } = formState;
   const { createOrder, isCreating } = useCreateOrder();
   const totalCartQuantity = useSelector(getTotalCartQuantity);
   const cartItems = useSelector(getCart);
   const totalCartPrice = useSelector(getTotalCartPrice);
+  const {
+    status: apiStatus,
+    position,
+    address,
+  } = useSelector((state: RootState) => state.gpi);
+  const { register, handleSubmit, formState, watch, setValue } = useForm();
+  const { errors } = formState;
+  const isLoadingApi = apiStatus === "loading";
+  const positionToString = `${position.latitude}-${position.longitude}`;
+
+  useFormPersist("form2", { watch, setValue, exclude: ["address"] });
+
+  function layvitri() {
+    if (address) setValue("address", address);
+    dispatch(fetchAddress());
+  }
+
   const onSubmitHandler: SubmitHandler<any> = (data) => {
     const orderdata = {
       ...data,
@@ -27,6 +44,7 @@ const ShippingForm = ({ onClose }: { onClose?: () => void }) => {
       name: generateRandomString(6),
       totalPrice: totalCartPrice,
       totalQuantity: totalCartQuantity,
+      location: positionToString,
     };
     const newOrder = { order: orderdata, cart: cartItems };
     createOrder(newOrder, {
@@ -37,7 +55,6 @@ const ShippingForm = ({ onClose }: { onClose?: () => void }) => {
       },
     });
   };
-  useFormPersist("form2", { watch, setValue });
 
   return (
     <form onSubmit={handleSubmit(onSubmitHandler)} className="p-2">
@@ -52,6 +69,7 @@ const ShippingForm = ({ onClose }: { onClose?: () => void }) => {
           id="phoneNumber"
           type="number"
           className="s_t_input"
+          disabled={isCreating || isLoadingApi}
         />
         {errors?.phoneNumber?.message ? (
           <p className="text-red-500">
@@ -60,18 +78,23 @@ const ShippingForm = ({ onClose }: { onClose?: () => void }) => {
         ) : undefined}
       </div>
 
-      <div className="mt-2 flex flex-col gap-2">
-        <label className="text-lg font-bold" htmlFor="address">
-          Địa chỉ giao hàng:
-        </label>
-        <input
+      <div className=" mt-2 flex flex-col gap-2">
+        <div className="flex items-center  gap-1">
+          <label className="text-lg font-bold" htmlFor="address">
+            Địa chỉ giao hàng:
+          </label>
+          <button className="text-blue-500" type="button" onClick={layvitri}>
+            Lấy vị trí
+          </button>
+        </div>
+        <textarea
+          defaultValue={address}
+          disabled={isCreating || isLoadingApi}
           id="address"
-          type="text"
           className="s_t_input"
-          {...register("address", {
-            required: "vui lòng nhập địa chỉ của bạn",
-          })}
+          {...register("address")}
         />
+
         {errors?.address?.message ? (
           <p className="text-red-500">{errors?.address?.message.toString()}</p>
         ) : undefined}
@@ -79,12 +102,20 @@ const ShippingForm = ({ onClose }: { onClose?: () => void }) => {
 
       <div className="mt-2 flex flex-col gap-2">
         <label className="text-lg font-bold">Ghi chú</label>
-        <textarea className="s_t_input" id="note" {...register("note")} />
+        <textarea
+          disabled={isCreating || isLoadingApi}
+          className="s_t_input"
+          id="note"
+          {...register("note")}
+        />
         {errors?.note?.message ? (
           <p className="text-red-500">{errors?.note?.message.toString()}</p>
         ) : undefined}
       </div>
-      <button disabled={isCreating} className="btn_g my-8  w-full self-center">
+      <button
+        disabled={isCreating || isLoadingApi}
+        className="btn_g my-8  w-full self-center"
+      >
         Gửi
       </button>
     </form>

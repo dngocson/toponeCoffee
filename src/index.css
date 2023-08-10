@@ -19,6 +19,10 @@
   .btn_cf {
     @apply rounded-md p-2 shadow-md;
   }
+  .container {
+    @apply mx-auto mt-12 max-w-[1200px];
+  }
+
   .loader {
     width: 45px;
     aspect-ratio: 0.75;
