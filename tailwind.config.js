@@ -15,6 +15,8 @@ export default {
       },
       gridTemplateColumns: {
         settingTable: "1fr 2fr 1fr 1fr 1fr 1fr ",
+        orderDetailTable: "1fr 2fr 1fr 1fr 1fr",
+        adminOrderTable: "0.5fr 2fr 1fr 1.5fr 1fr 1fr",
       },
     },
   },

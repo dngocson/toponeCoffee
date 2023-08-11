@@ -1,5 +1,11 @@
+import AllOrderTable from "../features/order/AllOrderTable";
+
 function Order() {
-  return <div>Tổng hợp Order</div>;
+  return (
+    <div className="container">
+      <AllOrderTable />
+    </div>
+  );
 }
 
 export default Order;

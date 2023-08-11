@@ -22,7 +22,7 @@ function Header() {
               <CartTable />
             </Modal.Window>
           </Modal>
-          <Link to="/settings">Settings</Link>
+          <Link to="/admin/settings">Settings</Link>
         </div>
       </div>
       <div className="w-[1200px]">

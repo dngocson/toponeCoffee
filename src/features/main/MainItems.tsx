@@ -7,14 +7,11 @@ import MenuItem from "../../ui/MenuItem";
 // import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 const MainItems = () => {
-  // const [drinkVisible, setDrinkVisible] = useState<number>(6);
-  // const [foodVisible, setFoodVisible] = useState<number>(6);
-  // const [noodleVisible, setNoodleVisible] = useState<number>(6);
-
   const [searchParams, setSearchParams] = useSearchParams();
   const drinkLimit = searchParams.get("drink") || "6";
   const noodleLimit = searchParams.get("noodle") || "6";
   const foodLimit = searchParams.get("food") || "6";
+
   function handleClick(target: string, value: string) {
     searchParams.set(target, Number(Number(value) + 4).toString());
     setSearchParams(searchParams);
@@ -23,9 +20,29 @@ const MainItems = () => {
   const { isLoading, menuItems } = useMenu();
   if (isLoading) return <Spinner />;
   if (!menuItems) return <p>Du lieu tren sever trong</p>;
-  const drinks = menuItems.data.filter((type) => type.type === "drink");
-  const noodles = menuItems.data.filter((type) => type.type === "noodle");
-  const foods = menuItems.data.filter((type) => type.type === "food");
+
+  const sortItemsByPromotion = (a: any, b: any) => {
+    if (a.promotion && !b.promotion) {
+      return -1;
+    } else if (!a.promotion && b.promotion) {
+      return 1;
+    } else {
+      return 0;
+    }
+  };
+
+  const drinks = menuItems.data
+    .filter((type) => type.type === "drink")
+    .sort(sortItemsByPromotion);
+
+  const noodles = menuItems.data
+    .filter((type) => type.type === "noodle")
+    .sort(sortItemsByPromotion);
+
+  const foods = menuItems.data
+    .filter((type) => type.type === "food")
+    .sort(sortItemsByPromotion);
+
   return (
     <div className="mx-auto mt-12 flex w-[1200px] flex-col gap-8">
       <i className="self-center bg-gradient-to-r from-red-600 to-green-400 bg-clip-text p-2 text-4xl font-bold capitalize text-transparent  ">

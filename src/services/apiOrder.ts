@@ -1,3 +1,4 @@
+import { PAGE_SIZE } from "../ui/Pagination";
 import supabase from "./supabase";
 
 export async function getOrderByName(name: string) {
@@ -25,6 +26,21 @@ export async function getOrderByName(name: string) {
   return { orderData, orderedItemsData };
 }
 
+export async function getAllOrder({ page }: { page: number }) {
+  let query = supabase.from("orders").select("*", { count: "exact" });
+  if (page) {
+    const from = (page - 1) * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1;
+    query = query.range(from, to);
+  }
+  const { data: allOrderData, error: allOrderError, count } = await query;
+  if (allOrderError) {
+    console.error(allOrderError);
+    throw new Error("Không thể lấy dữ liệu từ server");
+  }
+  return { allOrderData, allOrderError, count };
+}
+
 export async function createEditOrder(newOrder: any) {
   const orderData = newOrder.order;
   const cartData = newOrder.cart;
@@ -41,6 +57,7 @@ export async function createEditOrder(newOrder: any) {
   const upLoadCartData = cartData.map((item: any) => ({
     item_id: item.id,
     quantity: item.quantity,
+    price: item.unitPrice,
     order_id: data[0].id,
   }));
   const { error: orderedItemError } = await supabase

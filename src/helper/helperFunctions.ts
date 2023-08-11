@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+import { vi } from "date-fns/locale";
 export function removeVietnameseTones(str: string) {
   str = str.toLocaleLowerCase();
   str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
@@ -96,4 +98,15 @@ export function convertOrderStatus(status: string) {
   if (status === "paid") status = "Đã thanh toán";
   if (status === "completed") status = "Đã hoàn thành";
   return status;
+}
+
+export function convertDayVietNamese(date: Date) {
+  return format(new Date(date), "p EEE, 'ngày' dd MMM yyyy", {
+    locale: vi,
+  });
+}
+export function convertDayVietNameseShort(date: Date) {
+  return format(new Date(date), "p EEE, 'ngày' dd MMM", {
+    locale: vi,
+  });
 }

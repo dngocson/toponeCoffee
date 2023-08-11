@@ -34,9 +34,9 @@ const App = () => {
         { path: "/menu/:productId", element: <ProductDetail /> },
         { path: "/login", element: <Login /> },
         { path: "/contact", element: <Contact /> },
-        { path: "/order", element: <Order /> },
         { path: "/order/:orderId", element: <OrderDetail /> },
-        { path: "/settings", element: <Settings /> },
+        { path: "/admin/settings", element: <Settings /> },
+        { path: "/admin/order", element: <Order /> },
       ],
     },
   ]);
