@@ -26,13 +26,14 @@ function AllOrderTableRow({
   index: number;
 }) {
   const [showDetail, setShowDetail] = useState(false);
+
   function onClickHandler() {
     setShowDetail((show) => !show);
   }
   return (
     <div>
-      <div className="grid  grid-cols-adminOrderTable ">
-        <Heading addStyle="w-full font-bold text-center" type="sub">
+      <div className="grid  grid-cols-adminOrderTable border-2 border-t-0 border-blue-400 text-center">
+        <Heading addStyle="w-full text-center" type="sub">
           {index}
         </Heading>
         <Heading type="sub">
@@ -64,8 +65,7 @@ function AllOrderTableRow({
       </div>
 
       {showDetail && (
-        <div>
-          <Heading type="sub">Chi tiết đơn hàng:</Heading>
+        <div className="mt-2 flex flex-col gap-2">
           <OrderDetailByName name={order.name} />
         </div>
       )}

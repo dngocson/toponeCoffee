@@ -14,7 +14,7 @@ export async function deleteMenuItem(id: number) {
   const { data, error } = await supabase.from("menu").delete().eq("id", id);
   if (error) {
     console.error(error);
-    throw new Error("Cabins could not be deleted");
+    throw new Error("Không thể xóa");
   }
   return data;
 }

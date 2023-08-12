@@ -32,7 +32,10 @@ const OrderDetailByName = ({ name }: { name?: string }) => {
   const hasLocation = latNum !== 0 && lngNum !== 0;
   return (
     <div className="flex flex-col gap-2">
-      {!name && <InformationRow label="Đơn hàng" value={orderData.name} />}
+      <h2 className="text-lg ">
+        <span className="uppercase">Đơn hàng:</span>{" "}
+        <span className="font-bold">{orderData.name}</span>
+      </h2>
       {!name && (
         <InformationRow
           label="Trạng thái"
@@ -48,7 +51,7 @@ const OrderDetailByName = ({ name }: { name?: string }) => {
       {orderData.address && (
         <InformationRow label="Địa chỉ giao hàng" value={orderData.address} />
       )}
-      {hasLocation && (
+      {hasLocation && name && (
         <a
           className="text-lg uppercase text-blue-600"
           href={`https://www.google.com/maps/dir/?api=1&destination=${latNum},${lngNum}`}
@@ -75,6 +78,9 @@ const OrderDetailByName = ({ name }: { name?: string }) => {
             Zalo
           </a>
         </Heading>
+      )}
+      {orderData.note && (
+        <InformationRow label="Ghi chú" value={orderData.note} />
       )}
       <OrderByNameDetail
         items={orderedItemsData.sort((a, b) => b.quantity - a.quantity)}

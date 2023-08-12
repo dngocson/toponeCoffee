@@ -95,7 +95,7 @@ export function convertPhoneNumber(phoneNumber: string) {
 
 export function convertOrderStatus(status: string) {
   if (status === "pending") status = "Chờ xác nhận";
-  if (status === "paid") status = "Đã thanh toán";
+  if (status === "confirmed") status = "Đã xác nhận";
   if (status === "completed") status = "Đã hoàn thành";
   return status;
 }

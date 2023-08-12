@@ -1,5 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import { menuShortOption, menuTypeOptions } from "../../helper/const";
+import Heading from "../../ui/Heading";
+import AddNewItem from "./AddNewItem";
 
 // Propety for Sort and Filter
 const filterOptions = menuTypeOptions;
@@ -23,7 +25,9 @@ function SettingTableOperation() {
   }
   return (
     <div className="mx-auto mt-8 flex  items-center justify-between rounded-xl border border-blue-600">
-      <h1 className="ml-5 text-2xl">Menu</h1>
+      <Heading addStyle="ml-5 uppercase" type="pri">
+        Menu
+      </Heading>
       <div className="flex items-center gap-4">
         <div className="flex gap-2 rounded-xl bg-white p-2">
           {filterOptions.map((option) => (
@@ -53,6 +57,7 @@ function SettingTableOperation() {
             ))}
           </select>
         </div>
+        <AddNewItem />
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ export async function getOrderByName(name: string) {
   // Query the "orderedItem" table to get data for the items associated with the order
   const { data: orderedItemsData, error: orderedItemsError } = await supabase
     .from("orderedItem")
-    .select("*,menu(name,price,image)")
+    .select("*")
     .eq("order_id", orderData.id);
   if (orderedItemsError) {
     console.error(orderedItemsError);
@@ -26,13 +26,32 @@ export async function getOrderByName(name: string) {
   return { orderData, orderedItemsData };
 }
 
-export async function getAllOrder({ page }: { page: number }) {
+export async function getAllOrder({
+  page,
+  sortBy,
+  filter,
+}: {
+  page: number;
+  sortBy: { field: string; direction: string };
+  filter?: { field: string; value: string };
+}) {
   let query = supabase.from("orders").select("*", { count: "exact" });
+  // If have Pagination
   if (page) {
     const from = (page - 1) * PAGE_SIZE;
     const to = from + PAGE_SIZE - 1;
     query = query.range(from, to);
   }
+  // If have Sort
+  if (sortBy) {
+    query = query.order(sortBy.field, {
+      ascending: sortBy.direction === "asc",
+    });
+  }
+  // If have filter
+  if (filter != null) query = query.eq(filter.field, filter.value);
+  //
+
   const { data: allOrderData, error: allOrderError, count } = await query;
   if (allOrderError) {
     console.error(allOrderError);
@@ -55,10 +74,10 @@ export async function createEditOrder(newOrder: any) {
   }
   // Upload Cart data
   const upLoadCartData = cartData.map((item: any) => ({
-    item_id: item.id,
     quantity: item.quantity,
     price: item.unitPrice,
     order_id: data[0].id,
+    name: item.name,
   }));
   const { error: orderedItemError } = await supabase
     .from("orderedItem")

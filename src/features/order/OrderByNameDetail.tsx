@@ -34,7 +34,7 @@ export const OrderByNameDetail = ({ items }: { items: any }) => {
             addStyle="w-full border-2 text-center border-r-blue-400"
             type="sub"
           >
-            {item.menu.name}
+            {item.name}
           </Heading>
           <Heading
             addStyle="w-full border-2 text-center  border-r-blue-400"

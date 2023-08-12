@@ -14,7 +14,11 @@ const AddNewItem = () => {
       )} */}
       <Modal>
         <Modal.Open opens="setting">
-          <button className="btn_g">Thêm món mới</button>
+          <div className="rounded-xl bg-white p-2">
+            <button className="rounded-md bg-[#4f46e5] p-2 text-white">
+              Thêm món mới
+            </button>
+          </div>
         </Modal.Open>
         <Modal.Window name="setting">
           <CreateEditSettingForm />
