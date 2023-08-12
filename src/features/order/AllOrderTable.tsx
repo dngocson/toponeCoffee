@@ -14,6 +14,7 @@ function AllOrderTable() {
   let currentPage = searchParams.get("page") || "1";
   if (isLoading) return <Spinner />;
   const { allOrderData } = allOrder;
+
   return (
     <div>
       <div className="my-8 flex items-center justify-between rounded-xl border border-blue-600">

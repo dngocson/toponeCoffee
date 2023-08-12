@@ -90,3 +90,23 @@ export async function createEditOrder(newOrder: any) {
   }
   return { data, orderedItemError };
 }
+
+export async function updateOrderById({
+  id,
+  value,
+}: {
+  id: number;
+  value: string;
+}) {
+  const { data, error } = await supabase
+    .from("orders")
+    .update({ status: value })
+    .eq("id", id)
+    .select()
+    .single();
+  if (error) {
+    console.error(error);
+    throw new Error("Không thể lấy dữ liệu từ server");
+  }
+  return { data, error };
+}

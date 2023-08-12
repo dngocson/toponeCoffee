@@ -142,3 +142,21 @@ export const cartRowLabel = [
     label: "Thành tiền",
   },
 ];
+
+export const orderStatusOptions = [
+  {
+    id: 1,
+    label: "Chờ xác nhận",
+    value: "pending",
+  },
+  {
+    id: 2,
+    label: "Đã xác nhận",
+    value: "confirmed",
+  },
+  {
+    id: 3,
+    label: "Đã hoàn thành",
+    value: "completed",
+  },
+];

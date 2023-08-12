@@ -31,7 +31,7 @@ const OrderDetailByName = ({ name }: { name?: string }) => {
   const lngNum = parseFloat(lng);
   const hasLocation = latNum !== 0 && lngNum !== 0;
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex w-max flex-col gap-2">
       <h2 className="text-lg ">
         <span className="uppercase">Đơn hàng:</span>{" "}
         <span className="font-bold">{orderData.name}</span>
@@ -60,7 +60,7 @@ const OrderDetailByName = ({ name }: { name?: string }) => {
           Tìm vị trí giao hàng
         </a>
       )}
-      {!name && (
+      {
         <Heading type="sub">
           Số điện thoại:{" "}
           <a
@@ -78,7 +78,7 @@ const OrderDetailByName = ({ name }: { name?: string }) => {
             Zalo
           </a>
         </Heading>
-      )}
+      }
       {orderData.note && (
         <InformationRow label="Ghi chú" value={orderData.note} />
       )}

@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-export const PAGE_SIZE = 10;
+export const PAGE_SIZE = 15;
 function Pagination({ count }: { count: number }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = !searchParams.get("page")
