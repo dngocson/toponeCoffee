@@ -22,7 +22,9 @@
   .container {
     @apply mx-auto mt-12 max-w-[1200px];
   }
-
+  .animateFlyIn {
+    @apply;
+  }
   .loader {
     width: 45px;
     aspect-ratio: 0.75;

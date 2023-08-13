@@ -48,7 +48,7 @@ const MainItems = () => {
       <i className="self-center bg-gradient-to-r from-red-600 to-green-400 bg-clip-text p-2 text-4xl font-bold capitalize text-transparent  ">
         Cà phê và Trà sữa Top one
       </i>
-      <div className="overflow-hidde8 relative flex flex-wrap gap-8">
+      <div className="overflow-hidde8 relative flex  flex-wrap gap-8">
         <p className="absolute left-5 top-8 rounded-2xl bg-[#d1dfe7] bg-opacity-70 p-2 text-xl font-bold text-gray-900">
           Cà phê / Trà sữa
         </p>

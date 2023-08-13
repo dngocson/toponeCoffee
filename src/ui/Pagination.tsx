@@ -18,17 +18,32 @@ function Pagination({ count }: { count: number }) {
   }
   if (pageCount <= 1) return null;
   return (
-    <div>
-      Hiển thị <span>{(currentPage - 1) * PAGE_SIZE + 1}</span> đến{" "}
-      <span>{currentPage === pageCount ? count : currentPage * PAGE_SIZE}</span>{" "}
-      của
-      <span>{count}</span> kết quả
-      <button disabled={currentPage === 1} onClick={prevPage}>
-        Tới trước
-      </button>
-      <button disabled={currentPage === pageCount} onClick={nextPage}>
-        Về sau
-      </button>
+    <div className="mt-2 flex items-center justify-between">
+      <div>
+        Hiển thị kết quả{" "}
+        <span className="font-bold">{(currentPage - 1) * PAGE_SIZE + 1}</span>{" "}
+        đến kết quả{" "}
+        <span className="font-bold">
+          {currentPage === pageCount ? count : currentPage * PAGE_SIZE}
+        </span>{" "}
+        của <span className="font-bold">{count}</span> kết quả
+      </div>
+      <div className="flex gap-4">
+        <button
+          className="rounded-md bg-blue-600 p-2 text-white transition-all duration-300 disabled:bg-blue-400"
+          disabled={currentPage === 1}
+          onClick={prevPage}
+        >
+          Tới trước
+        </button>
+        <button
+          className="rounded-md bg-blue-600 p-2 text-white transition-all duration-300 disabled:bg-blue-400"
+          disabled={currentPage === pageCount}
+          onClick={nextPage}
+        >
+          Về sau
+        </button>
+      </div>
     </div>
   );
 }

@@ -18,6 +18,8 @@ export default {
         orderDetailTable: "1fr 2fr 1fr 1fr 1fr",
         adminOrderTable: "0.5fr 2fr 1fr 1.5fr 1fr 1fr",
       },
+      keyframes: {},
+      animation: {},
     },
   },
   plugins: [],
