@@ -1,7 +1,7 @@
-import trasua1 from "../assets/coffee1.jpg";
-import trasua2 from "../assets/coffee2.jpg";
-import comtrua1 from "../assets/comtrua1.jpg";
-import shipper from "../assets/shipper-giao-hang.jpg";
+import trasua1 from "../assets/coffee1.webp";
+import trasua2 from "../assets/coffee2.webp";
+import comtrua1 from "../assets/comtrua1.webp";
+import shipper from "../assets/shipper-giao-hang.webp";
 
 export const headerButton = [
   {
@@ -104,7 +104,7 @@ export const CarouselImage = [
   },
   {
     id: 4,
-    label: "Cơm trưa văn phòng",
+    label: "Cơm  văn phòng",
     img: comtrua1,
   },
   {
@@ -159,4 +159,19 @@ export const orderStatusOptions = [
     label: "Đã hoàn thành",
     value: "completed",
   },
+];
+
+export const suggarLevel = [
+  { id: 1, value: 0, label: "Không đường" },
+  { id: 2, value: 30, label: "30% đường" },
+  { id: 3, value: 50, label: "50% đường" },
+  { id: 4, value: 70, label: "70% đường" },
+  { id: 5, value: 100, label: "100% đường" },
+];
+export const iceLevel = [
+  { id: 1, value: 0, label: "Không đá" },
+  { id: 2, value: 30, label: "30% đá" },
+  { id: 3, value: 50, label: "50% đá" },
+  { id: 4, value: 70, label: "70% đá" },
+  { id: 5, value: 100, label: "100% đá" },
 ];

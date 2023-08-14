@@ -13,7 +13,7 @@ function Carosel({ data, place }: { data: CarouselProps[]; place: string }) {
   return (
     <div className="mx-auto w-[98%]">
       <Swiper
-        className="relative mt-8 rounded-2xl "
+        className="mainCarousel relative mt-8 rounded-2xl "
         slidesPerView={1}
         loop={true}
         onSlideChange={() =>

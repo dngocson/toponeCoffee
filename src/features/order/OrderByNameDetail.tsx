@@ -3,7 +3,7 @@ import Heading from "../../ui/Heading";
 
 export const OrderByNameDetail = ({ items }: { items: any }) => {
   return (
-    <div>
+    <div className="max-h-[400px] overflow-y-scroll">
       <div className="grid grid-cols-orderDetailTable border-2 border-blue-400">
         {rowLabel.map((item, index) => (
           <span key={index} className="font-bold">

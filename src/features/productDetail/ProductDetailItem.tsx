@@ -3,16 +3,21 @@ import { useParams } from "react-router-dom";
 import { removeVietnameseTones } from "../../helper/helperFunctions";
 import Spinner from "../../ui/Spinner";
 import RelatedProduct from "./RelatedProduct";
+import { useState } from "react";
+import { iceLevel, suggarLevel } from "../../helper/const";
 
 const ProductdetailItem = () => {
   const routeParams = useParams();
   const { isLoading, menuItems } = useMenu();
-  if (!menuItems) return <p>Du lieu tren sever trong</p>;
+  const [suggarLevelState, setSuggarLevel] = useState(100);
+  const [iceLevelState, setIceLevel] = useState(100);
+
   if (isLoading) return <Spinner />;
   const currentProductName = routeParams.productId;
-  const [currentProduct] = menuItems.data.filter(
-    (product) => removeVietnameseTones(product.name) === currentProductName,
-  );
+  const [currentProduct] =
+    menuItems?.data.filter(
+      (product) => removeVietnameseTones(product.name) === currentProductName,
+    ) || [];
   return (
     <div>
       <div className=" relative flex flex-col gap-2 overflow-hidden rounded-xl ">
@@ -30,10 +35,53 @@ const ProductdetailItem = () => {
         <p>{currentProduct.description}</p>
         <p className="font-bold uppercase">{currentProduct.name}</p>
         <p>{currentProduct.price}đ</p>
+        {currentProduct.type === "drink" && (
+          <SelectIceLevelAndSuggarLevel
+            suggarSelectMethod={setSuggarLevel}
+            iceSelectMethod={setIceLevel}
+            ice={iceLevelState}
+            suggar={suggarLevelState}
+          />
+        )}
       </div>
+      <button>Thêm vào giỏ hàng</button>
       <RelatedProduct id={currentProduct.id} data={currentProduct} />
     </div>
   );
 };
 
 export default ProductdetailItem;
+interface SelectIceLevelAndSuggarLevelProps {
+  suggarSelectMethod: (value: number) => void;
+  iceSelectMethod: (value: number) => void;
+  ice: number;
+  suggar: number;
+}
+
+function SelectIceLevelAndSuggarLevel({
+  suggarSelectMethod,
+  iceSelectMethod,
+  ice,
+  suggar,
+}: SelectIceLevelAndSuggarLevelProps) {
+  return (
+    <div>
+      {iceLevel.map((level) => (
+        <button
+          className={`${level.value === ice ? "text-red-500" : ""}`}
+          onClick={() => iceSelectMethod(level.value)}
+        >
+          {level.label}
+        </button>
+      ))}
+      {suggarLevel.map((level) => (
+        <button
+          className={`${level.value === suggar ? "text-red-500" : ""}`}
+          onClick={() => suggarSelectMethod(level.value)}
+        >
+          {level.label}
+        </button>
+      ))}
+    </div>
+  );
+}

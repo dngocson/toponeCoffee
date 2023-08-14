@@ -10,12 +10,13 @@ import Spinner from "../../ui/Spinner";
 const ProductDetailLink = () => {
   const routeParams = useParams();
   const { isLoading, menuItems } = useMenu();
-  if (!menuItems) return <p>Du lieu tren sever trong</p>;
+  // if (!menuItems) return <p>Đang tải dữ liệu từ server</p>;
   if (isLoading) return <Spinner />;
   const currentProductName = routeParams.productId;
-  const [currentProduct] = menuItems.data.filter(
-    (product) => removeVietnameseTones(product.name) === currentProductName,
-  );
+  const [currentProduct] =
+    menuItems?.data.filter(
+      (product) => removeVietnameseTones(product.name) === currentProductName,
+    ) || [];
   const subType = convertSubTypeName(currentProduct.sub_type) || "";
   const hasSubType = subType?.length > 0 ? true : false;
   return (

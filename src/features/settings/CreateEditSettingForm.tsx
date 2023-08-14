@@ -6,7 +6,7 @@ import { useEditSetting } from "./useEditSetting";
 // Initial value for Form
 const initialFormValues = {
   type: "drink",
-  sub_type: "drink_tea",
+  sub_type: "",
   price: 0,
   name: "",
   description: "",
@@ -73,13 +73,24 @@ function CreateEditSettingForm({
       {drinkType === "drink" && (
         <div className="s_t_row">
           <label htmlFor="sub_type">Loại nước</label>
-          <select className="s_t_input" id="sub_type" {...register("sub_type")}>
+          <select
+            className="s_t_input"
+            id="sub_type"
+            {...register("sub_type", {
+              required: drinkType !== "drink" ? false : "Hãy thêm loại nước",
+            })}
+          >
             <option value="drink_tea">Trà hoa quả</option>
             <option value="drink_yogurt">Sữa chua</option>
             <option value="drink_juice">Nước ép, sinh tố đá xay</option>
             <option value="drink_milk-tea">Trà sữa</option>
             <option value="drink_other">Loại khác</option>
           </select>
+          {errors?.sub_type?.message ? (
+            <p className="text-red-500">
+              {errors?.sub_type?.message.toString()}
+            </p>
+          ) : undefined}
         </div>
       )}
 

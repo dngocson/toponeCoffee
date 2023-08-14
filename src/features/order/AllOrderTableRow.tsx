@@ -70,7 +70,9 @@ function AllOrderTableRow({
             </button>
           </Modal.Open>
           <Modal.Window name="order">
-            <OrderDetailByName name={order.name} />
+            <div className="">
+              <OrderDetailByName name={order.name} />
+            </div>
           </Modal.Window>
         </Modal>
         <Modal>

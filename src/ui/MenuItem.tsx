@@ -36,6 +36,7 @@ function MenuItem({ data }: { data: MenuItemProps }) {
   }
   return (
     <motion.div
+      viewport={{ once: true }}
       initial={{ y: 100, x: 100, opacity: 0 }}
       animate={{ y: 0, x: 0 }}
       transition={{ delay: 0.2 }}
@@ -54,7 +55,7 @@ function MenuItem({ data }: { data: MenuItemProps }) {
         <div className="relative h-[270px] w-[270px] overflow-hidden rounded-xl ">
           <button onClick={movetoDetail}>
             <img
-              className="h-[270px] w-[270px] rounded-xl shadow-cardShadow  group-hover:scale-110"
+              className="h-[270px] w-[270px] rounded-xl shadow-cardShadow transition-all duration-300  group-hover:scale-110"
               src={data.image}
             />
           </button>

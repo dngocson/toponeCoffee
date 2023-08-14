@@ -30,8 +30,9 @@ const OrderDetailByName = ({ name }: { name?: string }) => {
   const latNum = parseFloat(lat);
   const lngNum = parseFloat(lng);
   const hasLocation = latNum !== 0 && lngNum !== 0;
+
   return (
-    <div className="flex w-max flex-col gap-2">
+    <div className="flex w-max flex-col gap-2 ">
       <h2 className="text-lg ">
         <span className="uppercase">Đơn hàng:</span>{" "}
         <span className="font-bold">{orderData.name}</span>
