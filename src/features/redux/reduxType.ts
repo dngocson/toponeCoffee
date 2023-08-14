@@ -6,6 +6,8 @@ export interface CartItem {
   unitPrice: number;
   totalPrice: number;
   image: string;
+  iceLevel: number | null;
+  suggarLevel: number | null;
 }
 export interface Cartstate {
   cart: CartItem[];
@@ -19,4 +21,9 @@ export interface Gpiprops {
   };
   address: string;
   error: string;
+}
+export interface DispatchProps {
+  id: number;
+  iceLevel: number | null;
+  suggarLevel: number | null;
 }

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CartItem, Cartstate } from "../reduxType";
+import { CartItem, Cartstate, DispatchProps } from "../reduxType";
 import { RootState } from "../store";
 
 const initialState = {
@@ -11,25 +11,56 @@ const cartSlice = createSlice({
   reducers: {
     addItem(state: Cartstate, action: PayloadAction<CartItem>) {
       const newItem = action.payload;
-      const existingItem = state.cart.find((item) => item.id === newItem.id);
-      if (!existingItem) state.cart.push(newItem);
-      else {
-        existingItem.quantity++;
-        existingItem.totalPrice =
-          existingItem.quantity * existingItem.unitPrice;
+      let found = false;
+      for (const item of state.cart) {
+        if (
+          item.id === newItem.id &&
+          newItem.iceLevel === item.iceLevel &&
+          newItem.suggarLevel === item.suggarLevel
+        ) {
+          found = true;
+          item.quantity++;
+          item.totalPrice = item.quantity * item.unitPrice;
+          break;
+        }
+      }
+      if (!found) {
+        state.cart.push(newItem);
       }
     },
-    deleteItem(state: Cartstate, action: PayloadAction<number>) {
-      state.cart = state.cart.filter((item) => item.id !== action.payload);
+    deleteItem(state: Cartstate, action: PayloadAction<DispatchProps>) {
+      state.cart = state.cart.filter(
+        (item) =>
+          item.id !== action.payload.id ||
+          item.iceLevel !== action.payload.iceLevel ||
+          item.suggarLevel !== action.payload.suggarLevel,
+      );
     },
-    increaseItemQuantity(state: Cartstate, action: PayloadAction<number>) {
-      const item = state.cart.find((item) => item.id === action.payload);
+    increaseItemQuantity(
+      state: Cartstate,
+      action: PayloadAction<DispatchProps>,
+    ) {
+      const item = state.cart.find(
+        (item) =>
+          item.id === action.payload.id &&
+          item.iceLevel === action.payload.iceLevel &&
+          item.suggarLevel === action.payload.suggarLevel,
+      );
       if (!item) return;
       item.quantity++;
       item.totalPrice = item.quantity * item.unitPrice;
     },
-    decreaseItemQuantity(state: Cartstate, action: PayloadAction<number>) {
-      const item = state.cart.find((item) => item.id === action.payload);
+
+    decreaseItemQuantity(
+      state: Cartstate,
+      action: PayloadAction<DispatchProps>,
+    ) {
+      const item = state.cart.find(
+        (item) =>
+          item.id === action.payload.id &&
+          item.iceLevel === action.payload.iceLevel &&
+          item.suggarLevel === action.payload.suggarLevel,
+      );
       if (!item) return;
       item.quantity--;
       item.totalPrice = item.quantity * item.unitPrice;

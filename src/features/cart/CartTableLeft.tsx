@@ -27,8 +27,8 @@ function CartTableLeft() {
         </div>
 
         <div className="flex h-[450px] flex-col overflow-y-auto p-2 ">
-          {cartItems.map((item) => (
-            <CartTableLeftRow key={item.id} data={item} />
+          {cartItems.map((item, index) => (
+            <CartTableLeftRow key={index} data={item} />
           ))}
         </div>
       </div>
