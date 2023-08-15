@@ -16,7 +16,7 @@ function AllOrderTable() {
   const { allOrderData } = allOrder;
 
   return (
-    <div>
+    <>
       <div className="my-8 flex items-center justify-between rounded-xl border border-blue-600">
         <Heading addStyle="uppercase ml-5" type="pri">
           Tất cả đơn hàng
@@ -75,7 +75,7 @@ function AllOrderTable() {
         ))}
         <Pagination count={allOrder?.count || 0} />
       </div>
-    </div>
+    </>
   );
 }
 

@@ -10,14 +10,15 @@ const initialFormValues = {
   price: 0,
   name: "",
   description: "",
+  hasSI_level: "false",
 };
 
 function CreateEditSettingForm({
   editItem = initialFormValues,
-  onCloseModal,
+  closeModal,
 }: {
   editItem?: Omit<MenuItemProps, "id">;
-  onCloseModal?: () => void;
+  closeModal?: () => void;
 }) {
   const { id: editId, ...editValue } = editItem;
   const isEditSession = Boolean(editId);
@@ -41,7 +42,7 @@ function CreateEditSettingForm({
         {
           onSuccess: () => {
             reset();
-            onCloseModal?.();
+            closeModal?.();
           },
         },
       );
@@ -51,7 +52,7 @@ function CreateEditSettingForm({
         {
           onSuccess: () => {
             reset();
-            onCloseModal?.();
+            closeModal?.();
           },
         },
       );
@@ -89,6 +90,28 @@ function CreateEditSettingForm({
           {errors?.sub_type?.message ? (
             <p className="text-red-500">
               {errors?.sub_type?.message.toString()}
+            </p>
+          ) : undefined}
+        </div>
+      )}
+
+      {drinkType === "drink" && (
+        <div className="s_t_row">
+          <label htmlFor="hasSI_level">Loại nước</label>
+          <select
+            className="s_t_input"
+            id="hasSI_level"
+            {...register("hasSI_level", {
+              required:
+                drinkType !== "drink" ? false : "Nước có chọn đường đá?",
+            })}
+          >
+            <option value="false">Không có chọn</option>
+            <option value="true">Có chọn</option>
+          </select>
+          {errors?.hasSI_level?.message ? (
+            <p className="text-red-500">
+              {errors?.hasSI_level.message.toString()}
             </p>
           ) : undefined}
         </div>
@@ -169,7 +192,7 @@ function CreateEditSettingForm({
           <p className="text-red-500">{errors?.image?.message.toString()}</p>
         ) : undefined}
       </div>
-      <button onClick={onCloseModal} type="button">
+      <button onClick={closeModal} type="button">
         Đóng
       </button>
       <button className="btn_g" disabled={isWorking}>

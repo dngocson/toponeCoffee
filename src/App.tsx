@@ -14,6 +14,8 @@ import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import About from "./pages/About";
 import ProductDetail from "./pages/ProductDetail";
+import Admin from "./pages/Admin";
+import ProtectedRoutes from "./ui/ProtectedRoutes";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,8 +37,30 @@ const App = () => {
         { path: "/login", element: <Login /> },
         { path: "/contact", element: <Contact /> },
         { path: "/order/:orderId", element: <OrderDetail /> },
-        { path: "/admin/settings", element: <Settings /> },
-        { path: "/admin/order", element: <Order /> },
+        {
+          path: "/admin",
+          element: (
+            <ProtectedRoutes>
+              <Admin />
+            </ProtectedRoutes>
+          ),
+        },
+        {
+          path: "/admin/settings",
+          element: (
+            <ProtectedRoutes>
+              <Settings />
+            </ProtectedRoutes>
+          ),
+        },
+        {
+          path: "/admin/order",
+          element: (
+            <ProtectedRoutes>
+              <Order />
+            </ProtectedRoutes>
+          ),
+        },
       ],
     },
   ]);

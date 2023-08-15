@@ -162,16 +162,16 @@ export const orderStatusOptions = [
 ];
 
 export const suggarLevel = [
-  { id: 1, value: 0, label: "Không đường" },
-  { id: 2, value: 30, label: "30% đường" },
-  { id: 3, value: 50, label: "50% đường" },
-  { id: 4, value: 70, label: "70% đường" },
   { id: 5, value: 100, label: "100% đường" },
+  { id: 4, value: 70, label: "70% đường" },
+  { id: 3, value: 50, label: "50% đường" },
+  { id: 2, value: 30, label: "30% đường" },
+  { id: 1, value: 0, label: "Không đường" },
 ];
 export const iceLevel = [
-  { id: 1, value: 0, label: "Không đá" },
-  { id: 2, value: 30, label: "30% đá" },
-  { id: 3, value: 50, label: "50% đá" },
-  { id: 4, value: 70, label: "70% đá" },
   { id: 5, value: 100, label: "100% đá" },
+  { id: 4, value: 70, label: "70% đá" },
+  { id: 3, value: 50, label: "50% đá" },
+  { id: 2, value: 30, label: "30% đá" },
+  { id: 1, value: 0, label: "Không đá" },
 ];

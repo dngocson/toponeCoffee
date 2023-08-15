@@ -3,52 +3,59 @@ import Heading from "../../ui/Heading";
 
 export const OrderByNameDetail = ({ items }: { items: any }) => {
   return (
-    <div className="max-h-[400px] overflow-y-scroll">
-      <div className="grid grid-cols-orderDetailTable border-2 border-blue-400">
+    <div className="relative max-h-[400px] overflow-y-auto border-b-2 border-blue-700">
+      <div className=" sticky top-0 grid grid-cols-orderDetailTable items-center border-2 border-b-0 border-blue-700 bg-blue-300  p-1 ">
         {rowLabel.map((item, index) => (
-          <span key={index} className="font-bold">
-            <Heading
-              addStyle={`w-full border-2  text-center ${
-                index !== 4 ? "border-r-blue-400" : ""
-              }`}
-              key={item.id}
-              type="sub"
-            >
+          <div key={index}>
+            <Heading addStyle={`w-full text-center`} key={item.id} type="sub">
               {item.label}
             </Heading>
-          </span>
+          </div>
         ))}
       </div>
+
       {items.map((item: any, index: number) => (
         <div
           key={index}
-          className="grid grid-cols-orderDetailTable  border-2 border-t-0 border-blue-400"
+          className={`grid grid-cols-orderDetailTable items-center  border-blue-700 ${
+            index % 2 ? " border-x-2 bg-gray-200" : " border-2 bg-white"
+          } `}
         >
           <Heading
-            addStyle="w-full border-2 border-r-blue-400 text-center"
+            addStyle="w-full   h-full flex flex-col items-center justify-center text-center"
             type="sub"
           >
             {index + 1}
           </Heading>
           <Heading
-            addStyle="w-full border-2 text-center border-r-blue-400"
+            addStyle="w-full   h-full flex flex-col items-center justify-center text-center"
             type="sub"
           >
-            {item.name}
+            <p>{item.name}</p>
+            {(item.ice_level !== null || item.sugar_level !== null) && (
+              <div className="text-sm">
+                <span>Đường:{item.sugar_level}%,</span>
+                <span>Đá:{item.ice_level}%</span>
+              </div>
+            )}
           </Heading>
+
           <Heading
-            addStyle="w-full border-2 text-center  border-r-blue-400"
+            addStyle="w-full   h-full flex flex-col items-center justify-center text-center"
             type="sub"
           >
             {item.quantity}
           </Heading>
           <Heading
-            addStyle="w-full border-2 text-center  border-r-blue-400"
+            addStyle="w-full   h-full flex flex-col items-center justify-center text-center"
             type="sub"
           >
             {item.price}
           </Heading>
-          <Heading addStyle="w-full text-center border-2 " type="sub">
+          <Heading
+            addStyle="w-full   h-full flex flex-col items-center justify-center text-center"
+            type="sub"
+          >
             {formatCurrencyNumber((item.quantity * item.price).toString())}
           </Heading>
         </div>

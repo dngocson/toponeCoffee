@@ -5,11 +5,11 @@ const options = orderStatusOptions;
 const UpdateOrderStatus = ({
   currentValue,
   id,
-  onCloseModal,
+  closeModal,
 }: {
   currentValue: string;
   id: number;
-  onCloseModal?: () => void;
+  closeModal?: () => void;
 }) => {
   const [selected, setSelected] = useState(currentValue);
   const { mutate, isLoading } = useUpdateOrderById();
@@ -18,7 +18,7 @@ const UpdateOrderStatus = ({
     setSelected(e.target.value);
   }
   function onClickHandler() {
-    mutate({ id, value: selected }, { onSuccess: onCloseModal });
+    mutate({ id, value: selected }, { onSuccess: closeModal });
   }
   return (
     <div className="flex flex-col gap-4">

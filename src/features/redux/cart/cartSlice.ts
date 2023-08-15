@@ -19,7 +19,7 @@ const cartSlice = createSlice({
           newItem.suggarLevel === item.suggarLevel
         ) {
           found = true;
-          item.quantity++;
+          item.quantity = item.quantity + newItem.quantity;
           item.totalPrice = item.quantity * item.unitPrice;
           break;
         }

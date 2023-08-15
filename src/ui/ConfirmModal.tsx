@@ -3,14 +3,14 @@ import { ConfirmModalProps } from "./type";
 function ConfirmModal({
   onConfirm,
   type,
-  onCloseModal,
+  closeModal,
   disabled,
 }: ConfirmModalProps) {
   return (
     <div className="flex flex-col gap-4">
       <p>Bạn có chắc muốn thực hiện hành động này?</p>
       <div className="flex justify-end gap-3">
-        <button className="btn_cf" onClick={onCloseModal}>
+        <button className="btn_cf" onClick={closeModal}>
           Hủy
         </button>
         <button

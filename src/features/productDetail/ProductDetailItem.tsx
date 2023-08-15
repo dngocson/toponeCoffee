@@ -1,13 +1,21 @@
-import { useMenu } from "../menu/useMenu";
-import { useParams } from "react-router-dom";
-import { removeVietnameseTones } from "../../helper/helperFunctions";
-import Spinner from "../../ui/Spinner";
-import RelatedProduct from "./RelatedProduct";
 import { useState } from "react";
-import { iceLevel, suggarLevel } from "../../helper/const";
+import { useParams } from "react-router-dom";
+import { toast } from "react-hot-toast";
+
+import { useMenu } from "../menu/useMenu";
 import { useAppDispatch } from "../redux/useAppDispatch ";
 import { addItem } from "../redux/cart/cartSlice";
+
+import Spinner from "../../ui/Spinner";
 import Heading from "../../ui/Heading";
+import RelatedProduct from "./RelatedProduct";
+
+import {
+  formatCurrencyNumber,
+  removeVietnameseTones,
+} from "../../helper/helperFunctions";
+import { iceLevel, suggarLevel } from "../../helper/const";
+import { AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai";
 
 const ProductdetailItem = () => {
   const dispatch = useAppDispatch();
@@ -15,8 +23,15 @@ const ProductdetailItem = () => {
   const routeParams = useParams();
   const [iceLevelState, setIceLevel] = useState(100);
   const [suggarLevelState, setSuggarLevel] = useState(100);
-
+  const [quantity, setQuantity] = useState(1);
   if (isLoading) return <Spinner />;
+  function decreaseQuantityHandler() {
+    if (quantity === 1) return;
+    setQuantity((quantity) => quantity - 1);
+  }
+  function increaseQuantityHandler() {
+    setQuantity((quantity) => quantity + 1);
+  }
 
   const currentProductName = routeParams.productId;
   const [currentProduct] =
@@ -30,13 +45,16 @@ const ProductdetailItem = () => {
       id: currentProduct.id,
       image: currentProduct.image,
       name: currentProduct.name,
-      quantity: 1,
+      quantity: quantity,
       unitPrice: currentProduct.price,
-      totalPrice: currentProduct.price * 1,
-      iceLevel: currentProduct.type === "drink" ? iceLevelState : null,
-      suggarLevel: currentProduct.type === "drink" ? suggarLevelState : null,
+      totalPrice: currentProduct.price * quantity,
+      iceLevel: currentProduct.hasSI_level === "true" ? iceLevelState : null,
+      suggarLevel:
+        currentProduct.hasSI_level === "true" ? suggarLevelState : null,
     };
     dispatch(addItem(newItem));
+    toast.success("Đã thêm vào giỏ hàng");
+    setQuantity(1);
   }
   return (
     <div className="mt-8">
@@ -47,17 +65,45 @@ const ProductdetailItem = () => {
               {currentProduct.promotion}
             </p>
           )}
-          <div className="h-[570px] w-[570px] overflow-hidden rounded-xl transition-all duration-300">
+          <div className="h-[570px] w-[570px] overflow-hidden rounded-xl ">
             <img
               className="h-[570px] w-[570px] rounded-xl shadow-cardShadow transition-all duration-300 hover:scale-110"
               src={currentProduct.image}
             />
           </div>
         </div>
-        <div className="self-start">
-          <p className="font-bold uppercase">{currentProduct.name}</p>
-          <p>{currentProduct.price}đ</p>
-          {currentProduct.type === "drink" && (
+        <div className="ml-10 basis-full self-start">
+          <div className="flex flex-col gap-3">
+            <h1 className=" text-4xl font-bold capitalize">
+              {currentProduct.name}
+            </h1>
+            <Heading addStyle="text-[#e57905] tracking-tighter" type="pri">
+              {formatCurrencyNumber(
+                (currentProduct.price * quantity).toString(),
+              )}
+              đ
+            </Heading>
+          </div>
+
+          <div className="mt-8 flex items-center gap-2 text-lg">
+            <h2>Số lượng:</h2>
+            <button
+              className="rounded-full text-3xl text-[#e57905] disabled:cursor-not-allowed"
+              onClick={decreaseQuantityHandler}
+              disabled={quantity === 1}
+            >
+              <AiFillMinusCircle />
+            </button>
+            <p className="text-lg font-bold">{quantity}</p>
+            <button
+              className="rounded-full text-3xl text-[#e57905] "
+              onClick={increaseQuantityHandler}
+            >
+              <AiFillPlusCircle />
+            </button>
+          </div>
+
+          {currentProduct.hasSI_level === "true" && (
             <SelectIceLevelAndSuggarLevel
               suggarSelectMethod={setSuggarLevel}
               iceSelectMethod={setIceLevel}
@@ -65,19 +111,34 @@ const ProductdetailItem = () => {
               suggar={suggarLevelState}
             />
           )}
-          <button onClick={onClickHandler}>Thêm vào giỏ hàng</button>
+          {currentProduct.hasSI_level !== "true" && (
+            <div className="my-8 flex flex-col gap-2">
+              <Heading type="pri">Mô tả sản phẩm</Heading>
+              <p>{currentProduct.description}</p>
+            </div>
+          )}
+
+          <button
+            className="mt-10  w-full rounded-md bg-[#e57905] p-2 text-white transition-all duration-300 hover:bg-opacity-[85%]"
+            onClick={onClickHandler}
+          >
+            Thêm vào giỏ hàng
+          </button>
         </div>
       </div>
-      <div className="my-8 flex flex-col gap-2">
-        <Heading type="pri">Mô tả sản phẩm</Heading>
-        <p>{currentProduct.description}</p>
-      </div>
+      {currentProduct.hasSI_level === "true" && (
+        <div className="my-8 flex flex-col gap-2">
+          <Heading type="pri">Mô tả sản phẩm</Heading>
+          <p>{currentProduct.description}</p>
+        </div>
+      )}
       <RelatedProduct id={currentProduct.id} data={currentProduct} />
     </div>
   );
 };
 
 export default ProductdetailItem;
+
 interface SelectIceLevelAndSuggarLevelProps {
   suggarSelectMethod: (value: number) => void;
   iceSelectMethod: (value: number) => void;
@@ -92,25 +153,41 @@ function SelectIceLevelAndSuggarLevel({
   suggar,
 }: SelectIceLevelAndSuggarLevelProps) {
   return (
-    <div className="flex flex-col">
-      {iceLevel.map((level) => (
-        <button
-          key={level.id}
-          className={`${level.value === ice ? "text-red-500" : ""}`}
-          onClick={() => iceSelectMethod(level.value)}
-        >
-          {level.label}
-        </button>
-      ))}
-      {suggarLevel.map((level) => (
-        <button
-          key={level.id}
-          className={`${level.value === suggar ? "text-red-500" : ""}`}
-          onClick={() => suggarSelectMethod(level.value)}
-        >
-          {level.label}
-        </button>
-      ))}
+    <div className="mt-8 flex flex-col gap-6">
+      <div className="flex flex-col gap-2">
+        <h2 className="text-lg font-bold">Chọn mức đường của bạn:</h2>
+        <div className="flex flex-wrap gap-4">
+          {suggarLevel.map((level) => (
+            <button
+              key={level.id}
+              className={`rounded-md border border-[#e57905] p-2 transition-colors duration-300 hover:bg-[#e57905] hover:text-white ${
+                level.value === suggar ? " bg-[#e57905] text-white" : " "
+              }`}
+              onClick={() => suggarSelectMethod(level.value)}
+            >
+              {level.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div className="flex flex-col gap-2">
+        <h2 className="text-lg font-bold">Chọn mức đá của bạn:</h2>
+        <div className="flex flex-wrap  gap-4">
+          {iceLevel.map((level) => (
+            <button
+              key={level.id}
+              className={`rounded-md border border-[#e57905] p-2 transition-colors duration-300 hover:bg-[#e57905] hover:text-white  ${
+                level.value === ice
+                  ? "bg-[#e57905] text-white"
+                  : "border-[#e57905] "
+              }`}
+              onClick={() => iceSelectMethod(level.value)}
+            >
+              {level.label}
+            </button>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

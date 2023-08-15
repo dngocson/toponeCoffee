@@ -78,6 +78,8 @@ export async function createEditOrder(newOrder: any) {
     price: item.unitPrice,
     order_id: data[0].id,
     name: item.name,
+    ice_level: item.iceLevel,
+    sugar_level: item.suggarLevel,
   }));
   const { error: orderedItemError } = await supabase
     .from("orderedItem")

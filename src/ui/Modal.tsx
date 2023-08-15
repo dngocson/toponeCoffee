@@ -71,7 +71,7 @@ function Window({ children, name }: ModalWindowProps) {
         >
           <HiXMark />
         </button>
-        <div>{cloneElement(children, { onCloseModal: close })}</div>
+        <div>{cloneElement(children, { closeModal: close })}</div>
       </div>
     </div>,
     document.body,

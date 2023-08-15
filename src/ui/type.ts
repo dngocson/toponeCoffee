@@ -34,6 +34,6 @@ export interface ModalWindowProps {
 export interface ConfirmModalProps {
   type: string;
   onConfirm: () => void;
-  onCloseModal?: () => void;
+  closeModal?: () => void;
   disabled: boolean;
 }

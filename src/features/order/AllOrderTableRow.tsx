@@ -70,12 +70,8 @@ function AllOrderTableRow({
             </button>
           </Modal.Open>
           <Modal.Window name="order">
-            <div className="">
-              <OrderDetailByName name={order.name} />
-            </div>
+            <OrderDetailByName name={order.name} />
           </Modal.Window>
-        </Modal>
-        <Modal>
           <Modal.Open opens="orderType">
             <button className="rounded-md text-lg font-bold uppercase text-blue-700">
               Cập nhật
