@@ -46,7 +46,7 @@ function SettingTable() {
         <p>Tình trạng</p>
         <p>Chỉnh sửa</p>
       </div>
-      <div className="mx-auto  w-[1200px]">
+      <div className="mx-auto  max-w-[1200px]">
         {sortedMenu.map((item) => (
           <SettingTableRow key={item.id} data={item} />
         ))}

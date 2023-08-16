@@ -34,12 +34,12 @@ const SearchMenu = () => {
   }
   return (
     <form onSubmit={submitHandler} className="relative">
-      <div>
+      <div className="relative mx-auto w-[70%] lg:w-[100%]">
         <input
           placeholder="Tìm kiếm"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-[350px] rounded-xl bg-cyan-50 p-2 transition-all duration-300 focus:w-[500px] focus:outline-none focus:ring focus:ring-blue-600 focus:ring-opacity-70"
+          className="w-full rounded-xl bg-cyan-50  p-2 transition-all duration-300  focus:outline-none focus:ring focus:ring-blue-600 focus:ring-opacity-70 lg:w-[350px] lg:focus:w-[500px]"
           onBlur={onblurHandler}
         />
         <div className="absolute inset-y-0 right-2 flex items-center pl-3">

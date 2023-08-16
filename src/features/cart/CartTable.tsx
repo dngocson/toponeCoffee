@@ -8,7 +8,7 @@ export const CartTable = ({ closeModal }: { closeModal?: () => void }) => {
   if (cartItems.length === 0) return <h2>Giỏ hàng trống</h2>;
   return (
     <div>
-      <div className="grid h-[90%] w-[1200px] grid-cols-7">
+      <div className="grid h-[90%] max-w-[1200px] grid-cols-7">
         <div className="col-span-5 border-2 border-blue-400">
           <CartTableLeft />
         </div>

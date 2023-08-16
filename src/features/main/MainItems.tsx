@@ -45,19 +45,17 @@ const MainItems = () => {
     .sort(sortItemsByPromotion);
 
   return (
-    <div className="mx-auto mt-12 flex w-[1200px] flex-col gap-8">
-      <i className="self-center bg-gradient-to-r from-red-600 to-green-400 bg-clip-text p-2 text-4xl font-bold capitalize text-transparent  ">
-        Cà phê và Trà sữa Top one
-      </i>
-      <div className="overflow-hidde8 relative flex  flex-wrap gap-8">
-        <motion.p
-          viewport={{ once: true }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="absolute left-5 top-8 rounded-2xl bg-[#d1dfe7] bg-opacity-70 p-2 text-xl font-bold text-gray-900"
-        >
-          Cà phê / Trà sữa
-        </motion.p>
+    <div className="mx-auto mt-12 flex max-w-[1200px] flex-col gap-8">
+      <motion.i
+        viewport={{ once: true }}
+        initial={{ x: -1000, opacity: 0 }}
+        transition={{ duration: 0.3, type: "spring", delay: 0.2 }}
+        animate={{ x: 0, opacity: 1 }}
+        className="self-center bg-gradient-to-r from-red-600 to-green-400 bg-clip-text p-2 text-center text-3xl font-bold capitalize text-transparent md:text-4xl"
+      >
+        Cà phê và Trà sữa Top One
+      </motion.i>
+      <div className="relative flex flex-wrap justify-center gap-4 overflow-hidden px-1 md:gap-8 md:px-8 xl:px-0">
         <motion.div
           viewport={{ once: true }}
           initial={{ opacity: 0 }}
@@ -66,7 +64,7 @@ const MainItems = () => {
           <img
             src={trasua}
             alt="hình trà sữa"
-            className="object-fit h-[370px] w-[570px] rounded-xl"
+            className="object-fit  h-full w-[450px] rounded-xl md:w-[700px] xl:h-[370px] xl:w-[570px] "
           />
         </motion.div>
         {drinks.slice(0, Number(drinkLimit)).map((drink) => (
@@ -83,18 +81,16 @@ const MainItems = () => {
         </button>
       )}
 
-      <i className="self-center bg-gradient-to-r from-red-600 to-green-400 bg-clip-text p-2 text-4xl font-bold capitalize text-transparent  ">
-        Mỳ cay 7 cấp Top one
-      </i>
-      <div className="overflow-hidde8 relative flex flex-wrap gap-8">
-        <motion.p
-          viewport={{ once: true }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="absolute left-5 top-8 rounded-2xl bg-green-300 bg-opacity-70 p-2 text-xl font-bold text-pink-600"
-        >
-          Mỳ cay 7 cấp
-        </motion.p>
+      <motion.i
+        viewport={{ once: true }}
+        initial={{ x: -1000, opacity: 0 }}
+        transition={{ duration: 0.3, type: "spring", delay: 0.2 }}
+        animate={{ x: 0, opacity: 1 }}
+        className="self-center bg-gradient-to-r from-red-600 to-green-400 bg-clip-text p-2 text-center text-3xl font-bold capitalize text-transparent md:text-4xl"
+      >
+        Mỳ cay Top One
+      </motion.i>
+      <div className="relative flex flex-wrap  justify-center gap-4 overflow-hidden px-1 md:gap-8 md:px-8 xl:px-0">
         <motion.div
           viewport={{ once: true }}
           initial={{ opacity: 0 }}
@@ -102,8 +98,8 @@ const MainItems = () => {
         >
           <img
             src={mycay}
-            alt=""
-            className="object-fit h-[370px] w-[570px] rounded-xl"
+            alt="hinh my"
+            className="object-fit h-full w-[450px] rounded-xl md:w-[700px] xl:h-[370px] xl:w-[570px]"
           />
         </motion.div>
 
@@ -122,18 +118,17 @@ const MainItems = () => {
         </button>
       )}
 
-      <i className="self-center bg-gradient-to-r from-red-600 to-green-400 bg-clip-text p-2 text-4xl font-bold capitalize text-transparent  ">
-        Cơm văn phòng Top one
-      </i>
-      <div className="overflow-hidde8 relative flex flex-wrap gap-8">
-        <motion.p
-          viewport={{ once: true }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="absolute left-5 top-8 rounded-2xl bg-green-300 bg-opacity-70 p-2 text-xl font-bold text-pink-600"
-        >
-          Cơm văn phòng Top One
-        </motion.p>
+      <motion.i
+        viewport={{ once: true }}
+        initial={{ x: -1000, opacity: 0 }}
+        transition={{ duration: 0.3, type: "spring", delay: 0.2 }}
+        animate={{ x: 0, opacity: 1 }}
+        className="self-center bg-gradient-to-r from-red-600 to-green-400 bg-clip-text p-2 text-center text-3xl font-bold capitalize text-transparent md:text-4xl"
+      >
+        Cơm văn phòng Top One
+      </motion.i>
+
+      <div className="relative flex flex-wrap justify-center gap-4 overflow-hidden px-1 md:gap-8 md:px-8 xl:px-0">
         <motion.div
           viewport={{ once: true }}
           initial={{ opacity: 0 }}
@@ -142,7 +137,7 @@ const MainItems = () => {
           <img
             src={comtrua}
             alt="hình cơm trưa"
-            className="object-fit h-[370px] w-[570px] rounded-xl"
+            className="object-fit  h-full w-[450px] rounded-xl md:w-[700px] xl:h-[370px] xl:w-[570px]"
           />
         </motion.div>
         {foods.slice(0, Number(foodLimit)).map((food) => (

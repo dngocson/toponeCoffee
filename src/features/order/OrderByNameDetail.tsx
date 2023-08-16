@@ -18,17 +18,17 @@ export const OrderByNameDetail = ({ items }: { items: any }) => {
         <div
           key={index}
           className={`grid grid-cols-orderDetailTable items-center  border-blue-700 ${
-            index % 2 ? " border-x-2 bg-gray-200" : " border-2 bg-white"
+            index % 2 ? " border-x-2 bg-gray-200" : " border-2  bg-white"
           } `}
         >
           <Heading
-            addStyle="w-full   h-full flex flex-col items-center justify-center text-center"
+            addStyle="w-full h-full flex flex-col items-center justify-center text-center"
             type="sub"
           >
             {index + 1}
           </Heading>
           <Heading
-            addStyle="w-full   h-full flex flex-col items-center justify-center text-center"
+            addStyle="w-full h-full flex flex-col items-center justify-center text-center"
             type="sub"
           >
             <p>{item.name}</p>
