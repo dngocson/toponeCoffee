@@ -41,10 +41,10 @@ function MenuItem({ data }: { data: MenuItemProps }) {
             {data.promotion}
           </p>
         )}
-        <div className="relative h-[140px] w-[140px] overflow-hidden rounded-xl sm:h-[210px] sm:w-[210px] xl:h-[270px] xl:w-[270px] ">
+        <div className="relative h-[140px] w-[140px] overflow-hidden rounded-xl shadow-md sm:h-[210px] sm:w-[210px] xl:h-[270px] xl:w-[270px] ">
           <button onClick={movetoDetail}>
             <img
-              className=" h-[140px] w-[140px] rounded-xl shadow-cardShadow transition-all duration-300 group-hover:scale-110 sm:h-[210px] sm:w-[210px] xl:h-[270px]  xl:w-[270px]"
+              className=" h-[140px] w-[140px] rounded-xl   transition-all duration-300 group-hover:scale-110 sm:h-[210px] sm:w-[210px] xl:h-[270px]  xl:w-[270px]"
               src={data.image}
             />
           </button>
@@ -58,7 +58,9 @@ function MenuItem({ data }: { data: MenuItemProps }) {
             >
               <Modal>
                 <Modal.Open opens="addItemToCart">
-                  <button className="w-full py-2 ">Thêm vào giỏ hàng</button>
+                  <button className="w-full  p-1 py-2 text-xs md:text-base ">
+                    Thêm vào giỏ hàng
+                  </button>
                 </Modal.Open>
                 <Modal.Window name="addItemToCart">
                   <AddItemToCartModal item={data} />
@@ -116,8 +118,8 @@ function AddItemToCartModal({
   }
 
   return (
-    <div className=" grid grid-cols-2 gap-4 md:min-w-[800px] md:gap-6">
-      <div className="relative aspect-square h-full w-full overflow-hidden rounded-lg">
+    <div className=" grid min-w-[280px] grid-cols-1  gap-2 text-xs  md:text-base lg:min-w-[800px] lg:grid-cols-2 lg:gap-6">
+      <div className="relative hidden aspect-square h-full w-full overflow-hidden rounded-lg sm:block">
         {item.promotion && (
           <p className="absolute left-[-56px] top-[21px] z-10 min-w-[200px] rotate-[-37deg] whitespace-nowrap bg-[#f00] px-[3rem] py-[0.2rem] text-center text-sm font-semibold uppercase text-white shadow-cardShadow2">
             {item.promotion}
@@ -129,7 +131,7 @@ function AddItemToCartModal({
           className="h-full w-full rounded-lg transition-all duration-300 hover:scale-105"
         />
       </div>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2 lg:gap-4">
         <h2 className="text-xl font-bold">{item.name}</h2>
         <h2 className="text-xl text-[#e57905]">
           {formatCurrencyNumber((item.price * quantity).toString())}đ
@@ -159,7 +161,7 @@ function AddItemToCartModal({
               {suggarLevel.map((level, index) => (
                 <button
                   key={index}
-                  className={`rounded-md border border-[#e57905] p-1 text-sm transition-colors duration-300 hover:bg-[#e57905] hover:text-white  ${
+                  className={`whitespace-nowrap rounded-md border border-[#e57905] p-1 text-xs transition-colors duration-300 hover:bg-[#e57905] hover:text-white md:text-sm  ${
                     level.value === sugar_level
                       ? "bg-[#e57905] text-white"
                       : "border-[#e57905] "
@@ -175,7 +177,7 @@ function AddItemToCartModal({
               {iceLevel.map((level, index) => (
                 <button
                   key={index}
-                  className={`rounded-md border border-[#e57905] p-1 text-sm transition-colors duration-300 hover:bg-[#e57905] hover:text-white  ${
+                  className={`rounded-md border border-[#e57905] p-1 text-xs transition-colors duration-300 hover:bg-[#e57905] hover:text-white md:text-sm  ${
                     level.value === ice_level
                       ? "bg-[#e57905] text-white"
                       : "border-[#e57905] "

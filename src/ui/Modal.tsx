@@ -62,11 +62,11 @@ function Window({ children, name }: ModalWindowProps) {
   return createPortal(
     <div className="fixed left-0 top-0 z-50 h-screen w-full bg-[#FFFFFF1A] backdrop-blur-sm transition-all duration-500">
       <div
-        className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg bg-[#fff] p-12 shadow-lg transition-all duration-500"
+        className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg bg-[#fff] p-4 shadow-lg transition-all duration-500 md:p-12"
         ref={ref}
       >
         <button
-          className="absolute right-7 top-5 translate-x-4 rounded-sm border-0 bg-red-500  p-1 text-xl font-bold text-black transition-all duration-200 hover:scale-110"
+          className="absolute right-5 top-2 translate-x-4 rounded-sm border-0 bg-red-500 p-1 text-xl  font-bold text-black transition-all duration-200 hover:scale-110 md:right-7 md:top-5"
           onClick={close}
         >
           <HiXMark />

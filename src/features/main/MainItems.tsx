@@ -64,7 +64,7 @@ const MainItems = () => {
           <img
             src={trasua}
             alt="hình trà sữa"
-            className="object-fit  h-full w-[450px] rounded-xl md:w-[700px] xl:h-[370px] xl:w-[570px] "
+            className="object-fit h-full w-[450px] rounded-xl   lg:h-[370px] xl:w-[570px] "
           />
         </motion.div>
         {drinks.slice(0, Number(drinkLimit)).map((drink) => (

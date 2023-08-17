@@ -34,14 +34,14 @@ function Carosel({ data, place }: { data: CarouselProps[]; place: string }) {
         modules={[Autoplay, Pagination, Navigation]}
       >
         {place === "main" && (
-          <div className="absolute right-[50%] top-[10%] z-10 flex translate-x-[50%] flex-col items-center justify-center gap-2 rounded-2xl bg-[#d1dfe7] bg-opacity-[85%] p-4 text-sm  font-bold text-gray-900 md:text-2xl ">
+          <div className="absolute right-[50%] top-[10%] z-10 flex translate-x-[50%] flex-col items-center justify-center gap-2 rounded-2xl bg-[#d1dfe7] bg-opacity-[85%] p-4 text-xs  font-bold text-gray-900 md:text-2xl ">
             {slideNum !== 3 && (
-              <p className="text-center">Trà sữa Top One chuyên phục vụ</p>
+              <p className="text-center ">Trà sữa Top One chuyên phục vụ</p>
             )}
             {slideNum == 3 && (
               <p className="text-center text-blue-700">Phục vụ 24/24</p>
             )}
-            <p className="text-blue-700 text-center">{data[slideNum]?.label}</p>
+            <p className="text-center text-blue-700">{data[slideNum]?.label}</p>
           </div>
         )}
         {data.map((item) => (

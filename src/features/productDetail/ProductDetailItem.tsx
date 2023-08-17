@@ -57,27 +57,30 @@ const ProductdetailItem = () => {
     setQuantity(1);
   }
   return (
-    <div className="mt-8">
-      <div className=" relative flex items-center gap-2 overflow-hidden rounded-xl ">
+    <div className=":mt-8 mt-4 p-4 xl:p-0">
+      <div className="relative flex flex-col items-center gap-2 overflow-hidden rounded-xl lg:flex-row ">
         <div>
           {currentProduct.promotion && (
             <p className="absolute left-[-56px] top-[21px] z-10 min-w-[300px] rotate-[-37deg] whitespace-nowrap bg-[#f00] py-[0.5rem] pr-[3rem] text-center text-xl font-bold uppercase tracking-widest text-white shadow-cardShadow2">
               {currentProduct.promotion}
             </p>
           )}
-          <div className="h-[570px] w-[570px] overflow-hidden rounded-xl ">
+          <div className="overflow-hidden rounded-xl  lg:h-[570px] lg:w-[570px] ">
             <img
-              className="h-[570px] w-[570px] rounded-xl shadow-cardShadow transition-all duration-300 hover:scale-110"
+              className="shadow-cardShadow rounded-xl transition-all duration-300 hover:scale-110 lg:h-[570px] lg:w-[570px]"
               src={currentProduct.image}
             />
           </div>
         </div>
-        <div className="ml-10 basis-full self-start">
+        <div className=" w-full self-start  lg:ml-8">
           <div className="flex flex-col gap-3">
-            <h1 className=" text-4xl font-bold capitalize">
+            <h1 className=" mt-4 text-3xl font-bold capitalize sm:text-4xl lg:mt-0">
               {currentProduct.name}
             </h1>
-            <Heading addStyle="text-[#e57905] tracking-tighter" type="pri">
+            <Heading
+              addStyle="text-[#e57905] text-2xl tracking-tighter"
+              type="pri"
+            >
               {formatCurrencyNumber(
                 (currentProduct.price * quantity).toString(),
               )}
@@ -85,7 +88,7 @@ const ProductdetailItem = () => {
             </Heading>
           </div>
 
-          <div className="mt-8 flex items-center gap-2 text-lg">
+          <div className="mt-4 flex items-center gap-2 text-lg lg:mt-8">
             <h2>Số lượng:</h2>
             <button
               className="rounded-full text-3xl text-[#e57905] disabled:cursor-not-allowed"
@@ -112,14 +115,14 @@ const ProductdetailItem = () => {
             />
           )}
           {currentProduct.hasSI_level !== "true" && (
-            <div className="my-8 flex flex-col gap-2">
+            <div className="my-4 flex flex-col gap-2 lg:my-8">
               <Heading type="pri">Mô tả sản phẩm</Heading>
               <p>{currentProduct.description}</p>
             </div>
           )}
 
           <button
-            className="mt-10  w-full rounded-md bg-[#e57905] p-2 text-white transition-all duration-300 hover:bg-opacity-[85%]"
+            className="mt-6 w-full  rounded-xl bg-[#e57905] p-2 text-white transition-all duration-300 hover:bg-opacity-[85%] lg:mt-10"
             onClick={onClickHandler}
           >
             Thêm vào giỏ hàng
@@ -160,7 +163,7 @@ function SelectIceLevelAndSuggarLevel({
           {suggarLevel.map((level) => (
             <button
               key={level.id}
-              className={`rounded-md border border-[#e57905] p-2 transition-colors duration-300 hover:bg-[#e57905] hover:text-white ${
+              className={`rounded-md border border-[#e57905] p-2 text-sm transition-colors duration-300 hover:bg-[#e57905] hover:text-white md:text-base ${
                 level.value === suggar ? " bg-[#e57905] text-white" : " "
               }`}
               onClick={() => suggarSelectMethod(level.value)}
@@ -176,7 +179,7 @@ function SelectIceLevelAndSuggarLevel({
           {iceLevel.map((level) => (
             <button
               key={level.id}
-              className={`rounded-md border border-[#e57905] p-2 transition-colors duration-300 hover:bg-[#e57905] hover:text-white  ${
+              className={`rounded-md border border-[#e57905] p-2 text-sm transition-colors duration-300 hover:bg-[#e57905] hover:text-white md:text-base  ${
                 level.value === ice
                   ? "bg-[#e57905] text-white"
                   : "border-[#e57905] "

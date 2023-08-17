@@ -20,11 +20,11 @@ const ProductDetailLink = () => {
   const subType = convertSubTypeName(currentProduct.sub_type) || "";
   const hasSubType = subType?.length > 0 ? true : false;
   return (
-    <div className="flex gap-4 text-lg">
-      <Link className="font-bold" to="/">
+    <div className="mt-4 flex gap-1 px-4 text-sm md:gap-4 md:text-lg xl:px-0">
+      {/* <Link className="font-bold" to="/">
         Trang chủ
       </Link>
-      <span>/</span>
+      <span>/</span> */}
       <Link className="font-bold" to="/menu?type=all">
         Menu
       </Link>
