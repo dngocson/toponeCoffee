@@ -37,7 +37,6 @@ const SearchMenu = () => {
       <div className="relative mx-auto w-[70%] lg:w-[100%]">
         <input
           placeholder="Tìm kiếm"
-          id="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="w-full rounded-xl bg-cyan-50  p-2 transition-all duration-300  focus:outline-none focus:ring focus:ring-blue-600 focus:ring-opacity-70 lg:w-[350px] lg:focus:w-[500px]"
@@ -65,7 +64,7 @@ function SearchResult({
       {query &&
         renderData.map((item) => (
           <div
-            className="border-b border-slate-500 transition-all duration-300 hover:bg-blue-300"
+            className="border-b border-slate-500 transition-all duration-300 hover:bg-slate-300"
             key={item.id}
           >
             <Link to={`/menu/${item.engName?.replace(/ /g, "-")}`}>

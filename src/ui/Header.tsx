@@ -4,19 +4,16 @@ import { headerButton } from "../helper/const";
 import Modal from "./Modal";
 import { CartTable } from "../features/cart/CartTable";
 import { useEffect, useState } from "react";
-import { AiFillSetting, AiOutlineLogin, AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineMenu } from "react-icons/ai";
 import { HiXMark } from "react-icons/hi2";
 import { BsFillCartFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { getTotalCartQuantity } from "../features/redux/cart/cartSlice";
 import { motion, AnimatePresence } from "framer-motion";
-import { useUser } from "../features/user/useUser";
-import Spinner from "./Spinner";
 
 function Header() {
   const [showNav, setShowNav] = useState(false);
   const [shadow, setShadow] = useState(false);
-  const { isLoading, isAuthenticated } = useUser();
   useEffect(() => {
     const handleShadow = () => {
       if (window.scrollY >= 50) {
@@ -29,10 +26,9 @@ function Header() {
     return () => window.removeEventListener("scroll", handleShadow);
   }, []);
   const totalCartQuantity = useSelector(getTotalCartQuantity);
-  if (isLoading) return <Spinner />;
   return (
     <div
-      className={`sticky top-0  z-[50] mt-8 flex flex-col items-center justify-center gap-8 bg-blue-300 py-6  backdrop-blur-sm ${
+      className={`sticky top-0  z-[50] mt-8 flex flex-col items-center justify-center gap-8 bg-gray-300 py-6  backdrop-blur-sm ${
         shadow ? "bg-opacity-90 shadow-xl" : null
       }`}
     >
@@ -45,34 +41,16 @@ function Header() {
             TOPONE Coffee
           </Link>
           <SearchMenu />
-          <div className="flex items-center gap-4">
+          <div className="flex gap-4 ">
+            <Link to={"/login"}>Đăng nhập</Link>
             <Modal>
               <Modal.Open opens="cart">
-                <button className="text-orange-600">
-                  <div className="flex items-center justify-center gap-1 text-2xl">
-                    <BsFillCartFill />
-                    <p className="text-xl ">{totalCartQuantity}</p>
-                  </div>
-                </button>
+                <button>Giỏ hàng</button>
               </Modal.Open>
               <Modal.Window name="cart">
                 <CartTable />
               </Modal.Window>
             </Modal>
-            {!isAuthenticated && (
-              <Link to={"/login"}>
-                <div className="text-2xl text-orange-600">
-                  <AiOutlineLogin />
-                </div>
-              </Link>
-            )}
-            {isAuthenticated && (
-              <Link to={"/admin"}>
-                <div className="text-2xl text-orange-600">
-                  <AiFillSetting />
-                </div>
-              </Link>
-            )}
           </div>
         </div>
         <ul className=" flex  items-center justify-between gap-4 px-6 text-lg uppercase  lg:max-w-[1200px] xl:px-0">
@@ -227,30 +205,16 @@ function Header() {
                     }}
                     className="w-full "
                   >
-                    {!isAuthenticated && (
-                      <NavLink
-                        className={({ isActive }) =>
-                          isActive
-                            ? "origin-left  text-xl text-[#e57905] transition-colors duration-200"
-                            : "origin-left  text-xl text-gray-900 duration-300  hover:text-[#e57905]"
-                        }
-                        to="/login"
-                      >
-                        Đăng nhập
-                      </NavLink>
-                    )}
-                    {isAuthenticated && (
-                      <NavLink
-                        className={({ isActive }) =>
-                          isActive
-                            ? "origin-left  text-xl text-[#e57905] transition-colors duration-200"
-                            : "origin-left  text-xl text-gray-900 duration-300  hover:text-[#e57905]"
-                        }
-                        to="/admin"
-                      >
-                        Quản lí
-                      </NavLink>
-                    )}
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive
+                          ? "origin-left  text-xl text-[#e57905] transition-colors duration-200"
+                          : "origin-left  text-xl text-gray-900 duration-300  hover:text-[#e57905]"
+                      }
+                      to="/login"
+                    >
+                      Đăng nhập
+                    </NavLink>
                   </li>
                 </ul>
               </div>
