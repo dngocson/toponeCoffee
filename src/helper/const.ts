@@ -175,3 +175,13 @@ export const iceLevel = [
   { id: 2, value: 30, label: "30% đá" },
   { id: 1, value: 0, label: "Không đá" },
 ];
+export const allMenuList = [
+  { id: 1, label: "Tất cả", value: "all" },
+  { id: 2, label: "Trà trái cây", value: "drink_tea" },
+  { id: 3, label: "Sữa chua", value: "drink_yogurt" },
+  { id: 4, label: "Nước ép, đá xay", value: "drink_juice" },
+  { id: 5, label: "Trà sữa", value: "drink_milk-tea" },
+  { id: 6, label: "Thức uống khác", value: "drink_other" },
+  { id: 7, label: "Mỳ cay", value: "noodle" },
+  { id: 8, label: "Cơm", value: "food" },
+];

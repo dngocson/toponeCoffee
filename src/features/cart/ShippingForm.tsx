@@ -13,6 +13,7 @@ import { clearCart } from "../redux/cart/cartSlice";
 import { useNavigate } from "react-router-dom";
 import { fetchAddress } from "../redux/cart/gpiSlice";
 import { RootState } from "../redux/store";
+import { BiCurrentLocation } from "react-icons/bi";
 const ShippingForm = ({ onClose }: { onClose?: () => void }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -59,7 +60,10 @@ const ShippingForm = ({ onClose }: { onClose?: () => void }) => {
   return (
     <form onSubmit={handleSubmit(onSubmitHandler)} className="p-2">
       <div className="flex flex-col gap-2">
-        <label className="text-lg font-bold" htmlFor="phoneNumber">
+        <label
+          className=" text-sm font-bold  md:text-base "
+          htmlFor="phoneNumber"
+        >
           Số điện thoại:
         </label>
         <input
@@ -80,11 +84,14 @@ const ShippingForm = ({ onClose }: { onClose?: () => void }) => {
 
       <div className=" mt-2 flex flex-col gap-2">
         <div className="flex items-center  gap-1">
-          <label className="text-lg font-bold" htmlFor="address">
+          <label
+            className=" text-sm font-bold md:text-base  "
+            htmlFor="address"
+          >
             Địa chỉ giao hàng:
           </label>
           <button className="text-blue-500" type="button" onClick={layvitri}>
-            Lấy vị trí
+            <BiCurrentLocation size={20} />
           </button>
         </div>
         <textarea
@@ -101,7 +108,7 @@ const ShippingForm = ({ onClose }: { onClose?: () => void }) => {
       </div>
 
       <div className="mt-2 flex flex-col gap-2">
-        <label className="text-lg font-bold">Ghi chú</label>
+        <label className=" text-sm font-bold  md:text-base ">Ghi chú</label>
         <textarea
           disabled={isCreating || isLoadingApi}
           className="s_t_input"

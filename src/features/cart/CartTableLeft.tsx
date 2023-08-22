@@ -8,16 +8,16 @@ function CartTableLeft() {
   const cartItems = useSelector(getCart);
   return (
     <>
-      <div className=" flex justify-between border-b-2 border-blue-400 p-2 text-xl font-bold uppercase ">
+      <div className=" flex justify-between border-b-2 border-blue-400 p-2 text-xl  font-bold uppercase ">
         <h2>Giỏ hàng</h2>
         <h2>Số lượng:{totalCartQuantity}</h2>
       </div>
       <div>
-        <div className="grid grid-cols-5 justify-items-center  border-b-2 border-blue-400  p-2 text-xl ">
+        <div className="hidden grid-cols-5 justify-items-center border-b-2  border-blue-400 p-2  md:grid  ">
           {label.map((item) => (
             <h2
               key={item.id}
-              className={`font-bold uppercase ${
+              className={`text-base font-bold uppercase ${
                 item.id === 1 ? "col-span-2" : ""
               }`}
             >
@@ -26,7 +26,7 @@ function CartTableLeft() {
           ))}
         </div>
 
-        <div className="flex h-[450px] flex-col overflow-y-auto p-2 ">
+        <div className="flex max-h-[300px] flex-col overflow-y-auto p-2 lg:max-h-[500px] ">
           {cartItems.map((item, index) => (
             <CartTableLeftRow key={index} data={item} />
           ))}

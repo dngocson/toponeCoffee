@@ -3,7 +3,7 @@ import MenuOperation from "../features/menu/MenuOperation";
 
 function Menu() {
   return (
-    <div className="container flex">
+    <div className="container flex justify-center ">
       <MenuOperation />
       <MenuItemList />
     </div>

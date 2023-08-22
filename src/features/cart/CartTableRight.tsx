@@ -6,13 +6,16 @@ function CartTableRight({ onClose }: { onClose?: () => void }) {
   const totalCartPrice = useSelector(getTotalCartPrice);
   return (
     <div>
-      <h2 className="border-b-2  border-blue-400 p-2 text-center text-xl font-bold uppercase">
+      <h2 className="border-b-2 border-blue-400  p-2 text-center text-xl font-bold uppercase">
         Thông tin đơn hàng
       </h2>
-      <div className=" border-b-2 border-blue-400 p-2 text-xl font-bold uppercase">
+      <div className=" border-b-2 border-blue-400 p-2 text-base font-bold uppercase ">
         <h2>
-          Tổng đơn: {formatCurrencyNumber(totalCartPrice.toString())}
-          <span className="lowercase">vnđ</span>
+          Tổng đơn:
+          <span className="text-blue-700">
+            {formatCurrencyNumber(totalCartPrice.toString())}
+            <span className="lowercase">vnđ</span>
+          </span>
         </h2>
       </div>
       <ShippingForm onClose={onClose} />

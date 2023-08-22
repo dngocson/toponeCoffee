@@ -55,7 +55,7 @@ export async function createMenuItem(newItem: MenuItemProps, id?: number) {
       .eq("id", id)
       .select();
 
-  const { data, error } = await query.select().returns<MenuItemProps>();
+  const { data, error } = await query.select().returns();
   if (error) {
     console.error(error);
     throw new Error("menu could not be created");

@@ -19,6 +19,11 @@ export default {
       },
       keyframes: {},
       animation: {},
+      screens: {
+        smallPhone: "320px",
+        mediumPhone: "375px",
+        largePhone: "425px",
+      },
     },
   },
   plugins: [],

@@ -3,9 +3,9 @@ import { useMenu } from "./useMenu";
 import Spinner from "../../ui/Spinner";
 import { MenuItemListProps } from "./type";
 import MenuItem from "../../ui/MenuItem";
-import { menuShortOption1 } from "../../helper/const";
+import { allMenuList, menuShortOption1 } from "../../helper/const";
 import { useGetType } from "../../helper/useGetType";
-
+const selectForSmallScreen = allMenuList;
 const MenuItemList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [type, subType] = useGetType("type");
@@ -29,29 +29,43 @@ const MenuItemList = () => {
     searchParams.set("sortBy", e.target.value);
     setSearchParams(searchParams);
   }
+  function onChangeSelectSmallScreen(e: React.ChangeEvent<HTMLSelectElement>) {
+    searchParams.set("type", e.target.value);
+    setSearchParams(searchParams);
+  }
   return (
-    <div className=" ml-16 flex flex-col gap-4">
-      <div className="flex flex-col gap-4 text-2xl ">
-        <div className="sticky top-[150px] z-50 flex items-center justify-between">
-          Menu
-          <div>
-            <select
-              className="cursor-pointer rounded-xl p-2 text-base focus:border-none focus:outline-none focus:ring-0"
-              onChange={handleChange}
-            >
-              {sortOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </div>
+    <div className="flex w-full flex-col gap-4 lg:ml-16">
+      <div className="sticky top-[75px] z-[20] flex flex-col justify-between gap-1 rounded-xl  p-1 text-sm backdrop-blur-sm lg:top-[150px] lg:flex-row lg:text-base lg:backdrop-blur-0">
+        <h1 className="hidden lg:block"></h1>
+        <select
+          onChange={onChangeSelectSmallScreen}
+          className="block cursor-pointer rounded-xl bg-white p-2 text-sm outline outline-1 outline-blue-700 lg:hidden lg:text-base"
+        >
+          {selectForSmallScreen.map((item) => (
+            <option key={item.id} value={item.value}>
+              {item.label}
+            </option>
+          ))}
+        </select>
+        <div>
+          <select
+            className="w-full cursor-pointer rounded-xl bg-white p-2 text-sm  outline outline-1 outline-blue-700 lg:text-base"
+            onChange={handleChange}
+          >
+            {sortOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </div>
+      </div>
+      <div className="ml-2 flex flex-col gap-4 text-2xl ">
         {["all", "drink"].includes(type!) && (
           <SectionPart
             type={type}
             subType={subType}
-            message="Cà phê, trà sữa của Top One"
+            message="Cà phê, trà sữa Top One"
             data={sortedMenu.filter((item) => item.type === "drink")}
           />
         )}
@@ -59,7 +73,7 @@ const MenuItemList = () => {
           <SectionPart
             type={type}
             subType={subType}
-            message="Mỳ cay của Top One"
+            message="Mỳ cay Top One"
             data={sortedMenu.filter((item) => item.type === "noodle")}
           />
         )}
@@ -67,7 +81,7 @@ const MenuItemList = () => {
           <SectionPart
             type={type}
             subType={subType}
-            message="Cơm của Top One"
+            message="Cơm Top One"
             data={sortedMenu.filter((item) => item.type === "food")}
           />
         )}
@@ -88,15 +102,15 @@ const SectionPart = ({
 
   const messages: Messages = {
     drink: {
-      tea: "Trà trái cây của Top One",
-      yogurt: "Sữa chua của Top One",
-      juice: "Nước ép, đá xay của Top One",
-      "milk-tea": "Trà sữa của Top One",
-      other: "Các thức uống khác của Top One",
-      default: "Cà phê, trà sữa của Top One",
+      tea: "Trà trái cây ",
+      yogurt: "Sữa chua ",
+      juice: "Nước ép, đá xay ",
+      "milk-tea": "Trà sữa Top One",
+      other: "Các thức uống khác ",
+      default: "Cà phê, trà sữa ",
     },
-    noodle: "Mỳ cay của Top One",
-    food: "Cơm của Top One",
+    noodle: "Mỳ cay 7 cấp",
+    food: "Cơm văn phòng",
   };
   const message =
     type !== null && subType !== null && type === "drink"
@@ -113,12 +127,12 @@ const SectionPart = ({
 
   return (
     <div>
-      <div className="flex flex-col gap-4">
+      <div className="flex  flex-col gap-4">
         {type !== "all" && (
           <h1 className="text-2xl font-bold">{message.toString()}</h1>
         )}
         {type === "all" && <h1 className="text-2xl font-bold">{title}</h1>}
-        <div className="grid grid-cols-3 gap-5 text-base">
+        <div className="grid grid-cols-2 justify-items-center gap-2 text-base md:grid-cols-3 md:gap-5">
           {filteredData.map((item) => (
             <MenuItem key={item.id} data={item} />
           ))}

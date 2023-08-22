@@ -25,19 +25,40 @@ const RelatedProduct = ({ data, id }: { data: MenuItemProps; id: number }) => {
 
   return (
     <div>
-      <h2>Các sản phẩm liên quan</h2>
+      <h2 className="mb-4 mt-8 text-xl font-bold md:text-2xl">
+        Các sản phẩm liên quan
+      </h2>
       <Swiper
         autoHeight={true}
         loop={true}
         className="productDetail"
-        slidesPerView={4}
         loopedSlides={3}
         autoplay={{
           delay: 2500,
-
           pauseOnMouseEnter: true,
         }}
-        spaceBetween={10}
+        breakpoints={{
+          320: {
+            slidesPerView: 2,
+            spaceBetween: 10,
+          },
+          375: {
+            slidesPerView: 2.3,
+            spaceBetween: 10,
+          },
+          425: {
+            slidesPerView: 2.5,
+            spaceBetween: 5,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 15,
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 10,
+          },
+        }}
         preventClicksPropagation={true}
         modules={[Autoplay]}
       >

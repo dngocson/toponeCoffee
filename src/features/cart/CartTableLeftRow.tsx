@@ -18,10 +18,10 @@ function CartTableLeftRow({ data }: { data: CartItem }) {
     dispatch(decreaseItemQuantity({ id, iceLevel, suggarLevel }));
   }
   return (
-    <div className="grid grid-cols-5 items-center justify-items-center border-b border-gray-400 py-2 ">
+    <div className="grid grid-cols-4 items-center justify-items-center border-b border-gray-400 py-2 mediumPhone:grid-cols-5 ">
       <div className="col-span-2 flex w-full items-center gap-2 ">
         <img
-          className="h-[80px] w-[80px]"
+          className="hidden h-[80px] w-[80px] md:block"
           src={data.image}
           alt="Hình ảnh sản phẩm"
         />
@@ -30,11 +30,11 @@ function CartTableLeftRow({ data }: { data: CartItem }) {
             <h2 className="font-bold capitalize">{data.name}</h2>
             {data.iceLevel !== null && data.suggarLevel !== null ? (
               <div className="flex gap-1">
-                <p className=" ">
+                <p className="text-xs lg:text-sm">
                   <span>Đá:</span>
                   <span className="">{data.iceLevel}%,</span>
                 </p>
-                <p className="">
+                <p className="text-xs lg:text-sm">
                   <span>Đường:</span>
                   <span>{data.suggarLevel}%</span>
                 </p>
@@ -49,14 +49,14 @@ function CartTableLeftRow({ data }: { data: CartItem }) {
                   suggarLevel: data.suggarLevel,
                 })
               }
-              className="text-[#dc2634]"
+              className="text-sm text-[#dc2634]"
             >
               Xóa
             </button>
           </div>
         </div>
       </div>
-      <h2>{data.unitPrice}</h2>
+      <h2 className="hidden mediumPhone:block">{data.unitPrice}</h2>
       <div className="flex items-baseline justify-center gap-2">
         <button
           onClick={() =>

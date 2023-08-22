@@ -23,7 +23,7 @@ function MenuItem({ data }: { data: MenuItemProps }) {
     data.promotion === "best seller" || data.promotion === "new";
   function onClickHandler() {}
   function movetoDetail() {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
     navigate(`/menu/${removeVietnameseTones(data.name)}`);
   }
 

@@ -28,7 +28,7 @@ function Header() {
   const totalCartQuantity = useSelector(getTotalCartQuantity);
   return (
     <div
-      className={`sticky top-0 z-[50] mt-8 flex flex-col items-center justify-center gap-8 bg-gray-300  py-6 ${
+      className={`sticky top-0  z-[50] mt-8 flex flex-col items-center justify-center gap-8 bg-gray-300 py-6  backdrop-blur-sm ${
         shadow ? "bg-opacity-90 shadow-xl" : null
       }`}
     >
@@ -99,7 +99,7 @@ function Header() {
       <AnimatePresence>
         {showNav && (
           <div
-            onClick={(e) => {
+            onClick={() => {
               // e.stopPropagation();
               setShowNav((nav) => !nav);
             }}

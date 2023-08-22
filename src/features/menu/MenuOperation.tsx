@@ -8,7 +8,7 @@ const options = menuOptionsWithSubTypes;
 
 const MenuOperation = () => {
   return (
-    <div className="border-r-4 border-blue-400">
+    <div className="hidden border-r-4 border-blue-400 lg:block">
       <div className="sticky top-[150px] flex flex-col gap-4">
         {options.map((item) => (
           <MenuOperationItem key={item.label} item={item} />

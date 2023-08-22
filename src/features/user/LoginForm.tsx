@@ -3,7 +3,7 @@ import { UserProps } from "./type";
 import { useLogin } from "./useLogin";
 
 function LoginForm() {
-  const { register, handleSubmit, reset, watch, formState, getValues } =
+  const { register, handleSubmit,  formState } =
     useForm<UserProps>();
   const { errors } = formState;
   const { login, isLoading } = useLogin();
