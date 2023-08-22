@@ -9,6 +9,7 @@ const selectForSmallScreen = allMenuList;
 const MenuItemList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [type, subType] = useGetType("type");
+  console.log(searchParams.get("type"));
   const { isLoading, menuItems } = useMenu();
   if (isLoading) return <Spinner />;
   if (!menuItems) return <p>Đang tải dữ liệu</p>;
@@ -39,6 +40,7 @@ const MenuItemList = () => {
         <h1 className="hidden lg:block"></h1>
         <select
           onChange={onChangeSelectSmallScreen}
+          defaultValue={searchParams.get("type") || "all"}
           className="block cursor-pointer rounded-xl bg-white p-2 text-sm outline outline-1 outline-blue-700 lg:hidden lg:text-base"
         >
           {selectForSmallScreen.map((item) => (
