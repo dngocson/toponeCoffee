@@ -7,6 +7,11 @@ export async function loginUser(userData: UserProps) {
     password: userData.password,
   });
   if (error) throw new Error(error.message);
-  console.log(data);
+
   return { data, error };
+}
+
+export async function Logout() {
+  const { error } = await supabase.auth.signOut();
+  if (error) throw new Error(error.message);
 }

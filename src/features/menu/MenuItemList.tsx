@@ -9,7 +9,7 @@ const selectForSmallScreen = allMenuList;
 const MenuItemList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [type, subType] = useGetType("type");
-  console.log(searchParams.get("type"));
+
   const { isLoading, menuItems } = useMenu();
   if (isLoading) return <Spinner />;
   if (!menuItems) return <p>Đang tải dữ liệu</p>;
