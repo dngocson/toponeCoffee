@@ -32,8 +32,8 @@ const OrderDetailByName = ({ name }: { name?: string }) => {
   const hasLocation = latNum !== 0 && lngNum !== 0;
 
   return (
-    <div className="mx-auto flex w-max flex-col gap-2 ">
-      <h2 className="text-lg ">
+    <div className=" flex  flex-col  gap-2  ">
+      <h2 className="text-sm md:text-lg ">
         <span className="uppercase">Đơn hàng:</span>{" "}
         <span className="font-bold">{orderData.name}</span>
       </h2>
@@ -54,7 +54,7 @@ const OrderDetailByName = ({ name }: { name?: string }) => {
       )}
       {hasLocation && name && (
         <a
-          className="text-lg uppercase text-blue-600"
+          className="text-lg uppercase  text-blue-600"
           href={`https://www.google.com/maps/dir/?api=1&destination=${latNum},${lngNum}`}
           target="blank"
         >
@@ -62,7 +62,7 @@ const OrderDetailByName = ({ name }: { name?: string }) => {
         </a>
       )}
       {
-        <Heading type="sub">
+        <Heading addStyle="text-sm md:text-lg" type="sub">
           Số điện thoại:{" "}
           <a
             href={`tel:${convertPhoneNumber(orderData.phoneNumber)}`}
@@ -83,6 +83,7 @@ const OrderDetailByName = ({ name }: { name?: string }) => {
       {orderData.note && (
         <InformationRow label="Ghi chú" value={orderData.note} />
       )}
+
       <OrderByNameDetail
         items={orderedItemsData.sort((a, b) => b.quantity - a.quantity)}
       />
@@ -99,7 +100,7 @@ export default OrderDetailByName;
 function InformationRow({ label, value }: { label: string; value: string }) {
   return (
     <>
-      <Heading type="sub">
+      <Heading addStyle="text-sm md:text-lg" type="sub">
         {label}: <span className="font-bold">{value}</span>
       </Heading>
     </>

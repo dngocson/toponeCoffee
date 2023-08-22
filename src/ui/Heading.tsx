@@ -9,10 +9,10 @@ const Heading = ({
   addStyle?: string;
   children: ReactNode;
 }) => {
-  let style;
+  let style: string = "";
   if (type === "pri") style = "text-3xl font-bold";
   if (type === "sub") style = "text-lg uppercase";
-  return <h2 className={`${style} ${addStyle}`}>{children}</h2>;
+  return <h2 className={` ${style} ${addStyle}`}>{children}</h2>;
 };
 
 export default Heading;
