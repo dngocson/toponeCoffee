@@ -26,11 +26,15 @@ export const fetchAddress = createAsyncThunk(
     return { position, address };
   },
 );
-
+let storedAddress = { position: { latitude: 0, longitude: 0 }, address: "" };
+const storedPosition = sessionStorage.getItem("gpi");
+if (storedPosition !== null) {
+  storedAddress = JSON.parse(storedPosition);
+}
 const initialState = {
   status: "idle",
-  position: { latitude: 0, longitude: 0 },
-  address: "",
+  position: storedAddress.position,
+  address: storedAddress.address,
   error: "",
 };
 const gpiSlice = createSlice({
@@ -45,6 +49,13 @@ const gpiSlice = createSlice({
       .addCase(fetchAddress.fulfilled, (state, action) => {
         state.position = action.payload.position;
         state.address = action.payload.address;
+        sessionStorage.setItem(
+          "gpi",
+          JSON.stringify({
+            position: action.payload.position,
+            address: action.payload.address,
+          }),
+        );
         state.status = "idle";
       })
       .addCase(fetchAddress.rejected, (state) => {
