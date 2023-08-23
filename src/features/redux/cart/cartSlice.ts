@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CartItem, Cartstate, DispatchProps } from "../reduxType";
 import { RootState } from "../store";
 
-const cartItems = localStorage.getItem("cartItems");
+const cartItems = sessionStorage.getItem("cartItems");
 const initialState = {
   cart: cartItems !== null ? JSON.parse(cartItems) : [],
 } as Cartstate;
@@ -28,7 +28,7 @@ const cartSlice = createSlice({
       if (!found) {
         state.cart.push(newItem);
       }
-      localStorage.setItem("cartItems", JSON.stringify(state.cart));
+      sessionStorage.setItem("cartItems", JSON.stringify(state.cart));
     },
     deleteItem(state: Cartstate, action: PayloadAction<DispatchProps>) {
       state.cart = state.cart.filter(
@@ -37,7 +37,7 @@ const cartSlice = createSlice({
           item.iceLevel !== action.payload.iceLevel ||
           item.suggarLevel !== action.payload.suggarLevel,
       );
-      localStorage.setItem("cartItems", JSON.stringify(state.cart));
+      sessionStorage.setItem("cartItems", JSON.stringify(state.cart));
     },
     increaseItemQuantity(
       state: Cartstate,
@@ -52,7 +52,7 @@ const cartSlice = createSlice({
       if (!item) return;
       item.quantity++;
       item.totalPrice = item.quantity * item.unitPrice;
-      localStorage.setItem("cartItems", JSON.stringify(state.cart));
+      sessionStorage.setItem("cartItems", JSON.stringify(state.cart));
     },
 
     decreaseItemQuantity(
@@ -71,11 +71,11 @@ const cartSlice = createSlice({
       if (item.quantity === 0) {
         cartSlice.caseReducers.deleteItem(state, action);
       }
-      localStorage.setItem("cartItems", JSON.stringify(state.cart));
+      sessionStorage.setItem("cartItems", JSON.stringify(state.cart));
     },
     clearCart(state: Cartstate) {
       state.cart = [];
-      localStorage.setItem("cartItems", JSON.stringify(state.cart));
+      sessionStorage.setItem("cartItems", JSON.stringify(state.cart));
     },
   },
 });
