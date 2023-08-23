@@ -40,15 +40,15 @@ function Header() {
         <div className=" flex  items-center justify-between gap-4 px-6 lg:max-w-[1200px] xl:px-0">
           <Link
             to="/"
-            className="whitespace-nowrap text-3xl font-bold uppercase text-blue-600"
+            className="whitespace-nowrap text-3xl font-bold uppercase tracking-tight text-blue-600"
           >
-            TOPONE Coffee
+            Trà sữa Top One
           </Link>
           <SearchMenu />
           <div className="flex items-center gap-4">
             <Modal>
               <Modal.Open opens="cart">
-                <button className="text-orange-600">
+                <button className="text-[#e57905]">
                   <div className="flex items-center justify-center gap-1 text-2xl">
                     <BsFillCartFill />
                     <p className="text-xl ">{totalCartQuantity}</p>
@@ -101,11 +101,11 @@ function Header() {
           <AiOutlineMenu />
         </button>
         <h2 className="text-xl font-semibold text-[#e57905] md:text-4xl">
-          Top One Coffee
+          Trà sữa Top One
         </h2>
         <Modal>
           <Modal.Open opens="cart">
-            <button className="text-xl text-black">
+            <button className="text-xl text-[#e57905]">
               <div className="flex items-center justify-center gap-1">
                 <BsFillCartFill />
                 <p className="text-base ">{totalCartQuantity}</p>

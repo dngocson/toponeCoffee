@@ -65,7 +65,7 @@ function SearchResult({
       {query &&
         renderData.map((item) => (
           <div
-            className="border-b border-slate-500 transition-all duration-300 hover:bg-blue-300"
+            className="group border-b border-slate-500 bg-white transition-all duration-300 hover:bg-gray-200"
             key={item.id}
           >
             <Link to={`/menu/${item.engName?.replace(/ /g, "-")}`}>
@@ -76,7 +76,9 @@ function SearchResult({
                   alt="hình ảnh sản phẩm"
                 />
                 <div>
-                  <p className="font-semibold">{item.name}</p>
+                  <p className="font-semibold group-hover:scale-105 group-hover:text-blue-700">
+                    {item.name}
+                  </p>
                   <p>
                     {item.price}
                     <span className="text-sm tracking-wider">đ</span>
