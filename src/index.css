@@ -11,7 +11,9 @@
 .swiper-button-next::after {
   display: none;
 }
-
+.leaflet-container {
+  z-index: 20;
+}
 @layer components {
   .s_t_row {
     @apply grid grid-cols-3 items-center gap-3 border-b py-2;

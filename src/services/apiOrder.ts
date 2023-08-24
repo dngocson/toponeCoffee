@@ -90,20 +90,14 @@ export async function createEditOrder(newOrder: any) {
     console.error(orderedItemError);
     throw new Error("Không thể tạo order");
   }
-  const sendemail = await fetch(
-    "https://rencklphdevxcyjmpobp.supabase.co/functions/v1/resend",
-    {
-      method: "POST",
-      credentials: "omit",
-      headers: {
-        "Content-Type": "application/json",
-      },
+  await fetch("https://rencklphdevxcyjmpobp.supabase.co/functions/v1/resend", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
     },
-  );
-  if (!sendemail.ok) {
-    throw new Error("Không thể gửi email thông báo");
-  }
-  console.log(sendemail);
+    mode: "no-cors",
+  });
+
   return { data, orderedItemError };
 }
 

@@ -23,11 +23,10 @@ const handler = async (_request: Request): Promise<Response> => {
   })
   // const res= await fetch('https://fakestoreapi.com/products')
   const data = await res.json()
-
+  console.log('function run')
   return new Response(JSON.stringify(data), {
     status: 200,
     headers: {
-      ...corsHeaders,
       'Content-Type': 'application/json',
     },
   })

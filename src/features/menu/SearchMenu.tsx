@@ -61,7 +61,7 @@ function SearchResult({
   renderData: MenuItemProps[];
 }) {
   return (
-    <div className="absolute top-[45px] max-h-[500px] w-[100%] overflow-x-hidden bg-slate-50">
+    <div className="absolute top-[45px] z-50 max-h-[500px] w-[100%] overflow-x-hidden bg-slate-50">
       {query &&
         renderData.map((item) => (
           <div
