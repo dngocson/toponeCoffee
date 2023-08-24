@@ -61,7 +61,7 @@ function Header() {
             </Modal>
             {!isAuthenticated && (
               <Link to={"/login"}>
-                <div className="text-2xl text-orange-600">
+                <div className="text-2xl text-[#e57905]">
                   <AiOutlineLogin />
                 </div>
               </Link>
