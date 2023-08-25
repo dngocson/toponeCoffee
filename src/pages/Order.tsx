@@ -36,7 +36,7 @@ function Order() {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container min-h-screen">
       <AllOrderTable />
     </div>
   );

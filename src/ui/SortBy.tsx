@@ -31,7 +31,11 @@ interface SelectProps {
 }
 function Select({ options, value, onChange }: SelectProps) {
   return (
-    <select value={value} onChange={onChange} className="rounded-xl p-4">
+    <select
+      value={value}
+      onChange={onChange}
+      className="rounded-xl p-4 text-xs md:text-base"
+    >
       {options.map((option) => (
         <option value={option.value} key={option.value}>
           {option.label}

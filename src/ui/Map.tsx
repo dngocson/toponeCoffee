@@ -196,7 +196,7 @@ function DisplayPosition({
             className="text-blue-700 hover:text-blue-900"
             href="tel:+84372000318"
           >
-            0372000318
+            037.2000.318
           </a>
         </p>
         <p>

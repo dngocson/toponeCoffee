@@ -48,7 +48,7 @@ function Header() {
           <div className="flex items-center gap-4">
             <Modal>
               <Modal.Open opens="cart">
-                <button className="text-[#e57905]">
+                <button className="text-black">
                   <div className="flex items-center justify-center gap-1 text-2xl">
                     <BsFillCartFill />
                     <p className="text-xl ">{totalCartQuantity}</p>
@@ -61,7 +61,7 @@ function Header() {
             </Modal>
             {!isAuthenticated && (
               <Link to={"/login"}>
-                <div className="text-2xl text-[#e57905]">
+                <div className="text-2xl text-black">
                   <AiOutlineLogin />
                 </div>
               </Link>
@@ -105,7 +105,7 @@ function Header() {
         </h2>
         <Modal>
           <Modal.Open opens="cart">
-            <button className="text-xl text-[#e57905]">
+            <button className="text-xl text-black">
               <div className="flex items-center justify-center gap-1">
                 <BsFillCartFill />
                 <p className="text-base ">{totalCartQuantity}</p>

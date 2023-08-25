@@ -18,7 +18,7 @@ function Filter({
     setSearchParams(searchParams);
   }
   return (
-    <div className="flex gap-3 rounded-xl bg-white p-2">
+    <div className="flex gap-3 rounded-xl bg-white p-2 text-xs md:text-base">
       {options.map((option) => (
         <button
           className={`rounded-xl p-2 transition-all duration-300 ${

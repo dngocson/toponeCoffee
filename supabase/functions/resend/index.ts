@@ -13,7 +13,7 @@ const handler = async (_request: Request): Promise<Response> => {
     },
     body: JSON.stringify({
       from: 'TrasuaTopOne@trasuatopone.online',
-      to: 'dngocson12@gmail.com',
+      to: 'dothanhhung122000@gmail.com',
       subject: 'Thông báo có đơn hàng mới',
       html: `<div style="color:blue;">
       <h1>Bạn đã có một đơn hàng mới</h1>
@@ -33,3 +33,4 @@ const handler = async (_request: Request): Promise<Response> => {
 }
 
 serve(handler)
+// npx supabase functions deploy resend --project-ref rencklphdevxcyjmpobp

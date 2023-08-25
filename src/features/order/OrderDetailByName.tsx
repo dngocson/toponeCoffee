@@ -32,7 +32,7 @@ const OrderDetailByName = ({ name }: { name?: string }) => {
   const hasLocation = latNum !== 0 && lngNum !== 0;
 
   return (
-    <div className=" flex  flex-col  gap-2  ">
+    <div className=" flex min-w-[330px] flex-col gap-2">
       <h2 className="text-sm md:text-lg ">
         <span className="uppercase">Đơn hàng:</span>{" "}
         <span className="font-bold">{orderData.name}</span>

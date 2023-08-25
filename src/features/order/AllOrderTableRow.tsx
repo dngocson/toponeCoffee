@@ -28,26 +28,29 @@ function AllOrderTableRow({
 }) {
   return (
     <div>
-      <div className="grid  grid-cols-adminOrderTable border-2 border-t-0 border-blue-500 text-center">
-        <Heading addStyle="w-full text-center" type="sub">
+      <div className="grid grid-cols-adminOrderTable border-2 border-t-0 border-blue-500 text-center">
+        <Heading
+          addStyle="w-full text-center text-xs md:text-base my-auto"
+          type="sub"
+        >
           {index}
         </Heading>
-        <Heading type="sub">
+        <Heading type="sub" addStyle="text-xs md:text-base my-auto">
           {convertDayVietNameseShort(order.created_at)}
         </Heading>
         <Heading
-          addStyle={
+          addStyle={`${
             order.status === "pending"
               ? "text-red-500"
               : order.status === "confirmed"
               ? "text-green-500"
               : "text-yellow-700"
-          }
+          } text-xs md:text-base my-auto`}
           type="sub"
         >
           {convertOrderStatus(order.status)}
         </Heading>
-        <Heading type="sub">
+        <Heading type="sub" addStyle="text-xs md:text-base my-auto">
           <a
             href={`tel:${convertPhoneNumber(order.phoneNumber)}`}
             className="font-bold text-blue-700"
@@ -65,7 +68,7 @@ function AllOrderTableRow({
         </Heading>
         <Modal>
           <Modal.Open opens="order">
-            <button className="rounded-md text-lg font-bold uppercase text-blue-700">
+            <button className="my-auto  rounded-md text-xs font-bold uppercase text-blue-700 md:text-base">
               Hiện thông tin
             </button>
           </Modal.Open>
@@ -73,7 +76,7 @@ function AllOrderTableRow({
             <OrderDetailByName name={order.name} />
           </Modal.Window>
           <Modal.Open opens="orderType">
-            <button className="rounded-md text-lg font-bold uppercase text-blue-700">
+            <button className="my-auto  rounded-md text-xs font-bold uppercase text-blue-700 md:text-base">
               Cập nhật
             </button>
           </Modal.Open>
