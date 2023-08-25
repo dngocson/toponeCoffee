@@ -192,20 +192,27 @@ function DisplayPosition({
         </h2>
         <p>
           Số điện thoại:
-          <a className="text-blue-700" href="tel:+84942885082">
-            +84942885082
+          <a
+            className="text-blue-700 hover:text-blue-900"
+            href="tel:+84372000318"
+          >
+            0372000318
           </a>
         </p>
         <p>
           Zalo:
-          <a className="text-blue-700" href="https://zalo.me/0942885082">
-            Trà sữa Top One
+          <a
+            className="text-blue-700 hover:text-blue-900"
+            target="blank"
+            href="https://zalo.me/0964028796"
+          >
+            Yên Thư Phan
           </a>
         </p>
         <p>
           Facebook:
           <a
-            className="text-blue-700"
+            className="text-blue-700 hover:text-blue-900"
             href="https://www.facebook.com/profile.php?id=61550326331533"
             target="blank"
           >
@@ -229,7 +236,7 @@ function DisplayPosition({
             <p>
               <span className="font-bold">{location.order}</span>
               <span
-                className="cursor-pointer text-blue-700"
+                className="cursor-pointer text-blue-700 hover:text-blue-900"
                 onClick={() => onClick(location)}
               >
                 {location.popup}
