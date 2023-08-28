@@ -15,7 +15,7 @@ function ErrorPage() {
             <div className="absolute">
               <div className="">
                 <h1 className="my-2 text-2xl font-bold text-gray-800">
-                  có vẻ như đường dẫn của bạn hiện tại không khả dụng.
+                  Có vẻ như đường dẫn của bạn hiện tại không khả dụng.
                 </h1>
                 <p className="my-2 text-gray-800">
                   xin lỗi bạn vì điều này, hãy ấn nút dưới để về trang chủ nhé

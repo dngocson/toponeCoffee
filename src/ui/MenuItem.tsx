@@ -121,8 +121,10 @@ function AddItemToCartModal({
     <div className=" grid min-w-[280px] grid-cols-1  gap-2 text-xs  md:text-base lg:min-w-[800px] lg:grid-cols-2 lg:gap-6">
       <div className="relative hidden aspect-square h-full w-full overflow-hidden rounded-lg sm:block">
         {item.promotion && (
-          <p className="absolute left-[-56px] top-[21px] z-10 min-w-[200px] rotate-[-37deg] whitespace-nowrap bg-[#f00] px-[3rem] py-[0.2rem] text-center text-sm font-semibold uppercase text-white shadow-cardShadow2">
-            {item.promotion}
+          <p className="absolute left-[-56px] top-[21px] z-10 min-w-[200px] rotate-[-37deg] whitespace-nowrap bg-[#f00] px-[3rem] py-[0.2rem] text-center  text-sm font-semibold uppercase text-white shadow-cardShadow2 md:left-[-44px] md:top-[28px] md:px-[5,5rem] md:py-[0.32rem] md:text-lg lg:left-[-77px] lg:top-[41px] lg:px-[6rem] lg:py-[0.4rem] lg:text-xl">
+            <p className="text-center md:w-[112px] lg:w-[121px]">
+              {item.promotion}
+            </p>
           </p>
         )}
         <img

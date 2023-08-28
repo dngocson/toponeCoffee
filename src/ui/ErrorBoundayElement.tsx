@@ -6,7 +6,7 @@ const ErrorBoundayElement = ({ error, resetErrorBoundary }) => {
           <div className="absolute">
             <div className="">
               <h1 className="my-2 text-2xl font-bold text-gray-800">
-                có vẻ như đã có lỗi xảy ra rồi: ${error.message}
+                Có vẻ như đã có lỗi xảy ra rồi: ${error.message}
               </h1>
               <p className="my-2 text-gray-800">
                 xin lỗi bạn vì điều này, hãy ấn nút dưới để về trang chủ nhé
