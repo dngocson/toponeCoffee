@@ -37,8 +37,8 @@ function MenuItem({ data }: { data: MenuItemProps }) {
     >
       <div className="group relative flex  flex-col gap-2 overflow-hidden rounded-xl  ">
         {promotion && (
-          <p className="absolute left-[-69px] top-[14px] z-10 min-w-[200px] rotate-[-37deg] whitespace-nowrap bg-[#f00] px-[3rem] py-[0.2rem] text-center text-[10px] font-semibold uppercase text-white shadow-cardShadow2 md:left-[-56px] md:top-[21px] md:text-base">
-            {data.promotion}
+          <p className="absolute left-[-69px] top-[14px] z-10 min-w-[200px] rotate-[-37deg] whitespace-nowrap bg-[#f00] px-[3rem] py-[0.2rem] text-center text-[10px] font-semibold uppercase text-white shadow-cardShadow2 md:left-[-45px] md:top-[27px] md:text-base">
+            <p>{data.promotion}</p>
           </p>
         )}
         <div className="relative h-[140px] w-[140px] overflow-hidden rounded-xl shadow-md sm:h-[210px] sm:w-[210px] xl:h-[270px] xl:w-[270px] ">
