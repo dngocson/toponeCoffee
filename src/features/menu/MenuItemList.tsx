@@ -129,7 +129,7 @@ const SectionPart = ({
 
   return (
     <div>
-      <div className="flex  flex-col gap-4">
+      <div className="flex flex-col gap-4">
         {type !== "all" && (
           <h1 className="text-2xl font-bold">{message.toString()}</h1>
         )}

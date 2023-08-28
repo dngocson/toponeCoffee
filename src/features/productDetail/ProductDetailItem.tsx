@@ -58,18 +58,22 @@ const ProductdetailItem = () => {
   }
   return (
     <div className=":mt-8 mt-4 p-4 xl:p-0">
-      <div className="relative flex flex-col items-center gap-2 overflow-hidden rounded-xl lg:flex-row ">
+      <div className=" flex flex-col items-center gap-2 rounded-xl lg:flex-row ">
         <div>
-          {currentProduct.promotion && (
-            <p className="absolute left-[-56px] top-[21px] z-10 min-w-[300px] rotate-[-37deg] whitespace-nowrap bg-[#f00] py-[0.5rem] pr-[3rem] text-center text-xl font-bold uppercase tracking-widest text-white shadow-cardShadow2">
-              {currentProduct.promotion}
-            </p>
-          )}
-          <div className="overflow-hidden rounded-xl  lg:h-[570px] lg:w-[570px] ">
-            <img
-              className="shadow-cardShadow rounded-xl transition-all duration-300 hover:scale-110 lg:h-[570px] lg:w-[570px]"
-              src={currentProduct.image}
-            />
+          <div className="relative overflow-hidden">
+            {currentProduct.promotion && (
+              <p className="px-3rem absolute  left-[-94px] top-[28px] z-10 min-w-[300px] rotate-[-37deg]  whitespace-nowrap bg-[#f00] py-[0.3rem] text-center text-base font-bold uppercase tracking-widest text-white shadow-cardShadow2 largePhone:left-[-78px] largePhone:top-[34px] largePhone:py-[0.4rem] largePhone:text-lg md:left-[-107px] md:top-[62px] md:px-32    md:text-2xl">
+                <p className="text-center md:min-w-[200px] ">
+                  {currentProduct.promotion}
+                </p>
+              </p>
+            )}
+            <div className="overflow-hidden rounded-xl  lg:h-[570px] lg:w-[570px] ">
+              <img
+                className="shadow-cardShadow rounded-xl transition-all duration-300 hover:scale-110 lg:h-[570px] lg:w-[570px]"
+                src={currentProduct.image}
+              />
+            </div>
           </div>
         </div>
         <div className=" w-full self-start  lg:ml-8">
