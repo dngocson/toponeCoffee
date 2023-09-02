@@ -22,13 +22,21 @@ interface OrderProps {
 function AllOrderTableRow({
   order,
   index,
+  viewer,
 }: {
   order: OrderProps;
   index: number;
+  viewer?: string;
 }) {
   return (
     <div>
-      <div className="grid grid-cols-adminOrderTable border-2 border-t-0 border-blue-500 text-center">
+      <div
+        className={`grid  border-2 border-t-0 border-blue-500 text-center ${
+          viewer === "customer"
+            ? "grid-cols-customerOrderTable"
+            : "grid-cols-adminOrderTable"
+        }`}
+      >
         <Heading
           addStyle="w-full text-center text-xs md:text-base my-auto"
           type="sub"
@@ -51,20 +59,26 @@ function AllOrderTableRow({
           {convertOrderStatus(order.status)}
         </Heading>
         <Heading type="sub" addStyle="text-xs md:text-base my-auto">
-          <a
-            href={`tel:${convertPhoneNumber(order.phoneNumber)}`}
-            className="font-bold text-blue-700"
-          >
-            {order.phoneNumber}
-          </a>{" "}
-          /{" "}
-          <a
-            href={`https://zalo.me/${order.phoneNumber}`}
-            className="font-bold text-blue-700"
-            target="_blank"
-          >
-            Zalo
-          </a>
+          {viewer === "customer" ? (
+            <p>{order.phoneNumber}</p>
+          ) : (
+            <div>
+              <a
+                href={`tel:${convertPhoneNumber(order.phoneNumber)}`}
+                className="font-bold text-blue-700"
+              >
+                {order.phoneNumber}
+              </a>{" "}
+              /{" "}
+              <a
+                href={`https://zalo.me/${order.phoneNumber}`}
+                className="font-bold text-blue-700"
+                target="_blank"
+              >
+                Zalo
+              </a>
+            </div>
+          )}
         </Heading>
         <Modal>
           <Modal.Open opens="order">
@@ -73,16 +87,20 @@ function AllOrderTableRow({
             </button>
           </Modal.Open>
           <Modal.Window name="order">
-            <OrderDetailByName name={order.name} />
+            <OrderDetailByName viewer={viewer} name={order.name} />
           </Modal.Window>
-          <Modal.Open opens="orderType">
-            <button className="my-auto  rounded-md text-xs font-bold uppercase text-blue-700 md:text-base">
-              Cập nhật
-            </button>
-          </Modal.Open>
-          <Modal.Window name="orderType">
-            <UpdateOrderStatus id={order.id} currentValue={order.status} />
-          </Modal.Window>
+          {viewer !== "customer" && (
+            <div>
+              <Modal.Open opens="orderType">
+                <button className="my-auto  rounded-md text-xs font-bold uppercase text-blue-700 md:text-base">
+                  Cập nhật
+                </button>
+              </Modal.Open>
+              <Modal.Window name="orderType">
+                <UpdateOrderStatus id={order.id} currentValue={order.status} />
+              </Modal.Window>
+            </div>
+          )}
         </Modal>
       </div>
     </div>

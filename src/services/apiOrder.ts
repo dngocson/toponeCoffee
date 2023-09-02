@@ -30,12 +30,22 @@ export async function getAllOrder({
   page,
   sortBy,
   filter,
+  phoneNumber,
 }: {
   page: number;
   sortBy: { field: string; direction: string };
   filter?: { field: string; value: string };
+  phoneNumber: string | null;
 }) {
-  let query = supabase.from("orders").select("*", { count: "exact" });
+  let query;
+  if (phoneNumber === null) {
+    query = supabase.from("orders").select("*", { count: "exact" });
+  } else {
+    query = supabase
+      .from("orders")
+      .select("*", { count: "exact" })
+      .eq("phoneNumber", phoneNumber);
+  }
   // If have Pagination
   if (page) {
     const from = (page - 1) * PAGE_SIZE;

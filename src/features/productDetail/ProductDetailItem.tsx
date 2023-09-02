@@ -93,7 +93,7 @@ const ProductdetailItem = () => {
           </div>
 
           <div className="mt-4 flex items-center gap-2 text-lg lg:mt-8">
-            <h2>Số lượng:</h2>
+            <p>Số lượng:</p>
             <button
               className="rounded-full text-3xl text-[#e57905] disabled:cursor-not-allowed"
               onClick={decreaseQuantityHandler}

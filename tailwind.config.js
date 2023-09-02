@@ -17,6 +17,7 @@ export default {
         orderDetailTable: "1fr 2fr 1fr 1fr 1fr",
         orderDetailTable_small: "2fr 0.9fr 0.8fr 1fr",
         adminOrderTable: "0.5fr 2fr 1fr 1.5fr 1fr 1fr",
+        customerOrderTable: "0.5fr 2fr 1fr 1.5fr 1fr",
       },
       keyframes: {},
       animation: {},

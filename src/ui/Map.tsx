@@ -44,10 +44,9 @@ function Map() {
         const { latitude, longitude } = position.coords;
         setUserLocation({ latitude, longitude });
         setErrorMessage(null);
-        console.log("okie");
       },
       (error) => {
-        console.log(error.message);
+        console.error(error.message);
         switch (error.code) {
           case error.PERMISSION_DENIED:
             setErrorMessage(
@@ -91,7 +90,7 @@ function Map() {
   const displayMap = useMemo(() => {
     const haveLocation =
       userlocation.latitude !== 0 && userlocation.longitude !== 0;
-    console.log(userlocation);
+
     return (
       <div className="col-span-1 overflow-hidden rounded-2xl md:col-span-6 lg:col-span-6">
         <MapContainer
@@ -190,7 +189,7 @@ function DisplayPosition({
         <h2 className="font-bold md:text-lg  xl:text-2xl">
           Các phương thức liên lạc:
         </h2>
-        <p>
+        <div>
           Số điện thoại:
           <a
             className="text-blue-700 hover:text-blue-900"
@@ -198,8 +197,8 @@ function DisplayPosition({
           >
             037.2000.318
           </a>
-        </p>
-        <p>
+        </div>
+        <div>
           Zalo:
           <a
             className="text-blue-700 hover:text-blue-900"
@@ -208,8 +207,8 @@ function DisplayPosition({
           >
             Yên Thư Phan
           </a>
-        </p>
-        <p>
+        </div>
+        <div>
           Facebook:
           <a
             className="text-blue-700 hover:text-blue-900"
@@ -218,7 +217,7 @@ function DisplayPosition({
           >
             Trà sữa Top One
           </a>
-        </p>
+        </div>
         <a
           href={`https://www.google.com/maps/dir/?api=1&destination=20.987163,105.536492`}
           className=" font-bold text-blue-700 hover:text-blue-900"

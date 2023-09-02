@@ -34,7 +34,7 @@ function Select({ options, value, onChange }: SelectProps) {
     <select
       value={value}
       onChange={onChange}
-      className="rounded-xl p-4 text-xs md:text-base"
+      className="rounded-xl p-3 text-xs md:p-4 md:text-base"
     >
       {options.map((option) => (
         <option value={option.value} key={option.value}>

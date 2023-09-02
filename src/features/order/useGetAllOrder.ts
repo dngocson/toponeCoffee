@@ -3,7 +3,16 @@ import { getAllOrder } from "../../services/apiOrder";
 import { useSearchParams } from "react-router-dom";
 import { PAGE_SIZE } from "../../ui/Pagination";
 
-export function useGetAllOrder() {
+export function useGetAllOrder({
+  admin,
+  phoneNumber,
+}: {
+  admin: boolean;
+  phoneNumber: string | null;
+}) {
+  const allowToFetch =
+    admin === true || (admin === false && phoneNumber !== null);
+
   const queryClient = useQueryClient();
   // Pagination
   const [searchParams] = useSearchParams();
@@ -21,28 +30,34 @@ export function useGetAllOrder() {
       ? undefined
       : { field: "status", value: filterValue };
   //
+
   const {
     isLoading,
+    isInitialLoading,
     data: allOrder = { count: 0, allOrderData: [] },
     error,
   } = useQuery({
-    queryKey: ["order", page, sortBy, filter],
-    queryFn: () => getAllOrder({ page, sortBy, filter }),
+    queryKey: ["order", page, sortBy, filter, phoneNumber],
+    enabled: allowToFetch,
+    queryFn: () => getAllOrder({ page, sortBy, filter, phoneNumber }),
   });
 
   const pageCount = Math.ceil((allOrder.count ?? 0) / PAGE_SIZE);
   if (page < pageCount) {
     queryClient.prefetchQuery({
-      queryKey: ["order", page + 1, sortBy, filter],
-      queryFn: () => getAllOrder({ page: page + 1, sortBy, filter }),
+      queryKey: ["order", page + 1, sortBy, filter, phoneNumber],
+      queryFn: () =>
+        getAllOrder({ page: page + 1, sortBy, filter, phoneNumber }),
     });
   }
   if (page > 1) {
     queryClient.prefetchQuery({
-      queryKey: ["order", page - 1, sortBy, filter],
-      queryFn: () => getAllOrder({ page: page - 1, sortBy, filter }),
+      queryKey: ["order", page - 1, sortBy, filter, phoneNumber],
+      queryFn: () =>
+        getAllOrder({ page: page - 1, sortBy, filter, phoneNumber }),
     });
   }
   //
-  return { isLoading, allOrder, error };
+
+  return { isLoading, allOrder, error, isInitialLoading };
 }

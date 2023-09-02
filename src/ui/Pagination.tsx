@@ -1,3 +1,4 @@
+import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";
 import { useSearchParams } from "react-router-dom";
 export const PAGE_SIZE = 15;
 function Pagination({ count }: { count: number }) {
@@ -18,7 +19,7 @@ function Pagination({ count }: { count: number }) {
   }
   if (pageCount <= 1) return null;
   return (
-    <div className="mt-2 flex items-center justify-between">
+    <div className="mt-2 flex items-center justify-between gap-1 p-1 text-xs md:text-lg">
       <div>
         Hiển thị kết quả{" "}
         <span className="font-bold">{(currentPage - 1) * PAGE_SIZE + 1}</span>{" "}
@@ -28,20 +29,20 @@ function Pagination({ count }: { count: number }) {
         </span>{" "}
         của <span className="font-bold">{count}</span> kết quả
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-2 md:gap-4">
         <button
-          className="rounded-md bg-blue-600 p-2 text-white transition-all duration-300 disabled:bg-blue-400"
+          className="rounded-md bg-blue-600  p-2 text-xs  text-white transition-all duration-300 disabled:bg-blue-400 md:text-2xl"
           disabled={currentPage === 1}
           onClick={prevPage}
         >
-          Tới trước
+          <AiFillStepBackward />
         </button>
         <button
-          className="rounded-md bg-blue-600 p-2 text-white transition-all duration-300 disabled:bg-blue-400"
+          className="rounded-md bg-blue-600 p-2 text-xs text-white transition-all duration-300 disabled:bg-blue-400 md:text-2xl"
           disabled={currentPage === pageCount}
           onClick={nextPage}
         >
-          Về sau
+          <AiFillStepForward />
         </button>
       </div>
     </div>

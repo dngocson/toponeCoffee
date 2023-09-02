@@ -6,6 +6,7 @@ import { CartTable } from "../features/cart/CartTable";
 import { useEffect, useState } from "react";
 import { AiFillSetting, AiOutlineLogin, AiOutlineMenu } from "react-icons/ai";
 import { HiXMark } from "react-icons/hi2";
+import { FaListAlt } from "react-icons/fa";
 import { BsFillCartFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { getTotalCartQuantity } from "../features/redux/cart/cartSlice";
@@ -59,6 +60,11 @@ function Header() {
                 <CartTable />
               </Modal.Window>
             </Modal>
+            <Link to={"/find"}>
+              <div className="text-2xl text-black">
+                <FaListAlt />
+              </div>
+            </Link>
             {!isAuthenticated && (
               <Link to={"/login"}>
                 <div className="text-2xl text-black">
@@ -218,6 +224,24 @@ function Header() {
                       to="/contact"
                     >
                       Liên hệ
+                    </NavLink>
+                  </li>
+                  <li
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setShowNav((nav) => !nav);
+                    }}
+                    className="w-full "
+                  >
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive
+                          ? "origin-left  text-xl text-[#e57905] transition-colors duration-200"
+                          : "origin-left  text-xl text-gray-900 duration-300  hover:text-[#e57905]"
+                      }
+                      to="/find"
+                    >
+                      Tìm đơn hàng
                     </NavLink>
                   </li>
                   <li

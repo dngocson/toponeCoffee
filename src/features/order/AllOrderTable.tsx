@@ -9,7 +9,10 @@ import { useGetAllOrder } from "./useGetAllOrder";
 
 const addedStyle = "w-full font-bold text-center text-xs md:text-base";
 function AllOrderTable() {
-  const { isLoading, allOrder } = useGetAllOrder();
+  const { isLoading, allOrder } = useGetAllOrder({
+    admin: true,
+    phoneNumber: null,
+  });
   const [searchParams] = useSearchParams();
   let currentPage = searchParams.get("page") || "1";
   if (isLoading) return <Spinner />;

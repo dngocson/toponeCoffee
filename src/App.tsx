@@ -16,6 +16,7 @@ import About from "./pages/About";
 import ProductDetail from "./pages/ProductDetail";
 import Admin from "./pages/Admin";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
+import FindOrder from "./pages/FindOrder";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -37,6 +38,7 @@ const App = () => {
         { path: "/login", element: <Login /> },
         { path: "/contact", element: <Contact /> },
         { path: "/order/:orderId", element: <OrderDetail /> },
+        { path: "/find", element: <FindOrder /> },
         {
           path: "/admin",
           element: (

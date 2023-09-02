@@ -18,10 +18,10 @@ function Filter({
     setSearchParams(searchParams);
   }
   return (
-    <div className="flex gap-3 rounded-xl bg-white p-2 text-xs md:text-base">
+    <div className="flex justify-between gap-[2px] rounded-xl bg-white p-1 text-xs md:gap-3 md:p-2 md:text-base">
       {options.map((option) => (
         <button
-          className={`rounded-xl p-2 transition-all duration-300 ${
+          className={`rounded-xl px-1 py-2 transition-all duration-300 md:p-2 ${
             currentFilter === option.value
               ? "bg-[#4f46e5] text-white"
               : "hover:bg-[#4f46e5] hover:text-white"

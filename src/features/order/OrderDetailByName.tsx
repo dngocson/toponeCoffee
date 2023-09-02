@@ -10,7 +10,13 @@ import {
 import { OrderByNameDetail } from "./OrderByNameDetail";
 import Heading from "../../ui/Heading";
 
-const OrderDetailByName = ({ name }: { name?: string }) => {
+const OrderDetailByName = ({
+  name,
+  viewer,
+}: {
+  name?: string;
+  viewer?: string;
+}) => {
   let { orderId } = useParams();
   if (name) orderId = name;
   const { isLoading, order, error } = useGetOrderByName(orderId!);
@@ -43,16 +49,16 @@ const OrderDetailByName = ({ name }: { name?: string }) => {
           value={convertOrderStatus(orderData.status)}
         />
       )}
-      {!name && (
+      {
         <InformationRow
           label="Thời gian đặt hàng"
           value={convertDayVietNamese(orderData.created_at)}
         />
-      )}
+      }
       {orderData.address && (
         <InformationRow label="Địa chỉ giao hàng" value={orderData.address} />
       )}
-      {hasLocation && name && (
+      {hasLocation && name && viewer !== "customer" && (
         <a
           className="text-lg uppercase  text-blue-600"
           href={`https://www.google.com/maps/dir/?api=1&destination=${latNum},${lngNum}`}
@@ -63,21 +69,31 @@ const OrderDetailByName = ({ name }: { name?: string }) => {
       )}
       {
         <Heading addStyle="text-sm md:text-lg" type="sub">
-          Số điện thoại:{" "}
-          <a
-            href={`tel:${convertPhoneNumber(orderData.phoneNumber)}`}
-            className="font-bold text-blue-700"
-          >
-            {orderData.phoneNumber}
-          </a>{" "}
-          /{" "}
-          <a
-            href={`https://zalo.me/${orderData.phoneNumber}`}
-            className="font-bold text-blue-700"
-            target="_blank"
-          >
-            Zalo
-          </a>
+          {viewer !== "customer" && (
+            <div>
+              Số điện thoại:{" "}
+              <a
+                href={`tel:${convertPhoneNumber(orderData.phoneNumber)}`}
+                className="font-bold text-blue-700"
+              >
+                {orderData.phoneNumber}
+              </a>{" "}
+              /{" "}
+              <a
+                href={`https://zalo.me/${orderData.phoneNumber}`}
+                className="font-bold text-blue-700"
+                target="_blank"
+              >
+                Zalo
+              </a>
+            </div>
+          )}
+          {viewer === "customer" && (
+            <p>
+              Số điện thoại:{" "}
+              <span className="font-bold">{orderData.phoneNumber}</span>
+            </p>
+          )}
         </Heading>
       }
       {orderData.note && (
