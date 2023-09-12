@@ -26,11 +26,13 @@ export const fetchAddress = createAsyncThunk(
     return { position, address };
   },
 );
+
 let storedAddress = { position: { latitude: 0, longitude: 0 }, address: "" };
 const storedPosition = sessionStorage.getItem("gpi");
 if (storedPosition !== null) {
   storedAddress = JSON.parse(storedPosition);
 }
+
 const initialState = {
   status: "idle",
   position: storedAddress.position,
@@ -60,7 +62,7 @@ const gpiSlice = createSlice({
       })
       .addCase(fetchAddress.rejected, (state) => {
         state.status = "error";
-        state.error = " Kkhông thể lấy vị trí, hãy cho phép vị trí của bạn";
+        state.error = " không thể lấy vị trí, hãy cho phép vị trí của bạn";
       }),
 });
 export default gpiSlice.reducer;

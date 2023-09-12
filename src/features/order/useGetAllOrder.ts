@@ -40,6 +40,7 @@ export function useGetAllOrder({
     queryKey: ["order", page, sortBy, filter, phoneNumber],
     enabled: allowToFetch,
     queryFn: () => getAllOrder({ page, sortBy, filter, phoneNumber }),
+
   });
 
   const pageCount = Math.ceil((allOrder.count ?? 0) / PAGE_SIZE);
