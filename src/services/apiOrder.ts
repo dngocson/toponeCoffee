@@ -1,3 +1,4 @@
+import { getToday } from "../helper/helperFunctions";
 import { PAGE_SIZE } from "../ui/Pagination";
 import supabase from "./supabase";
 
@@ -129,4 +130,19 @@ export async function updateOrderById({
     throw new Error("Không thể lấy dữ liệu từ server");
   }
   return { data, error };
+}
+
+export async function getOrderAfterDay(date: string) {
+  const { data, error } = await supabase
+    .from("orders")
+    .select("created_at,status,totalPrice")
+    .gte("created_at", date)
+    .lte("created_at", getToday({ end: true }));
+
+  if (error) {
+    console.error(error);
+    throw new Error("Không thể lấy dữ liệu từ server");
+  }
+
+  return data;
 }

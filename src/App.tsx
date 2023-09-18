@@ -8,6 +8,7 @@ import Spinner from "./ui/Spinner";
 import AppLayout from "./ui/AppLayout";
 import ErrorPage from "./pages/ErrorPage";
 import Main from "./pages/Main";
+// import Dashboard from "./pages/Dashboard";
 // import OrderDetail from "./pages/OrderDetail";
 // import Menu from "./pages/Menu";
 // import Order from "./pages/Order";
@@ -29,7 +30,7 @@ const ProductDetail = lazy(() => import("./pages/ProductDetail"));
 const FindOrder = lazy(() => import("./pages/FindOrder"));
 const Menu = lazy(() => import("./pages/Menu"));
 const OrderDetail = lazy(() => import("./pages/OrderDetail"));
-
+const Dashboard = lazy(() => import("./pages/Dashboard"));
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -126,6 +127,16 @@ const App = () => {
             <ProtectedRoutes>
               <Suspense fallback={<Spinner />}>
                 <Order />
+              </Suspense>
+            </ProtectedRoutes>
+          ),
+        },
+        {
+          path: "/admin/dashboard",
+          element: (
+            <ProtectedRoutes>
+              <Suspense fallback={<Spinner />}>
+                <Dashboard />
               </Suspense>
             </ProtectedRoutes>
           ),

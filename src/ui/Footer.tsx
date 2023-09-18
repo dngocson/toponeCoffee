@@ -24,7 +24,7 @@ function Footer() {
               Thông tin liên hệ
             </h2>
             <ul className="flex flex-col gap-3">
-              <li>
+              <li className="transition hover:text-blue-600">
                 <div className="flex items-center gap-4">
                   <p className="text-xl">
                     <HiLocationMarker />
@@ -37,7 +37,7 @@ function Footer() {
                   </a>
                 </div>
               </li>
-              <li>
+              <li className="transition hover:text-blue-600">
                 <div className="flex items-center  gap-4">
                   <p className="text-xl">
                     <HiPhone />
@@ -46,7 +46,7 @@ function Footer() {
                 </div>
               </li>
 
-              <li>
+              <li className="transition hover:text-blue-600">
                 <div className="flex items-center  gap-4">
                   <p className="text-xl">
                     <HiOutlineMail />
@@ -56,7 +56,7 @@ function Footer() {
                   </a>
                 </div>
               </li>
-              <li>
+              <li className="transition hover:text-blue-600">
                 <div className="flex items-center  gap-4">
                   <p className="text-xl">
                     <BsFacebook />
@@ -76,13 +76,13 @@ function Footer() {
               Về chúng tôi
             </h2>
             <ul className="flex flex-col gap-3">
-              <li>
+              <li className="transition hover:text-blue-600">
                 <Link to={"/menu"}>Thực đơn của Top One</Link>
               </li>
-              <li>
+              <li className="transition hover:text-blue-600">
                 <Link to={"/about"}>Giới thiệu về Top One</Link>
               </li>
-              <li>
+              <li className="transition hover:text-blue-600">
                 <Link to={"/contact"}>Liên hệ</Link>
               </li>
             </ul>
