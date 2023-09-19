@@ -18,7 +18,7 @@ export default function DashboardTimeOverview({
   );
   const averagePerday = Math.round(totalOrderValue / numDays / 1000) * 1000;
   return (
-    <div className=" col-span-4 grid grid-cols-4 justify-between gap-4  ">
+    <div className="mt-4 grid grid-cols-2 gap-2 sm:gap-3 md:mt-8 lg:grid-cols-4">
       <Stats
         title={"Số đơn"}
         borderColor={`border-blue-600`}
@@ -74,11 +74,13 @@ function Stats({
   return (
     <div
       className={cn(
-        `mt-12  flex gap-4 rounded-2xl border-2  px-10 py-4`,
+        `flex gap-2 rounded-2xl border-2 px-2 py-2   md:gap-4 md:py-4`,
         borderColor,
       )}
     >
-      <div className={`text-5xl`}>
+      <div
+        className={`my-auto text-2xl mediumPhone:text-3xl largePhone:text-4xl sm:text-5xl`}
+      >
         <span
           className={cn(
             `block rounded-full bg-red-200 p-2 text-black`,
@@ -90,8 +92,12 @@ function Stats({
         </span>
       </div>
       <div className="flex flex-col justify-center">
-        <h3 className="text-lg  uppercase ">{title}</h3>
-        <h3 className="text-lg font-semibold">{value}</h3>
+        <h3 className="text-xs uppercase mediumPhone:text-sm largePhone:text-base sm:text-lg">
+          {title}
+        </h3>
+        <h3 className="text-xs font-semibold mediumPhone:text-sm largePhone:text-base sm:text-lg">
+          {value}
+        </h3>
       </div>
     </div>
   );

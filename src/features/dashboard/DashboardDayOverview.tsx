@@ -45,17 +45,17 @@ export default function DashboardDayOverview() {
   }, []);
   const { isLoading, orders } = useGetTodayOrdes();
   if (isLoading) return <Spinner />;
-  console.log(orders);
+
   return (
-    <div className="col-span-2 border-2 border-blue-600 ">
-      <h2 className="m-5  text-xl font-bold">Hôm nay</h2>
-      <div className="mb-2 grid grid-cols-4 justify-items-center px-2 font-bold uppercase">
+    <div className="col-span-1 border-2 border-blue-600">
+      <h2 className="m-2 text-2xl font-bold lg:m-5 lg:text-xl">Hôm nay</h2>
+      <div className="mb-2 grid grid-cols-4 justify-items-center px-2 text-center text-sm font-bold uppercase sm:text-lg ">
         <h3>Thời gian</h3>
         <h3>Tổng đơn</h3>
         <h3>Trạng thái</h3>
         <h3>Cập nhật</h3>
       </div>
-      <div className="relative max-h-[80%] overflow-y-auto overflow-x-hidden">
+      <div className="relative max-h-[200px] overflow-y-auto overflow-x-hidden sm:max-h-[300px] lg:max-h-[80%]">
         <div className="px-2">
           {orders &&
             orders.map((order) => (
@@ -64,40 +64,52 @@ export default function DashboardDayOverview() {
                 className="grid grid-cols-4 justify-items-center border-t border-blue-600  uppercase"
               >
                 <p
-                  className={cn("text-black", {
-                    "text-red-600": order.status === "pending",
-                    "text-gray-600": order.status === "completed",
-                    "text-green-600": order.status === "confirmed",
-                  })}
+                  className={cn(
+                    "flex items-center justify-center text-center text-xs text-black mediumPhone:text-sm sm:text-base",
+                    {
+                      "text-red-600": order.status === "pending",
+                      "text-gray-600": order.status === "completed",
+                      "text-green-600": order.status === "confirmed",
+                    },
+                  )}
                 >
                   {format(new Date(order.created_at), "p", {
                     locale: vi,
                   })}
                 </p>
                 <p
-                  className={cn("text-black", {
-                    "text-red-600": order.status === "pending",
-                    "text-gray-600": order.status === "completed",
-                    "text-green-600": order.status === "confirmed",
-                  })}
+                  className={cn(
+                    "flex items-center justify-center text-center text-xs text-black mediumPhone:text-sm sm:text-base",
+                    {
+                      "text-red-600": order.status === "pending",
+                      "text-gray-600": order.status === "completed",
+                      "text-green-600": order.status === "confirmed",
+                    },
+                  )}
                 >
                   {formatCurrencyNumber(order.totalPrice.toString())}
                 </p>
                 <p
-                  className={cn("text-black", {
-                    " text-red-600": order.status === "pending",
-                    "text-gray-600": order.status === "completed",
-                    "text-green-600": order.status === "confirmed",
-                  })}
+                  className={cn(
+                    "flex items-center justify-center text-center text-xs text-black mediumPhone:text-sm sm:text-base",
+                    {
+                      " text-red-600": order.status === "pending",
+                      "text-gray-600": order.status === "completed",
+                      "text-green-600": order.status === "confirmed",
+                    },
+                  )}
                 >
                   {convertOrderStatus(order.status)}
                 </p>
                 <Link
-                  className={cn("text-black", {
-                    " text-red-600": order.status === "pending",
-                    "text-gray-600": order.status === "completed",
-                    "text-green-600": order.status === "confirmed",
-                  })}
+                  className={cn(
+                    "flex items-center justify-center text-xs text-black mediumPhone:text-sm sm:text-base",
+                    {
+                      " text-red-600": order.status === "pending",
+                      "text-gray-600": order.status === "completed",
+                      "text-green-600": order.status === "confirmed",
+                    },
+                  )}
                   to={`/order/${order.name}`}
                 >
                   Cập nhật

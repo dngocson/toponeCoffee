@@ -1,5 +1,6 @@
 import { eachDayOfInterval, subDays, format, isSameDay } from "date-fns";
 import { vi } from "date-fns/locale";
+import { useState, useEffect } from "react";
 import {
   AreaChart,
   Area,
@@ -9,8 +10,19 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import useWindowDimensions from "./useWindowDimensions";
 
 export default function DashboardSalesTimechart({ orders, numDays }) {
+  const [showYaxis, setShowYaxis] = useState(true);
+  const { width } = useWindowDimensions();
+  useEffect(() => {
+    if (width < 450) {
+      console.log("run this");
+      setShowYaxis(false);
+    } else {
+      setShowYaxis(true);
+    }
+  }, [width]);
   const allDates = eachDayOfInterval({
     start: subDays(new Date(), numDays - 1),
     end: new Date(),
@@ -37,7 +49,7 @@ export default function DashboardSalesTimechart({ orders, numDays }) {
     };
   });
   return (
-    <div className="col-span-4 w-full border-2 border-blue-600 p-2">
+    <div className="mt-4 w-full border-2 border-blue-600 p-2">
       {startDate !== undefined && endDate !== undefined && (
         <h2 className="m-5 text-xl  font-bold">
           Đơn hàng từ{" "}
@@ -57,12 +69,14 @@ export default function DashboardSalesTimechart({ orders, numDays }) {
             tick={{ fill: "#374151" }}
             tickLine={{ stroke: "#374151" }}
           />
-          <YAxis
-            width={100}
-            unit={"vnđ"}
-            tick={{ fill: "#374151" }}
-            tickLine={{ stroke: "#374151" }}
-          />
+          {showYaxis && (
+            <YAxis
+              width={100}
+              unit={"vnđ"}
+              tick={{ fill: "#374151" }}
+              tickLine={{ stroke: "#374151" }}
+            />
+          )}
           <CartesianGrid strokeDasharray={4} />
           <Tooltip contentStyle={{ backgroundColor: "#fff" }} />
           <Area

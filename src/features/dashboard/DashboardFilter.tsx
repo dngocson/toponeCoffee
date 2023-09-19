@@ -2,11 +2,11 @@ import Filter from "../../ui/Filter";
 
 export default function DashboardFilter() {
   return (
-    <div className="col-span-4 flex items-center justify-between rounded-xl border border-blue-600">
+    <div className="col-span-1 flex items-center justify-between rounded-xl border border-blue-600 ">
       <h1 className=" ml-5 hidden text-xs font-bold uppercase md:block md:text-3xl">
         Trang tổng hợp
       </h1>
-      <div className="">
+      <div className="w-full md:w-auto">
         <Filter
           filterField="last"
           options={[

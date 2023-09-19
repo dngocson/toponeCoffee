@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import {
   Cell,
   Legend,
@@ -7,6 +7,7 @@ import {
   ResponsiveContainer,
   Sector,
 } from "recharts";
+import useWindowDimensions from "./useWindowDimensions";
 const renderActiveShape = (props: any) => {
   const RADIAN = Math.PI / 180;
   const {
@@ -81,6 +82,17 @@ const renderActiveShape = (props: any) => {
 };
 export default function DashboardSalePiechart({ orders, numDays }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [showLegend, setShowLegend] = useState(true);
+  const { width } = useWindowDimensions();
+  useEffect(() => {
+    if (width < 450) {
+      console.log("run this");
+      setShowLegend(false);
+    } else {
+      setShowLegend(true);
+    }
+  }, [width]);
+
   const onPieEnter = useCallback(
     (_, index) => {
       setActiveIndex(index);
@@ -102,20 +114,20 @@ export default function DashboardSalePiechart({ orders, numDays }) {
     { name: `Cơm: ${foodTotal}vnd`, value: noodleTotal, color: "#fbbf24" },
   ];
   return (
-    <div className="col-span-2 border-2 border-blue-600 p-2">
+    <div className="col-span-1 h-full border-2 border-blue-600">
       <h2 className="m-5  text-xl font-bold">
         Tỉ lệ doanh thu trong {numDays} ngày
       </h2>
-      <ResponsiveContainer width={`100%`} height={350}>
+      <ResponsiveContainer width={`100%`} height={400}>
         <PieChart>
           <Pie
             activeIndex={activeIndex}
             activeShape={renderActiveShape}
             data={data}
-            cx={"60%"}
+            cx={"%"}
             cy={"50%"}
-            innerRadius={85}
-            outerRadius={110}
+            innerRadius={"60%"}
+            outerRadius={"70%"}
             fill="#8884d8"
             dataKey="value"
             onMouseEnter={onPieEnter}
@@ -124,16 +136,18 @@ export default function DashboardSalePiechart({ orders, numDays }) {
               <Cell fill={entry.color} stroke={entry.color} key={index} />
             ))}
           </Pie>
-          <Legend
-            layout="vertical"
-            iconSize={15}
-            iconType="circle"
-            verticalAlign="middle"
-            align="right"
-            wrapperStyle={{
-              lineHeight: "40px",
-            }}
-          />
+          {showLegend && (
+            <Legend
+              layout="vertical"
+              iconSize={15}
+              iconType="circle"
+              verticalAlign="middle"
+              align="right"
+              wrapperStyle={{
+                lineHeight: "40px",
+              }}
+            />
+          )}
         </PieChart>
       </ResponsiveContainer>
     </div>
