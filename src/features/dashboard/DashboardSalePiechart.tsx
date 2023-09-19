@@ -124,7 +124,7 @@ export default function DashboardSalePiechart({ orders, numDays }) {
             activeIndex={activeIndex}
             activeShape={renderActiveShape}
             data={data}
-            cx={"%"}
+            cx={"52%"}
             cy={"50%"}
             innerRadius={"60%"}
             outerRadius={"70%"}

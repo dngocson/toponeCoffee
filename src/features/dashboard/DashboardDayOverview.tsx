@@ -48,7 +48,7 @@ export default function DashboardDayOverview() {
 
   return (
     <div className="col-span-1 border-2 border-blue-600">
-      <h2 className="m-2 text-2xl font-bold lg:m-5 lg:text-xl">Hôm nay</h2>
+      <h2 className="m-2 text-2xl font-bold lg:m-5 lg:text-xl">Đơn gần nhất</h2>
       <div className="mb-2 grid grid-cols-4 justify-items-center px-2 text-center text-sm font-bold uppercase sm:text-lg ">
         <h3>Thời gian</h3>
         <h3>Tổng đơn</h3>
@@ -73,7 +73,7 @@ export default function DashboardDayOverview() {
                     },
                   )}
                 >
-                  {format(new Date(order.created_at), "p", {
+                  {format(new Date(order.created_at), "dd/MM-p", {
                     locale: vi,
                   })}
                 </p>

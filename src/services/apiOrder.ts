@@ -147,11 +147,14 @@ export async function getOrderAfterDay(date: string) {
   return data;
 }
 
+// .gte("startDate", date)
+// .lte("startDate", getToday());
 export async function getTodayOrders() {
   const { data, error } = await supabase
     .from("orders")
     .select("*")
     .gte("created_at", getToday())
+    .lte("created_at", getToday({ end: true }))
     .order("created_at", { ascending: false });
 
   if (error) {
