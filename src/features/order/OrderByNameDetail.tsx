@@ -37,7 +37,7 @@ export const OrderByNameDetail = ({ items }: { items: any }) => {
           } `}
         >
           <Heading
-            addStyle="w-full hidden md:block text-sm md:text-lg h-full flex flex-col items-center justify-center text-center"
+            addStyle="w-full hidden md:flex text-sm md:text-lg h-full flex flex-col items-center justify-center text-center"
             type="sub"
           >
             {index + 1}

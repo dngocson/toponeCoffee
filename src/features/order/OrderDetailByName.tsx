@@ -9,6 +9,8 @@ import {
 } from "../../helper/helperFunctions";
 import { OrderByNameDetail } from "./OrderByNameDetail";
 import Heading from "../../ui/Heading";
+import { useUser } from "../user/useUser";
+import UpdateOrderStatus from "./UpdateOrderStatus";
 
 const OrderDetailByName = ({
   name,
@@ -17,10 +19,11 @@ const OrderDetailByName = ({
   name?: string;
   viewer?: string;
 }) => {
+  const { isLoading: isLoadingUser, isAuthenticated } = useUser();
   let { orderId } = useParams();
   if (name) orderId = name;
   const { isLoading, order, error } = useGetOrderByName(orderId!);
-  if (isLoading) return <Spinner />;
+  if (isLoading || isLoadingUser) return <Spinner />;
   if (error)
     return (
       <h2 className="text-center">
@@ -107,6 +110,9 @@ const OrderDetailByName = ({
         label="Tổng hóa đơn"
         value={formatCurrencyNumber(orderData.totalPrice.toString())}
       />
+      {isAuthenticated && (
+        <UpdateOrderForm id={orderData.id} currentValue={orderData.status} />
+      )}
     </div>
   );
 };
@@ -120,5 +126,16 @@ function InformationRow({ label, value }: { label: string; value: string }) {
         {label}: <span className="font-bold">{value}</span>
       </Heading>
     </>
+  );
+}
+
+function UpdateOrderForm({ id, currentValue }) {
+  return (
+    <div>
+      <h2 className="my-4 text-2xl font-bold text-blue-700">
+        Cập nhật trạng thái của đơn hàng
+      </h2>
+      <UpdateOrderStatus id={id} currentValue={currentValue} />
+    </div>
   );
 }

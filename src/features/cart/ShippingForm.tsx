@@ -2,6 +2,9 @@ import { useSelector } from "react-redux";
 import { useForm, SubmitHandler } from "react-hook-form";
 import {
   getCart,
+  getTotalCartDrinkPrice,
+  getTotalCartFoodPrice,
+  getTotalCartNoodlePrice,
   getTotalCartPrice,
   getTotalCartQuantity,
 } from "../redux/cart/cartSlice";
@@ -21,6 +24,9 @@ const ShippingForm = ({ onClose }: { onClose?: () => void }) => {
   const totalCartQuantity = useSelector(getTotalCartQuantity);
   const cartItems = useSelector(getCart);
   const totalCartPrice = useSelector(getTotalCartPrice);
+  const foodPrice = useSelector(getTotalCartFoodPrice);
+  const drinkPrice = useSelector(getTotalCartDrinkPrice);
+  const noodlePrice = useSelector(getTotalCartNoodlePrice);
   const {
     status: apiStatus,
     position,
@@ -46,6 +52,9 @@ const ShippingForm = ({ onClose }: { onClose?: () => void }) => {
       totalPrice: totalCartPrice,
       totalQuantity: totalCartQuantity,
       location: positionToString,
+      drinkPrice: drinkPrice,
+      foodPrice: foodPrice,
+      noodlePrice: noodlePrice,
     };
     const newOrder = { order: orderdata, cart: cartItems };
     createOrder(newOrder, {

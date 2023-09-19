@@ -1,5 +1,6 @@
 export interface CartItem {
   key?: number;
+  type?: string;
   id: number;
   name: string;
   quantity: number;

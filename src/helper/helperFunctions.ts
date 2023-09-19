@@ -110,6 +110,7 @@ export function convertDayVietNameseShort(date: Date) {
     locale: vi,
   });
 }
+
 export const getToday = function (options = { end: false }) {
   const today = new Date();
 

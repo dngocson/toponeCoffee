@@ -11,11 +11,15 @@ export default function Dashboard() {
   if (isLoading) return <Spinner />;
   return (
     <div className="container min-h-screen p-1">
-      <DashboardFilter />
-      <DashboardTimeOverview orders={completedOrder!} />
-      <DashboardDayOverview />
-      <DashboardSalePiechart orders={completedOrder!} />
-      <DashboardSalesTimechart orders={completedOrder!} numDays={numDays} />
+      <div className="grid grid-cols-4 gap-4">
+        <DashboardFilter />
+        <DashboardTimeOverview numDays={numDays} orders={completedOrder!} />
+
+        <DashboardDayOverview />
+        <DashboardSalePiechart orders={completedOrder!} numDays={numDays} />
+
+        <DashboardSalesTimechart orders={completedOrder!} numDays={numDays} />
+      </div>
     </div>
   );
 }

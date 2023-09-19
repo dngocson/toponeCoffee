@@ -43,6 +43,7 @@ const ProductdetailItem = () => {
   function onClickHandler() {
     const newItem = {
       id: currentProduct.id,
+      type: currentProduct.type,
       image: currentProduct.image,
       name: currentProduct.name,
       quantity: quantity,

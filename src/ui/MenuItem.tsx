@@ -104,6 +104,7 @@ function AddItemToCartModal({
     const newItem = {
       id: item.id,
       image: item.image,
+      type: item.type,
       name: item.name,
       quantity: quantity,
       unitPrice: item.price,

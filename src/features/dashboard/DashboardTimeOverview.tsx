@@ -5,17 +5,20 @@ import { HiOutlineBanknotes } from "react-icons/hi2";
 import { BiFoodMenu } from "react-icons/bi";
 type DashboardTimeOverviewProps = {
   orders: { created_at: any; status: any; totalPrice: number }[];
+  numDays: number;
 };
 export default function DashboardTimeOverview({
   orders,
+  numDays,
 }: DashboardTimeOverviewProps) {
   const numOrders = orders.length;
   const totalOrderValue = orders.reduce(
     (accumulator, currentValue) => accumulator + currentValue.totalPrice,
     0,
   );
+  const averagePerday = Math.round(totalOrderValue / numDays / 1000) * 1000;
   return (
-    <div className="flex max-w-[50%] gap-10">
+    <div className=" col-span-4 grid grid-cols-4 justify-between gap-4  ">
       <Stats
         title={"Số đơn"}
         borderColor={`border-blue-600`}
@@ -30,6 +33,22 @@ export default function DashboardTimeOverview({
         iconColor={`text-green-600`}
         iconBackgroundColor={`bg-green-100`}
         value={`${formatCurrencyNumber(totalOrderValue.toString())}`}
+        icon={<HiOutlineBanknotes />}
+      />
+      <Stats
+        title={"Số đơn"}
+        borderColor={`border-[#d97706]`}
+        iconColor={`text-[#d97706]`}
+        iconBackgroundColor={`bg-[#fef3c7]`}
+        value={`${(numOrders / numDays).toFixed(2).toString()}/ngày`}
+        icon={<BiFoodMenu />}
+      />
+      <Stats
+        title={"tổng đơn"}
+        borderColor={`border-[#db2777]`}
+        iconColor={`text-[#db2777]`}
+        iconBackgroundColor={`bg-[#fce7f3]`}
+        value={`${formatCurrencyNumber(averagePerday.toString())}/ngày`}
         icon={<HiOutlineBanknotes />}
       />
     </div>
@@ -59,8 +78,16 @@ function Stats({
         borderColor,
       )}
     >
-      <div className={cn(`rounded-full  p-2 text-5xl`, iconBackgroundColor)}>
-        <span className={cn(`text-black`, iconColor)}>{icon}</span>
+      <div className={`text-5xl`}>
+        <span
+          className={cn(
+            `block rounded-full bg-red-200 p-2 text-black`,
+            iconColor,
+            iconBackgroundColor,
+          )}
+        >
+          {icon}
+        </span>
       </div>
       <div className="flex flex-col justify-center">
         <h3 className="text-lg  uppercase ">{title}</h3>

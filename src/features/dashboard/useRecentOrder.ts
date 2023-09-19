@@ -15,6 +15,7 @@ export function useRecentOrder() {
     error,
   } = useQuery({
     queryFn: () => getOrderAfterDay(queryDate),
+    staleTime: 0,
     queryKey: ["orders", `last-${numDays}`],
   });
   const completedOrder = orders?.filter(

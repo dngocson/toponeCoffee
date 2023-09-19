@@ -135,7 +135,7 @@ export async function updateOrderById({
 export async function getOrderAfterDay(date: string) {
   const { data, error } = await supabase
     .from("orders")
-    .select("created_at,status,totalPrice")
+    .select("created_at,status,totalPrice,drinkPrice,noodlePrice,foodPrice")
     .gte("created_at", date)
     .lte("created_at", getToday({ end: true }));
 
@@ -144,5 +144,19 @@ export async function getOrderAfterDay(date: string) {
     throw new Error("Không thể lấy dữ liệu từ server");
   }
 
+  return data;
+}
+
+export async function getTodayOrders() {
+  const { data, error } = await supabase
+    .from("orders")
+    .select("*")
+    .gte("created_at", getToday())
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error(error);
+    throw new Error("Không thể lấy dữ liệu từ server");
+  }
   return data;
 }

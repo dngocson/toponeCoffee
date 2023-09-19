@@ -97,5 +97,26 @@ export const getTotalCartPrice = (state: RootState) =>
     (sum, item) => sum + item.quantity * item.unitPrice,
     0,
   );
+// TEST
+export const getTotalCartDrinkPrice = (state: RootState) =>
+  state.cart.cart.reduce((sum, item) => {
+    if (item.type === "drink") {
+      return sum + item.quantity * item.unitPrice;
+    } else return sum;
+  }, 0);
+export const getTotalCartNoodlePrice = (state: RootState) =>
+  state.cart.cart.reduce((sum, item) => {
+    if (item.type === "noodle") {
+      return sum + item.quantity * item.unitPrice;
+    } else return sum;
+  }, 0);
+export const getTotalCartFoodPrice = (state: RootState) =>
+  state.cart.cart.reduce((sum, item) => {
+    if (item.type === "food") {
+      return sum + item.quantity * item.unitPrice;
+    } else return sum;
+  }, 0);
+
+// TEST
 export const getCurrentQuantitybyId = (id: number) => (state: RootState) =>
   state.cart.cart.find((item) => item.id === id)?.quantity ?? 0;
