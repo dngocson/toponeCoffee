@@ -5,7 +5,7 @@ import mycay from "../../assets/mycay.webp";
 import comtrua from "../../assets/comtrua1.webp";
 import MenuItem from "../../ui/MenuItem";
 import { motion } from "framer-motion";
-// import { useState } from "react";
+
 import { useSearchParams } from "react-router-dom";
 const MainItems = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,7 +17,6 @@ const MainItems = () => {
     searchParams.set(target, Number(Number(value) + 4).toString());
     setSearchParams(searchParams);
   }
-
   const { isLoading, menuItems } = useMenu();
   if (isLoading) return <Spinner />;
   if (!menuItems) return <p>Đang tải dữ liệu từ server</p>;

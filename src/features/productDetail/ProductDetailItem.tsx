@@ -63,11 +63,11 @@ const ProductdetailItem = () => {
         <div>
           <div className="relative overflow-hidden">
             {currentProduct.promotion && (
-              <p className="px-3rem absolute  left-[-94px] top-[28px] z-10 min-w-[300px] rotate-[-37deg]  whitespace-nowrap bg-[#f00] py-[0.3rem] text-center text-base font-bold uppercase tracking-widest text-white shadow-cardShadow2 largePhone:left-[-78px] largePhone:top-[34px] largePhone:py-[0.4rem] largePhone:text-lg md:left-[-107px] md:top-[62px] md:px-32    md:text-2xl">
+              <div className="px-3rem absolute  left-[-94px] top-[28px] z-10 min-w-[300px] rotate-[-37deg]  whitespace-nowrap bg-[#f00] py-[0.3rem] text-center text-base font-bold uppercase tracking-widest text-white shadow-cardShadow2 largePhone:left-[-78px] largePhone:top-[34px] largePhone:py-[0.4rem] largePhone:text-lg md:left-[-107px] md:top-[62px] md:px-32    md:text-2xl">
                 <p className="text-center md:min-w-[200px] ">
                   {currentProduct.promotion}
                 </p>
-              </p>
+              </div>
             )}
             <div className="overflow-hidden rounded-xl  lg:h-[570px] lg:w-[570px] ">
               <img
