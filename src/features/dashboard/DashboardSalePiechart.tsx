@@ -86,7 +86,7 @@ export default function DashboardSalePiechart({ orders, numDays }) {
   const { width } = useWindowDimensions();
   useEffect(() => {
     if (width < 450) {
-      console.log("run this");
+    
       setShowLegend(false);
     } else {
       setShowLegend(true);

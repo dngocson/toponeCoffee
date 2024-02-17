@@ -1,5 +1,5 @@
 import FindOrderForm from "../features/findOrder/FindOrderForm";
-import { Dispatch, SetStateAction, createContext, useState } from "react";
+import { Dispatch, SetStateAction, createContext, memo, useState } from "react";
 import FindOrderList from "../features/findOrder/FindOrderList";
 interface FindOrderContextProps {
   phoneNumber: string;
@@ -10,7 +10,7 @@ export const FindOrderContext = createContext<FindOrderContextProps>({
   setphoneNumber: () => undefined,
 });
 
-function FindOrder() {
+const FindOrder = memo(() => {
   const [phoneNumber, setphoneNumber] = useState<string>("");
   const store = { phoneNumber, setphoneNumber };
   return (
@@ -21,6 +21,6 @@ function FindOrder() {
       </div>
     </FindOrderContext.Provider>
   );
-}
+});
 
 export default FindOrder;

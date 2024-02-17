@@ -1,21 +1,21 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { useParams } from "react-router-dom";
 
 import { useMenu } from "../menu/useMenu";
-import { useAppDispatch } from "../redux/useAppDispatch ";
 import { addItem } from "../redux/cart/cartSlice";
+import { useAppDispatch } from "../redux/useAppDispatch ";
 
-import Spinner from "../../ui/Spinner";
 import Heading from "../../ui/Heading";
+import Spinner from "../../ui/Spinner";
 import RelatedProduct from "./RelatedProduct";
 
+import { AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai";
+import { iceLevel, suggarLevel } from "../../helper/const";
 import {
   formatCurrencyNumber,
   removeVietnameseTones,
 } from "../../helper/helperFunctions";
-import { iceLevel, suggarLevel } from "../../helper/const";
-import { AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai";
 
 const ProductdetailItem = () => {
   const dispatch = useAppDispatch();

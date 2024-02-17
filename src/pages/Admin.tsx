@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import Heading from "../ui/Heading";
 
 import { useLogout } from "../features/user/useLogout";
+import { memo } from "react";
 
-const Admin = () => {
+const Admin = memo(() => {
   const { logout, isLoading } = useLogout();
   return (
     <div className="container min-h-screen">
@@ -31,6 +32,6 @@ const Admin = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Admin;

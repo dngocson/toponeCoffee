@@ -124,7 +124,7 @@ const App = () => {
         {
           path: "/admin/order",
           element: (
-            <ProtectedRoutes>
+            <ProtectedRoutes >
               <Suspense fallback={<Spinner />}>
                 <Order />
               </Suspense>

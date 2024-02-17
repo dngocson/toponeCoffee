@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { useMenu } from "./useMenu";
 import Spinner from "../../ui/Spinner";
@@ -17,7 +17,7 @@ const SearchMenu = () => {
     engName: removeVietnameseTones(item.name).replace(/-/g, " "),
   }));
 
-  function submitHandler(e: any) {
+  function submitHandler(e: FormEvent) {
     e.preventDefault();
     if (renderData.length === 1) {
       navigate(`/menu/${renderData[0].engName?.replace(/ /g, "-")}`);
@@ -34,13 +34,13 @@ const SearchMenu = () => {
   }
   return (
     <form onSubmit={submitHandler} className="relative">
-      <div className="relative mx-auto w-[70%] lg:w-[100%]">
+      <div className="relative mx-auto lg:w-[100%]">
         <input
           placeholder="Tìm kiếm"
           id="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full rounded-xl bg-cyan-50  p-2 transition-all duration-300  focus:outline-none focus:ring focus:ring-blue-600 focus:ring-opacity-70 lg:w-[350px] lg:focus:w-[500px]"
+          className="w-full rounded-xl bg-white p-2 transition-all duration-300  focus:outline-none focus:ring focus:ring-[#20BDDF] focus:ring-opacity-70  lg:w-[250px] 2xl:w-[350px] "
           onBlur={onblurHandler}
         />
         <div className="absolute inset-y-0 right-2 flex items-center pl-3">
@@ -76,7 +76,7 @@ function SearchResult({
                   alt="hình ảnh sản phẩm"
                 />
                 <div>
-                  <p className="font-semibold group-hover:scale-105 group-hover:text-blue-700">
+                  <p className="font-semibold group-hover:scale-105 group-hover:text-[#20BDDF]">
                     {item.name}
                   </p>
                   <p>

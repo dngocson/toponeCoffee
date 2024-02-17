@@ -1,6 +1,8 @@
+import { memo } from "react";
 import nhanvien1 from "../assets/nhan vien tra sua.webp";
 import nhanvien2 from "../assets/nhanvien.webp";
-function About() {
+
+const About = memo(() => {
   return (
     <div className="container min-h-screen">
       <div className="flex flex-col gap-4 p-2">
@@ -44,6 +46,6 @@ function About() {
       </div>
     </div>
   );
-}
+});
 
 export default About;

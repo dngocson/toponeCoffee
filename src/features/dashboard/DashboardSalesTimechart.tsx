@@ -17,7 +17,6 @@ export default function DashboardSalesTimechart({ orders, numDays }) {
   const { width } = useWindowDimensions();
   useEffect(() => {
     if (width < 450) {
-      console.log("run this");
       setShowYaxis(false);
     } else {
       setShowYaxis(true);

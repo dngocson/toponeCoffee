@@ -1,23 +1,34 @@
-import SearchMenu from "../features/menu/SearchMenu";
-import { Link, NavLink } from "react-router-dom";
-import { headerButton } from "../helper/const";
-import Modal from "./Modal";
-import { CartTable } from "../features/cart/CartTable";
 import { useEffect, useState } from "react";
 import { AiFillSetting, AiOutlineLogin, AiOutlineMenu } from "react-icons/ai";
+import { CiCircleList } from "react-icons/ci";
 import { HiXMark } from "react-icons/hi2";
-import { FaListAlt } from "react-icons/fa";
-import { BsFillCartFill } from "react-icons/bs";
-import { useSelector } from "react-redux";
-import { getTotalCartQuantity } from "../features/redux/cart/cartSlice";
-import { motion, AnimatePresence } from "framer-motion";
+import { LuShoppingCart } from "react-icons/lu";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { CartTable } from "../features/cart/CartTable";
+import SearchMenu from "../features/menu/SearchMenu";
+import { headerButton } from "../helper/const";
+import Modal from "./Modal";
+import { AnimatePresence, motion } from "framer-motion";
 import { useUser } from "../features/user/useUser";
 import Spinner from "./Spinner";
+// import { useSelector } from "react-redux";
+// import { getTotalCartQuantity } from "../features/redux/cart/cartSlice";
 
 function Header() {
   const [showNav, setShowNav] = useState(false);
+  const location = useLocation();
+  const [activeLinkKey, setActiveLinkKey] = useState(0);
   const [shadow, setShadow] = useState(false);
   const { isLoading, isAuthenticated } = useUser();
+
+  useEffect(() => {
+    if (/^\/$/.test(location.pathname)) setActiveLinkKey(1);
+    else if (/^\/menu/.test(location.pathname)) setActiveLinkKey(3);
+    else if (/^\/about/.test(location.pathname)) setActiveLinkKey(2);
+    else if (/^\/contact/.test(location.pathname)) setActiveLinkKey(4);
+    else setActiveLinkKey(0);
+  }, [location]);
+
   useEffect(() => {
     const handleShadow = () => {
       if (window.scrollY >= 50) {
@@ -29,30 +40,62 @@ function Header() {
     window.addEventListener("scroll", handleShadow);
     return () => window.removeEventListener("scroll", handleShadow);
   }, []);
-  const totalCartQuantity = useSelector(getTotalCartQuantity);
+  // const totalCartQuantity = useSelector(getTotalCartQuantity);
   if (isLoading) return <Spinner />;
   return (
     <div
-      className={`sticky top-0  z-[50] mt-8 flex flex-col items-center justify-center gap-8 bg-blue-300 py-6  backdrop-blur-sm ${
+      className={`sticky top-0  z-[50] mt-6 flex  items-center justify-center gap-8 bg-[#D9F8FF] py-4 backdrop-blur-sm ${
         shadow ? "bg-opacity-90 shadow-xl" : null
       }`}
     >
-      <div className="hidden w-full max-w-[1200px] flex-col gap-5 lg:flex">
-        <div className=" flex  items-center justify-between gap-4 px-6 lg:max-w-[1200px] xl:px-0">
+      <div className="hidden w-full max-w-[1400px] items-center justify-between gap-5 lg:flex">
+        <div className="flex whitespace-nowrap lg:max-w-[80%] lg:gap-4 2xl:max-w-[50%] 2xl:gap-10">
           <Link
             to="/"
-            className="whitespace-nowrap text-3xl font-bold uppercase tracking-tight text-blue-600"
+            className="whitespace-nowrap rounded-lg bg-[#20BDDF] px-2 font-bold
+            uppercase tracking-tighter text-white lg:text-[20px] 2xl:text-[28px]"
           >
-            Trà sữa Top One
+            TOPONE COFFEE
           </Link>
+          <ul className="flex w-full items-center justify-between gap-4 px-6 text-lg uppercase xl:px-0">
+            {headerButton.map((item) => (
+              <li className="relative" key={item.key}>
+                <NavLink
+                  to={item.url}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-white transition-colors duration-300 lg:text-[15px] 2xl:text-[17px]"
+                      : "text-gray-900 transition-colors duration-300 hover:text-blue-600 lg:text-[15px] 2xl:text-[17px]"
+                  }
+                >
+                  <p className="relative z-10 px-2 py-1">{item.label}</p>
+                  {activeLinkKey === item.key && (
+                    <motion.span
+                      layoutId="link-indicator"
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
+                      className="absolute bottom-0 left-0 z-[5] h-full  w-full rounded-lg bg-[#20BDDF]"
+                    ></motion.span>
+                  )}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="flex max-w-[50%] gap-8">
           <SearchMenu />
           <div className="flex items-center gap-4">
             <Modal>
               <Modal.Open opens="cart">
                 <button className="text-black">
                   <div className="flex items-center justify-center gap-1 text-2xl">
-                    <BsFillCartFill />
-                    <p className="text-xl ">{totalCartQuantity}</p>
+                    <div className="rounded-full bg-[#20BDDF] p-2 text-white">
+                      <LuShoppingCart />
+                    </div>
+                    {/* <p className="text-xl ">{totalCartQuantity}</p> */}
                   </div>
                 </button>
               </Modal.Open>
@@ -61,42 +104,26 @@ function Header() {
               </Modal.Window>
             </Modal>
             <Link to={"/find"}>
-              <div className="text-2xl text-black">
-                <FaListAlt />
+              <div className="rounded-full bg-[#20BDDF] p-2 text-2xl text-white">
+                <CiCircleList />
               </div>
             </Link>
             {!isAuthenticated && (
               <Link to={"/login"}>
-                <div className="text-2xl text-black">
+                <div className="rounded-full bg-[#20BDDF] p-2 text-2xl text-white">
                   <AiOutlineLogin />
                 </div>
               </Link>
             )}
             {isAuthenticated && (
               <Link to={"/admin"}>
-                <div className="text-2xl text-orange-600">
+                <div className="rounded-full bg-[#20BDDF] p-2 text-2xl text-white">
                   <AiFillSetting />
                 </div>
               </Link>
             )}
           </div>
         </div>
-        <ul className=" flex  items-center justify-between gap-4 px-6 text-lg uppercase  lg:max-w-[1200px] xl:px-0">
-          {headerButton.map((item) => (
-            <li key={item.key}>
-              <NavLink
-                to={item.url}
-                className={({ isActive }) =>
-                  isActive
-                    ? "  text-xl text-blue-600 transition-colors duration-300"
-                    : "  text-xl text-gray-900 transition-colors  duration-300  hover:text-blue-600"
-                }
-              >
-                {item.label}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
       </div>
 
       <div className=" flex w-full items-center justify-between px-4 lg:hidden">
@@ -106,15 +133,15 @@ function Header() {
         >
           <AiOutlineMenu />
         </button>
-        <h2 className="text-xl font-semibold text-[#e57905] md:text-4xl">
+        <h2 className="text-xl font-semibold text-[#20BDDF] md:text-4xl">
           Trà sữa Top One
         </h2>
         <Modal>
           <Modal.Open opens="cart">
             <button className="text-xl text-black">
               <div className="flex items-center justify-center gap-1">
-                <BsFillCartFill />
-                <p className="text-base ">{totalCartQuantity}</p>
+                <LuShoppingCart />
+                {/* <p className="text-base ">{totalCartQuantity}</p> */}
               </div>
             </button>
           </Modal.Open>
@@ -128,7 +155,6 @@ function Header() {
         {showNav && (
           <div
             onClick={() => {
-              // e.stopPropagation();
               setShowNav((nav) => !nav);
             }}
             className="absolute left-0 top-0 h-screen w-full backdrop-blur-sm "

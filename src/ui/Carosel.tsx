@@ -9,11 +9,10 @@ import { CarouselProps } from "./type";
 
 function Carosel({ data, place }: { data: CarouselProps[]; place: string }) {
   const [slideNum, setSlideNum] = useState<number>(0);
-
   return (
     <div className="mx-auto w-[98%] md:block">
       <Swiper
-        className="mainCarousel relative mt-8 rounded-2xl "
+        className="mainCarousel relative mt-6 rounded-2xl "
         slidesPerView={1}
         loop={true}
         onSlideChange={() =>
@@ -22,7 +21,7 @@ function Carosel({ data, place }: { data: CarouselProps[]; place: string }) {
             else return 0;
           })
         }
-        height={500}
+        height={350}
         autoplay={{
           delay: 4000,
           disableOnInteraction: false,
@@ -46,7 +45,7 @@ function Carosel({ data, place }: { data: CarouselProps[]; place: string }) {
         )}
         {data.map((item) => (
           <SwiperSlide className="relative" key={item.id}>
-            <img className="h-[200px] w-full md:h-[500px] " src={item.img} />
+            <img className="h-[200px] w-full md:h-[400px] " src={item.img} />
           </SwiperSlide>
         ))}
       </Swiper>
