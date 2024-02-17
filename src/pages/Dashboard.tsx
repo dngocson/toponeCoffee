@@ -7,7 +7,7 @@ import DashboardTimeOverview from "../features/dashboard/DashboardTimeOverview";
 import { useRecentOrder } from "../features/dashboard/useRecentOrder";
 import Spinner from "../ui/Spinner";
 
-export const Dashboard = memo(() => {
+const Dashboard = memo(() => {
   const { isLoading, completedOrder, numDays } = useRecentOrder();
   if (isLoading) return <Spinner />;
   return (
@@ -24,3 +24,4 @@ export const Dashboard = memo(() => {
     </div>
   );
 });
+export default Dashboard;
